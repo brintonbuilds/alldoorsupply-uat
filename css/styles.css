@@ -1,0 +1,2587 @@
+/* ============================================================
+   ALL DOOR SUPPLY — DESIGN SYSTEM
+   ============================================================ */
+
+/* --- Reset & Base ----------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red:        #C52028;
+  --red-hover:  #a80f27;
+  --black:      #0d0d0d;
+  --dark:       #141414;
+  --dark-2:     #1c1c1c;
+  --dark-3:     #222222;
+  --mid:        #4a4a4a;
+  --light:      #f4f4f4;
+  --white:      #ffffff;
+  --border:     rgba(255,255,255,0.12);
+
+  --font-head:  'Barlow Condensed', sans-serif;
+  --font-body:  'Inter', sans-serif;
+
+  --max-w:      1080px;
+  --section-v:  80px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 24px;
+  color: #222;
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* --- Container -------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: 32px;
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  background: var(--white);
+  border-bottom: 1px solid #e8e8e8;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+/* Translucent dark nav — homepage hero overlay */
+.nav--hero {
+  background: rgba(23, 18, 18, 0.52);
+  border-bottom-color: rgba(255,255,255,0.06);
+}
+
+.nav--hero .nav__links a {
+  color: var(--white);
+}
+
+.nav--hero .nav__links a:hover {
+  color: rgba(255,255,255,0.7);
+}
+
+.nav--hero .nav__hamburger span {
+  background: var(--white);
+}
+
+/* Restore solid nav when scrolled or mobile menu is open */
+.nav--hero.nav--scrolled,
+.nav--hero.nav--open {
+  background: var(--white);
+  border-bottom-color: #e8e8e8;
+}
+
+.nav--hero.nav--scrolled .nav__links a,
+.nav--hero.nav--open .nav__links a {
+  color: var(--black);
+}
+
+.nav--hero.nav--scrolled .nav__links a:hover,
+.nav--hero.nav--open .nav__links a:hover {
+  color: var(--red);
+}
+
+.nav--hero.nav--scrolled .nav__hamburger span,
+.nav--hero.nav--open .nav__hamburger span {
+  background: var(--black);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px; /* Figma Nav/Hero bar = 1439 × 80 */
+  transition: height 0.25s ease;
+}
+
+/* Compact state — applied on scroll */
+.nav--compact .nav__inner {
+  height: 70px;
+}
+
+.nav--compact .nav__logo-img {
+  height: 50px;
+}
+
+/* Logo */
+.nav__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.nav__logo-img {
+  display: block;
+  height: 56px;
+  width: auto;
+  transition: height 0.25s ease;
+}
+
+/* Links */
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav__links a {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  color: var(--black);
+  transition: color 0.2s;
+}
+
+.nav__links a:hover { color: var(--red); }
+
+.btn-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 198px;
+  height: 40px;
+  padding-inline: 24px;
+  background: var(--red);
+  color: var(--white) !important;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  transition: background 0.2s;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-nav:hover { background: var(--red-hover) !important; }
+
+.nav__links .btn-nav,
+.nav__mobile .btn-nav {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+/* Hamburger */
+.nav__hamburger {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  padding: 8px;
+  background: none;
+  border: none;
+}
+
+.nav__hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--black);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Mobile nav */
+.nav__mobile {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  background: var(--white);
+  border-top: 1px solid #e8e8e8;
+  padding: 16px 0;
+}
+
+.nav__mobile a {
+  display: block;
+  padding: 12px 32px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  color: var(--black);
+  border-bottom: 1px solid #f0f0f0;
+  transition: color 0.2s, background 0.2s;
+}
+
+.nav__mobile a:hover { color: var(--red); background: #fafafa; }
+
+.nav__mobile .btn-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px 32px 0;
+  height: 40px;
+  width: 198px;
+  padding-inline: 24px;
+}
+
+.nav--open .nav__mobile { display: flex; }
+
+/* ============================================================
+   NAV — dropdown menus (Who We Serve / Products & Manufacturers)
+   ============================================================ */
+
+/* Interior nav carries the fuller menu — give it more room and a
+   slightly tighter gap so everything fits on one line. */
+.nav .container { max-width: 1280px; }
+.nav__links { gap: 28px; }
+
+/* Active page indicator */
+.nav__links a[aria-current="page"],
+.nav--hero .nav__links a[aria-current="page"] { color: var(--red); }
+
+/* Active section (parent of the current dropdown page) */
+.nav__toplink.is-section,
+.nav--hero .nav__links .nav__toplink.is-section { color: var(--red); }
+.nav__dropdown a[aria-current="page"] { color: var(--red) !important; }
+.nav__mobile a[aria-current="page"] { color: var(--red); }
+
+/* Dropdown parent */
+.nav__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.nav__toplink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.nav__caret {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+.nav__item:hover .nav__caret,
+.nav__item:focus-within .nav__caret { transform: rotate(180deg); }
+
+/* Invisible bridge so the pointer can travel from the top link
+   into the panel without the hover state dropping. */
+.nav__item::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -12px;
+  right: -12px;
+  height: 18px;
+}
+
+.nav__dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 0;
+  min-width: 248px;
+  background: var(--white);
+  border: 1px solid #e8e8e8;
+  border-top: 2px solid var(--red);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 60;
+}
+.nav__item:hover .nav__dropdown,
+.nav__item:focus-within .nav__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dropdown items sit on a solid white panel — force dark text even
+   inside the translucent hero nav, where top links are white. */
+.nav__dropdown a {
+  display: block;
+  padding: 11px 24px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  color: var(--black) !important;
+  white-space: nowrap;
+  transition: color 0.2s, background 0.2s;
+}
+.nav__dropdown a:hover {
+  color: var(--red) !important;
+  background: #f7f7f7;
+}
+
+/* Mobile submenu items — indented children under their parent. */
+.nav__mobile-sub {
+  padding-left: 52px !important;
+  font-size: 13px !important;
+  color: #666 !important;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  margin-top: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+  background: var(--black);
+  overflow: hidden;
+}
+
+.hero__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+  opacity: 1;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.08) 0%,
+    rgba(0,0,0,0.18) 42%,
+    rgba(0,0,0,0.62) 100%
+  );
+}
+
+/* Gradual bottom fade — lets the brand logos sit on the image with just
+   enough contrast, without ever reading as a hard-edged bar */
+.hero__vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0) 58%,
+    rgba(0,0,0,0.06) 70%,
+    rgba(0,0,0,0.16) 80%,
+    rgba(0,0,0,0.32) 90%,
+    rgba(0,0,0,0.48) 100%
+  );
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex: 1;
+  padding-block: 296px 80px;
+}
+
+.hero__text {
+  width: 56%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero__eyebrow {
+  display: none;
+}
+
+.hero__headline {
+  font-family: var(--font-head);
+  font-size: 92px;
+  font-weight: 700;
+  line-height: 86px;
+  color: var(--white);
+  margin-bottom: 17px;
+  letter-spacing: 0;
+}
+
+.hero__sub {
+  width: 665px;
+  font-size: 18px;
+  line-height: 24.5px;
+  color: rgba(255,255,255,0.88);
+  max-width: 665px;
+  margin-bottom: 25px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 198px;
+  height: 40px;
+  padding-inline: 24px;
+  background: var(--red);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  transition: background 0.2s;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.btn-primary:hover { background: var(--red-hover); }
+
+.hero .btn-primary {
+  width: 198px;
+  height: 40px;
+  padding-inline: 24px;
+  font-size: 15px;
+}
+
+/* Brand strip — final layer of the hero image, not a separate section */
+.hero__brands {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  --brand-gap: clamp(124px, 8vw, 162px);
+  --brand-fade: clamp(150px, 13vw, 280px);
+  --brand-duration: 86s;
+  padding-block: 16px 50px;
+}
+
+.hero__brands-label {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 1.6vw, 26px);
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: normal;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.68);
+  margin: 0 0 28px;
+}
+
+.hero__brands-label::after {
+  content: "";
+  flex: 1 1 auto;
+  min-width: 64px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.34) 0%,
+    rgba(255,255,255,0.22) 68%,
+    rgba(255,255,255,0.07) 100%
+  );
+  transform: scaleY(0.5);
+  transform-origin: center;
+}
+
+/* Marquee viewport — clips the scrolling track */
+.hero__brand-logos {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  max-width: 100vw;
+  min-height: 62px;
+  margin-inline: calc(50% - 50vw);
+  padding-block: 5px;
+  overflow: hidden;
+  /* Fade edges so logos enter/exit softly rather than hard-cutting */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    rgba(0,0,0,0.06) 36px,
+    rgba(0,0,0,1) var(--brand-fade),
+    rgba(0,0,0,1) calc(100% - var(--brand-fade)),
+    rgba(0,0,0,0.06) calc(100% - 36px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    rgba(0,0,0,0.06) 36px,
+    rgba(0,0,0,1) var(--brand-fade),
+    rgba(0,0,0,1) calc(100% - var(--brand-fade)),
+    rgba(0,0,0,0.06) calc(100% - 36px),
+    transparent 100%
+  );
+}
+
+/* Scrolling track — contains 2× logo set for seamless loop.
+   The trailing padding equals one gap so translateX(-50%) lands exactly
+   on the duplicate set with no half-gap jump at the seam. */
+.hero__brand-track {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  width: max-content;
+  gap: var(--brand-gap);
+  padding-right: var(--brand-gap);
+  animation: brand-marquee var(--brand-duration) linear infinite;
+  will-change: transform;
+}
+
+.hero__brand-logos:hover .hero__brand-track {
+  animation-play-state: paused;
+}
+
+@keyframes brand-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Base — optical sizing overrides below replace this per logo.
+   Fixed bounding-box height alone isn't enough: some marks (HES, Fleming)
+   pack their real lettering into a small fraction of their SVG canvas
+   while others (Weiser, Daybar, Record) fill it almost edge-to-edge, so
+   equal box heights read as wildly unequal weight. Each brand is sized
+   individually so the actual lettering — not the artboard — matches. */
+.brand-logo-img {
+  display: block;
+  height: 28px;
+  width: auto;
+  flex-shrink: 0;
+  opacity: 0.72;
+  filter: brightness(1.02);
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
+
+.brand-logo-img:hover {
+  opacity: 0.95;
+  filter: brightness(1.08);
+}
+
+/* Bold, edge-to-edge wordmarks — already visually heavy, dialed back slightly */
+.brand-logo-img--weiser { height: 26px; }
+.brand-logo-img--record { height: 27px; }
+
+/* Full-bleed wordmark — already dense at any height; its wide aspect ratio
+   gives it plenty of presence, so only a small bump keeps it in check */
+.brand-logo-img--daybar { height: 29px; }
+
+/* Fine cursive strokes need extra size to read at the same weight as bold sans marks */
+.brand-logo-img--taymor { height: 36px; }
+
+/* Compound lockups — most of the artboard is whitespace/sub-text, so the
+   box must grow well beyond the others for the primary wordmark to match */
+.brand-logo-img--fleming { height: 44px; }
+.brand-logo-img--hes { height: 49px; }
+
+/* Compound lockup (CAMDEN + DOOR CONTROLS) — dominant primary word with a
+   small subtitle, so it needs less height than Fleming/HES to read balanced.
+   Its artwork has ~17% empty space at the top, so a small upward nudge
+   optically re-centres it on the shared baseline with the other marks. */
+.brand-logo-img--camden {
+  height: 39px;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1440px) {
+  .hero__brands {
+    --brand-gap: 122px;
+    --brand-fade: 170px;
+    --brand-duration: 78s;
+    padding-block: 14px 46px;
+  }
+
+  .hero__brands-label {
+    margin-bottom: 26px;
+  }
+
+  .brand-logo-img--weiser { height: 24px; }
+  .brand-logo-img--record { height: 25px; }
+  .brand-logo-img--daybar { height: 27px; }
+  .brand-logo-img--taymor { height: 34px; }
+  .brand-logo-img--fleming { height: 42px; }
+  .brand-logo-img--hes { height: 46px; }
+  .brand-logo-img--camden { height: 37px; transform: translateY(-2px); }
+}
+
+@media (max-width: 1024px) {
+  .hero__brands {
+    --brand-gap: 94px;
+    --brand-fade: 120px;
+    --brand-duration: 62s;
+    padding-block: 12px 40px;
+  }
+
+  .hero__brands-label {
+    margin-bottom: 22px;
+  }
+
+  .hero__brand-logos {
+    min-height: 56px;
+  }
+
+  .brand-logo-img--weiser { height: 21px; }
+  .brand-logo-img--record { height: 22px; }
+  .brand-logo-img--daybar { height: 24px; }
+  .brand-logo-img--taymor { height: 31px; }
+  .brand-logo-img--fleming { height: 38px; }
+  .brand-logo-img--hes { height: 42px; }
+  .brand-logo-img--camden { height: 34px; transform: translateY(-2px); }
+}
+
+/* Reduced motion — stop marquee, show first set only */
+@media (prefers-reduced-motion: reduce) {
+  .hero__brand-logos {
+    width: auto;
+    max-width: none;
+    min-height: 0;
+    margin-inline: 0;
+    padding-block: 0;
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .hero__brand-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(32px, 4vw, 56px);
+    width: 100%;
+    padding-right: 0;
+    will-change: auto;
+  }
+
+  .hero__brand-track img[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+/* ============================================================
+   MIDPAGE — shared canvas for Services + Build for Every Build.
+   One wrapper so the logo artwork can span both sections and
+   cross the angled transition without being clipped.
+   ============================================================ */
+.midpage {
+  position: relative;
+  isolation: isolate;
+  background: var(--white);
+  overflow: hidden;
+}
+
+/* Figma export — building/logo artwork. Positioned to match the
+   Who We Service frame so it begins behind Services and runs to the
+   bottom edge of the Build for Every Build section.
+   Layer order inside .midpage: white base → grey angled panel (z:-1)
+   → this artwork (z:1) → section content (z:2). */
+/* Anchored to the centre of the composition (not the viewport edge) so it
+   holds the Figma relationship: its left edge sits 91px right of centre,
+   which is +812px in the 1441-wide frame. This keeps the ~19px gap to the
+   grey panel constant at every width instead of drifting into it. */
+.midpage__bg {
+  position: absolute;
+  left: calc(50% + 91px);
+  bottom: 0;
+  height: 955px;
+  width: auto;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ============================================================
+   SERVICES SECTION
+   ============================================================ */
+.services {
+  background: transparent;
+  padding-block: 96px 40px;
+  position: relative;
+}
+
+.services .container {
+  position: relative;
+  z-index: 2;
+  max-width: 1288px;
+  padding-inline: 64px;
+}
+
+/* Shared kicker — red carries emphasis so headings can stay charcoal */
+.section-eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 14px;
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 96px;
+  align-items: start;
+}
+
+.services__intro h2 {
+  font-family: var(--font-head);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--red);
+  line-height: normal;
+  letter-spacing: 0;
+  margin-bottom: 16px;
+}
+
+.services__intro p {
+  font-size: 15px;
+  line-height: 24px;
+  color: #575757;
+  margin-bottom: 32px;
+}
+
+/* Reference treatment — red keyline button in this section */
+.services__intro .btn-outline {
+  border-color: var(--red);
+}
+
+.services__intro .btn-outline:hover {
+  background: var(--red);
+  color: var(--white);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  padding-inline: 24px;
+  border: 1.5px solid #141414;
+  color: var(--black);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  transition: background 0.25s, color 0.25s;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.btn-outline--white {
+  border-color: var(--white);
+  color: var(--white);
+}
+
+.btn-outline--white:hover {
+  background: var(--white);
+  color: var(--black);
+}
+
+/* Red keyline on dark — per Figma "Who We Are" button */
+.btn-outline--red {
+  border-color: var(--red);
+  color: var(--white);
+}
+
+.btn-outline--red:hover {
+  background: var(--red);
+  color: var(--white);
+}
+
+.services__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 63px 96px;
+}
+
+/* Service module — icon beside the title, description below */
+.service-card__top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.service-card__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.service-card__icon img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+
+.service-card h3 {
+  font-family: var(--font-head);
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #141414;
+  line-height: normal;
+}
+
+.service-card p {
+  font-size: 15px;
+  line-height: 24px;
+  color: #5D5D5D;
+  max-width: 46ch;
+}
+
+/* ============================================================
+   BUILD FOR EVERY BUILD
+   ============================================================ */
+.built {
+  background: transparent;
+  margin-top: 100px;
+  padding-block: 115px 81px;
+  position: relative;
+}
+
+/* Figma export — grey angled panel. Its right edge stays locked to the
+   Figma composition, while the left edge clamps to the viewport so it
+   bleeds off-canvas on extra-wide screens instead of floating inward. */
+.built__bg-panel {
+  position: absolute;
+  top: 0;
+  left: min(0px, calc(50% - 721px));
+  width: max(794px, calc(50% + 73px));
+  height: 740px;
+  object-fit: fill;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Centered composition — the content column (max 1199px cards + 119px
+   gutters) is capped and auto-centred so the section balances on the
+   page instead of hugging the left. Gutter scales with the viewport. */
+.built .container {
+  position: relative;
+  z-index: 2;
+  max-width: 1437px;
+  margin-inline: auto;
+  padding-inline: clamp(24px, 8vw, 119px);
+}
+
+.built__header {
+  width: 100%;
+  max-width: 579px;
+  margin-bottom: 45px;
+}
+
+.built__header h2 {
+  font-family: var(--font-head);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--red);
+  line-height: normal;
+  letter-spacing: 0;
+  margin-bottom: 14px;
+}
+
+.built__header p {
+  font-size: 15px;
+  color: var(--black);
+  max-width: 579px;
+  min-height: 50px;
+  line-height: 24px;
+}
+
+/* Fluid 3-up grid — columns share the row equally and shrink together,
+   so the cards stay balanced and evenly spaced at any width. Capped at
+   the Figma content width (1199px) and left-aligned with the header. */
+.built__cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 37px);
+  width: 100%;
+  max-width: 1199px;
+}
+
+/* Editorial audience card — full-bleed image, quiet elevation */
+.customer-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  box-shadow: none;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.customer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 44px rgba(15,12,10,0.22);
+}
+
+/* Charcoal + faint door line-work base keeps the card intentional
+   while its photograph loads (or is missing) */
+.customer-card__image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background:
+    url("../images/door-elevation-lines-light.svg?v=2") no-repeat right -70px bottom -120px / 320px auto,
+    linear-gradient(160deg, #262220 0%, #16120F 100%);
+  overflow: hidden;
+}
+
+/* Photography is pre-graded black & white in the exported assets —
+   no filter, so tones match the Figma exactly */
+.customer-card__image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Colour layer sits exactly over the B&W image and fades in on hover
+   for a premium "colour reveal". Both layers share the zoom so they
+   stay aligned through the transition. Selector is scoped to
+   `.customer-card__image img` specificity so the opacity transition
+   isn't dropped by the base image rule. */
+.customer-card__image img.customer-card__img--colour {
+  position: absolute;
+  opacity: 0;
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.customer-card:hover .customer-card__image img {
+  transform: scale(1.05);
+}
+
+.customer-card:hover .customer-card__img--colour {
+  opacity: 1;
+}
+
+/* Default to black & white on devices without hover (touch/mobile) so
+   the cards never depend on hover to look right */
+@media (hover: none) {
+  .customer-card__img--colour { opacity: 0; }
+}
+
+/* Bottom-anchored content flow — the gradient fills the card and the
+   copy stacks up from the bottom edge. Flow layout (not fixed px)
+   means the text stays correctly placed as the card scales. */
+.customer-card__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 22px;
+  background: linear-gradient(
+    180deg,
+    rgba(217,217,217,0) 0%,
+    #1A1A1A 67.3077%
+  );
+}
+
+/* Audience label — red badge, per reference */
+.customer-card__label {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--red);
+  height: 21px;
+  padding-inline: 8px;
+  margin-bottom: 12px;
+}
+
+.customer-card__title {
+  font-family: var(--font-head);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: normal;
+  margin-bottom: 8px;
+}
+
+.customer-card__desc {
+  font-size: 15px;
+  line-height: 21px;
+  color: var(--white);
+  margin-bottom: 18px;
+}
+
+.customer-card__link {
+  align-self: flex-start;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.customer-card__link::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 4px 0 4px 6px;
+  border-color: transparent transparent transparent var(--red);
+  transition: transform 0.25s ease;
+}
+
+.customer-card:hover .customer-card__link::after {
+  transform: translateX(3px);
+}
+
+/* ============================================================
+   PRODUCTS YOU CAN TRUST — Manufacturers
+   ============================================================ */
+.manufacturers {
+  background: var(--white);
+  padding-block: 64px 82px;
+}
+
+.manufacturers > .container {
+  max-width: 1512px;
+  padding-inline: 64px;
+}
+
+.manufacturers__header {
+  margin-bottom: 94px;
+}
+
+/* Black chip eyebrow — per Figma */
+.manufacturers__eyebrow {
+  display: inline-block;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  margin-bottom: 20px;
+}
+
+.manufacturers__header h2 {
+  font-family: var(--font-head);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--red);
+  line-height: normal;
+  letter-spacing: 0;
+  margin-bottom: 16px;
+}
+
+.manufacturers__header p {
+  font-size: 15px;
+  line-height: 24px;
+  color: #111;
+  max-width: 600px;
+}
+
+.manufacturers__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px 48px;
+}
+
+/* Horizontal card — text left, image right half.
+   Premium hover micro-interaction (reusable across every .manufacturers
+   section): three layers on their own timing so the card gains physical
+   depth — the surface lifts with a two-part shadow (tight contact + soft
+   ambient), the photograph slowly blooms, and the marker advances.
+   Motion honours prefers-reduced-motion (see block below). */
+.mfr-card {
+  display: grid;
+  grid-template-columns: 296px minmax(0, 1fr);
+  align-items: stretch;
+  min-height: 322px;
+  height: 322px;
+  background: var(--white);
+  border: 1px solid #E4E2DE;
+  border-radius: 8px;
+  overflow: hidden;
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.55s ease;
+  will-change: transform;
+}
+
+.mfr-card:hover {
+  transform: translateY(-6px);
+  border-color: transparent;
+  box-shadow:
+    inset 0 0 0 1.5px #DCD9D3,
+    0 2px 3px rgba(15, 12, 10, 0.04),
+    0 26px 48px -20px rgba(15, 12, 10, 0.24);
+}
+
+/* Tactile settle on press — the surface has real weight. */
+.mfr-card:active {
+  transform: translateY(-3px);
+  transition-duration: 0.12s;
+}
+
+/* Keyboard focus mirrors hover so the interaction is inclusive. */
+.mfr-card:focus-visible {
+  outline: none;
+  transform: translateY(-6px);
+  border-color: transparent;
+  box-shadow:
+    inset 0 0 0 1.5px #DCD9D3,
+    0 0 0 3px rgba(197, 32, 40, 0.35),
+    0 26px 48px -20px rgba(15, 12, 10, 0.24);
+}
+
+.mfr-card__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 92px 32px 28px;
+}
+
+.mfr-card__body h3 {
+  font-family: var(--font-head);
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--red);
+  line-height: normal;
+  margin-bottom: 12px;
+}
+
+.mfr-card__body p {
+  font-size: 15px;
+  line-height: 24px;
+  color: #161616;
+  margin-bottom: 0;
+}
+
+.mfr-card__link {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 9px;
+  margin-top: auto;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+/* Red triangle marker — advances with intent on hover/focus. */
+.mfr-card__link::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 4px 0 4px 6px;
+  border-color: transparent transparent transparent var(--red);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mfr-card:hover .mfr-card__link::after,
+.mfr-card:focus-visible .mfr-card__link::after {
+  transform: translateX(6px);
+}
+
+.mfr-card__image {
+  overflow: hidden;
+}
+
+/* Photograph: a slow bloom (scale + a whisper of warmth) on a longer
+   curve than the lift, so it reads as depth, not a zoom. */
+.mfr-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition:
+    transform 0.9s cubic-bezier(0.19, 1, 0.22, 1),
+    filter 0.9s ease;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.mfr-card:hover .mfr-card__image img,
+.mfr-card:focus-visible .mfr-card__image img {
+  transform: scale(1.045);
+  filter: saturate(1.05) brightness(1.02);
+}
+
+/* Motion honours reduced-motion. */
+@media (prefers-reduced-motion: reduce) {
+  .mfr-card,
+  .mfr-card__image img,
+  .mfr-card__link::after { transition: none; }
+  .mfr-card:hover,
+  .mfr-card:focus-visible { transform: none; }
+  .mfr-card:hover .mfr-card__image img,
+  .mfr-card:focus-visible .mfr-card__image img { transform: none; filter: none; }
+  .mfr-card:hover .mfr-card__link::after,
+  .mfr-card:focus-visible .mfr-card__link::after { transform: none; }
+}
+
+#manufacturers {
+  padding-block: 96px 179px;
+}
+
+#manufacturers > .container {
+  max-width: 1330px;
+  padding-inline: clamp(24px, 5vw, 64px);
+}
+
+#manufacturers .manufacturers__header {
+  width: 100%;
+  max-width: none; /* let the heading sit on one line (Figma); body is capped below */
+  margin-bottom: 70px;
+}
+
+#manufacturers .manufacturers__eyebrow {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  min-height: 21px;
+  padding: 4px 8px;
+  line-height: 13px;
+  margin-bottom: 17px;
+}
+
+#manufacturers .manufacturers__header h2 {
+  width: 100%;
+  max-width: none; /* heading stays on one line on desktop (Figma) */
+  margin-bottom: 14px;
+}
+
+#manufacturers .manufacturers__header p {
+  width: 100%;
+  max-width: 580px;
+  min-height: 50px;
+  color: #000;
+}
+
+/* Fluid 2-up grid — columns share the row equally and scale together,
+   capped at the Figma content width (1201px) and left-aligned with the
+   header. Replaces the fixed 1201px block that overflowed < 1330px. */
+#manufacturers .manufacturers__grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px 42px;
+  width: 100%;
+  max-width: 1201px;
+  margin-inline: 0;
+}
+
+/* Card keeps the Figma footprint while giving the copy enough measure
+   for the product descriptions to sit at four desktop lines. */
+#manufacturers .mfr-card {
+  width: 100%;
+  min-height: 280px;
+  height: auto;
+  grid-template-columns: minmax(0, 285fr) minmax(0, 295fr);
+  border: none;
+  box-shadow: inset 0 0 0 1.5px #E6E6E6;
+}
+
+/* Premium hover/focus — must live at #manufacturers scope to win over the
+   resting inset "border" (#manufacturers .mfr-card box-shadow) above. */
+#manufacturers .mfr-card:hover {
+  transform: translateY(-6px);
+  border-color: transparent;
+  box-shadow:
+    inset 0 0 0 1.5px #DCD9D3,
+    0 2px 3px rgba(15, 12, 10, 0.04),
+    0 26px 48px -20px rgba(15, 12, 10, 0.24);
+}
+
+#manufacturers .mfr-card:active {
+  transform: translateY(-3px);
+  transition-duration: 0.12s;
+}
+
+#manufacturers .mfr-card:focus-visible {
+  outline: none;
+  transform: translateY(-6px);
+  border-color: transparent;
+  box-shadow:
+    inset 0 0 0 1.5px #DCD9D3,
+    0 0 0 3px rgba(197, 32, 40, 0.35),
+    0 26px 48px -20px rgba(15, 12, 10, 0.24);
+}
+
+/* Flow layout (not absolute) — copy stacks from the top, the link is
+   pinned to the bottom with margin-top:auto, so text placement holds at
+   any card size. */
+#manufacturers .mfr-card__body {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  padding: 66px 21px 25px;
+}
+
+#manufacturers .mfr-card__body h3 {
+  width: auto;
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+#manufacturers .mfr-card__body p {
+  width: auto;
+  line-height: 21px;
+  color: #000;
+  margin-bottom: 0;
+}
+
+#manufacturers .mfr-card__link {
+  position: static;
+  left: auto;
+  top: auto;
+  margin-top: auto;
+  padding-top: 24px;
+  display: flex;
+  line-height: 13px;
+}
+
+#manufacturers .mfr-card__image {
+  width: 100%;
+  height: 100%;
+}
+
+#manufacturers .mfr-card:hover .mfr-card__image img,
+#manufacturers .mfr-card:focus-visible .mfr-card__image img {
+  transform: scale(1.045);
+  filter: saturate(1.05) brightness(1.02);
+}
+
+#manufacturers .mfr-card:hover .mfr-card__link::after,
+#manufacturers .mfr-card:focus-visible .mfr-card__link::after {
+  transform: translateX(6px);
+}
+
+/* Motion honours reduced-motion at this scope too (the #manufacturers
+   hover rules out-specify the base .mfr-card reduced-motion block). */
+@media (prefers-reduced-motion: reduce) {
+  #manufacturers .mfr-card:hover,
+  #manufacturers .mfr-card:focus-visible {
+    transform: none;
+    box-shadow: inset 0 0 0 1.5px #DCD9D3;
+  }
+  #manufacturers .mfr-card:hover .mfr-card__image img,
+  #manufacturers .mfr-card:focus-visible .mfr-card__image img { transform: none; filter: none; }
+  #manufacturers .mfr-card:hover .mfr-card__link::after,
+  #manufacturers .mfr-card:focus-visible .mfr-card__link::after { transform: none; }
+}
+
+/* ============================================================
+   WHO WE ARE  (shared dark canvas for About + Testimonial)
+   ============================================================ */
+.whoweare {
+  position: relative;
+  isolation: isolate;
+  background: var(--dark-2);
+  overflow: hidden;
+}
+
+/* Building artwork — mirrors the Figma multiply treatment so the mark
+   darkens into the charcoal canvas rather than reading as pale grey. */
+.whoweare__bg {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: min(626px, 46%);
+  height: auto;
+  opacity: 1;
+  filter: none;
+  mix-blend-mode: multiply;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.about {
+  background: transparent;
+  padding-block: 95px 0;
+  position: relative;
+}
+
+.whoweare .container {
+  max-width: 1200px;
+}
+
+.about .container {
+  position: relative;
+  z-index: 1;
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 409px minmax(0, 683px);
+  gap: 108px;
+  align-items: start;
+}
+
+.about__logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.about__logo-img {
+  display: block;
+  width: 100%;
+  max-width: 409px;
+  height: auto;
+}
+
+.about__content {
+  padding-top: 13px;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--red);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  margin-bottom: 14px;
+}
+
+.about__content h2 {
+  font-family: var(--font-head);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: normal;
+  letter-spacing: 0;
+  margin-bottom: 16px;
+}
+
+.about__content p {
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.about__content p:last-of-type { margin-bottom: 24px; }
+
+/* ============================================================
+   TESTIMONIAL — sits below the two-column block, wide across
+   the shared dark canvas
+   ============================================================ */
+.testimonial {
+  background: transparent;
+  padding-block: 40px 76px;
+  position: relative;
+}
+
+.testimonial__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.testimonial .container {
+  max-width: 1320px;
+}
+
+/* Divider above the quote — left-aligned, subtle red-into-dark tone */
+.testimonial__divider {
+  width: min(760px, 68%);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(197,32,40,0.55) 0%,
+    rgba(255,255,255,0.14) 22%,
+    rgba(255,255,255,0.05) 100%
+  );
+  margin-bottom: 34px;
+}
+
+/* Red quote mark hangs in a left gutter beside the text */
+.testimonial__body {
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+  max-width: none;
+}
+
+.testimonial__body blockquote {
+  flex: 1;
+  min-width: 0;
+}
+
+.testimonial__quote-mark {
+  flex-shrink: 0;
+  padding-top: 8px;
+}
+
+.testimonial__quote-mark svg {
+  width: 44px;
+  height: 34px;
+}
+
+.testimonial__text {
+  font-family: var(--font-body);
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 36px;
+  letter-spacing: 0;
+  color: rgba(255,255,255,0.62);
+  margin-bottom: 0;
+}
+
+.testimonial__line {
+  display: block;
+}
+
+.testimonial__line--timing {
+  white-space: nowrap;
+}
+
+.testimonial__line--closing {
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+/* Emphasis line — larger condensed bold white, like the Figma */
+.testimonial__text strong {
+  display: inline;
+  font-family: var(--font-head);
+  font-size: clamp(31px, 2.35vw, 40px);
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0;
+  color: var(--white);
+}
+
+.testimonial__attribution {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 16px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 36px;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0px;
+  color: rgba(255,255,255,0.5);
+  white-space: nowrap;
+}
+
+/* ============================================================
+   CTA BANNER
+   ============================================================ */
+.cta-banner {
+  background: var(--red);
+  padding-block: 76px;
+  text-align: center;
+}
+
+.cta-banner .cta-banner__eyebrow {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 10px;
+}
+
+.cta-banner h2 {
+  font-family: var(--font-head);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: normal;
+  letter-spacing: 0;
+  margin-bottom: 10px;
+}
+
+.cta-banner p {
+  font-size: 15px;
+  line-height: 24px;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 26px;
+}
+
+.btn-outline-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 198px;
+  height: 40px;
+  padding-inline: 24px;
+  border: none;
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.btn-outline-white:hover {
+  background: var(--white);
+  color: var(--black);
+}
+
+/* ============================================================
+   WHO WE SERVICE (page)
+   ============================================================ */
+.who-service-section {
+  background: var(--dark);
+  padding-block: var(--section-v);
+}
+
+.who-service__header {
+  margin-bottom: 48px;
+}
+
+.who-service__header h2 {
+  font-family: var(--font-head);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: normal;
+  letter-spacing: 0;
+  margin-bottom: 12px;
+}
+
+.who-service__header p {
+  font-size: 15px;
+  line-height: 24px;
+  color: rgba(255,255,255,0.6);
+  max-width: 540px;
+}
+
+.who-service__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ============================================================
+   MANUFACTURERS / PRODUCTS
+   ============================================================ */
+.manufacturers {
+  background: var(--white);
+  padding-block: 64px 82px;
+}
+
+/* Background variant — Figma uses light grey for the interior-page callouts
+   ("Explore the Products…"); the homepage "Products You Can Trust" stays
+   white. Add class `manufacturers--grey` to the section to opt in. */
+.manufacturers--grey {
+  background: #EFEFF0;
+}
+
+/* The interior callouts carry a longer body than the homepage; give it the
+   Figma width so it sits on two lines (homepage keeps its narrower 580px). */
+#manufacturers.manufacturers--grey .manufacturers__header p {
+  max-width: 720px;
+}
+
+.manufacturers__header {
+  margin-bottom: 94px;
+}
+
+.manufacturers__header h2 {
+  font-family: var(--font-head);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--red);
+  line-height: normal;
+  letter-spacing: 0;
+  margin-bottom: 12px;
+}
+
+.manufacturers__header p {
+  font-size: 15px;
+  line-height: 24px;
+  color: #111;
+  max-width: 600px;
+}
+
+.product-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.product-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #e8e8e8;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.product-card__content {
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card__content h3 {
+  font-family: var(--font-head);
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--red);
+  line-height: normal;
+  letter-spacing: 0;
+  margin-bottom: 10px;
+}
+
+.product-card__content p {
+  font-size: 15px;
+  line-height: 24px;
+  color: #666;
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.product-card__link {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  color: var(--black);
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 9px;
+}
+
+.product-card__link svg {
+  display: none;
+}
+
+.product-card__link::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 4px 0 4px 6px;
+  border-color: transparent transparent transparent var(--red);
+  transition: transform 0.25s ease;
+}
+
+.product-card:hover .product-card__link::after {
+  transform: translateX(3px);
+}
+
+.product-card__image {
+  background: #ddd;
+  overflow: hidden;
+}
+
+.product-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-card__image img {
+  transform: scale(1.04);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: var(--white);
+  border-top: 3px solid var(--red);
+}
+
+/* Footer runs wider than the site container so columns match the Figma's
+   generous spacing and contact/location lines stay on a single line */
+.footer .container {
+  max-width: 1280px;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 302px 337px 309px minmax(0, 268px);
+  gap: 0;
+  padding-block: 88px 0;
+  align-items: stretch;
+}
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+  min-height: 300px;
+  padding-inline: 20px 62px;
+}
+
+.footer__logo-img {
+  display: block;
+  width: 220px;
+  height: auto;
+}
+
+/* Hairline vertical rules separate each text column, like the Figma */
+.footer__col {
+  border-left: 1px solid #e5e5e5;
+  min-height: 300px;
+  padding: 12px 24px 0 62px;
+}
+
+.footer__col:last-child {
+  padding-right: 0;
+}
+
+.footer__col h4 {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 20px;
+}
+
+.footer__col p,
+.footer__col address {
+  font-size: 15px;
+  line-height: 28px;
+  color: #1c1c1c;
+  font-style: normal;
+}
+
+.footer__col a {
+  display: block;
+  font-size: 15px;
+  color: #1c1c1c;
+  line-height: 28px;
+  transition: color 0.2s;
+}
+
+.footer__col address a {
+  display: inline;
+  line-height: inherit;
+}
+
+.footer__col a:hover { color: var(--red); }
+
+.footer__col .hours-highlight {
+  color: var(--red);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.footer__bottom {
+  background: var(--white);
+  border-top: 1px solid #ececec;
+}
+
+.footer__bottom .container {
+  padding-block: 26px;
+  text-align: left;
+}
+
+.footer__bottom p {
+  font-size: 15px;
+  line-height: 24px;
+  color: #9a9a9a;
+}
+
+/* ============================================================
+   PAGE HERO (inner pages)
+   ============================================================ */
+.page-hero {
+  margin-top: 80px;
+  background: var(--dark);
+  padding-block: 72px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-hero__bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.page-hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+  filter: grayscale(100%);
+}
+
+.page-hero__content {
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero__content h1 {
+  font-family: var(--font-head);
+  font-size: clamp(40px, 6vw, 56px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: normal;
+  letter-spacing: 0;
+  margin-bottom: 16px;
+}
+
+.page-hero__content p {
+  font-size: 15px;
+  line-height: 24px;
+  color: rgba(255,255,255,0.65);
+  max-width: 560px;
+}
+
+/* ============================================================
+   INTERIOR PAGE HERO — 400px image band
+   Shared foundation for interior pages (matches Services /
+   Contractors). Pairs with a translucent .nav--hero.
+   ============================================================ */
+.hero-band {
+  position: relative;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--dark);
+}
+.hero-band__image { position: absolute; inset: 0; }
+.hero-band__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.hero-band__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(217, 217, 217, 0) 0%,
+    rgba(40, 36, 37, 0.65) 75%
+  );
+}
+.hero-band__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 32px;
+  padding-top: 52px;
+}
+.hero-band h1 {
+  font-family: var(--font-head);
+  font-size: 92px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 86px;
+  letter-spacing: 0;
+  margin-bottom: 16px;
+}
+.hero-band__sub {
+  font-size: 18px;
+  line-height: 24px;
+  color: #ffffff;
+  max-width: 860px;
+}
+
+/* Interior page intro — foundation block for pages awaiting full
+   content design. */
+.page-intro { background: #fff; padding-block: 96px; }
+.page-intro__inner {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 32px;
+}
+.page-intro h2 {
+  font-family: var(--font-head);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--red);
+  line-height: 1;
+  letter-spacing: 0;
+  margin-bottom: 16px;
+}
+.page-intro p {
+  font-size: 15px;
+  line-height: 24px;
+  color: #1a1a1a;
+  max-width: 720px;
+  margin-bottom: 16px;
+}
+.page-intro p:last-child { margin-bottom: 0; }
+
+@media (max-width: 1024px) {
+  .hero-band h1 { font-size: 64px; }
+}
+@media (max-width: 768px) {
+  .hero-band { height: 300px; }
+  .hero-band h1 { font-size: 46px; line-height: 1; }
+  .hero-band__sub { font-size: 15px; }
+  .page-intro { padding-block: 56px; }
+  .page-intro h2 { font-size: 36px; }
+  .hero-band__content,
+  .page-intro__inner { padding-inline: 20px; }
+}
+@media (max-width: 480px) {
+  .hero-band h1 { font-size: 40px; }
+}
+
+/* ============================================================
+   UTILITY
+   ============================================================ */
+.section-badge {
+  display: inline-block;
+  background: var(--red);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  margin-bottom: 16px;
+}
+
+.divider {
+  width: 48px;
+  height: 3px;
+  background: var(--red);
+  margin-bottom: 20px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  :root { --section-v: 64px; }
+
+  .hero__headline {
+    font-size: clamp(64px, 8vw, 82px);
+    line-height: 0.935;
+  }
+
+  .hero__sub {
+    width: 100%;
+    max-width: 100%;
+    font-size: 17px;
+    line-height: 24px;
+  }
+
+  /* Tablet — cards keep the fluid 3-up grid from the base rules; just
+     ease the gutter and dial the title back so the smaller cards
+     don't crowd. (Card internals are already flow-based in the base.) */
+  .built .container {
+    padding-inline: 32px;
+  }
+
+  .built__cards {
+    gap: 24px;
+  }
+
+  .customer-card__overlay {
+    padding: 20px;
+  }
+
+  .customer-card__title {
+    font-size: 26px;
+    margin-bottom: 6px;
+  }
+
+  .services .container {
+    padding-inline: 32px;
+  }
+
+  .services__grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  /* Not enough room for two horizontal cards side by side — stack to a
+     single column but keep each card's text|image layout */
+  .manufacturers__grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  #manufacturers {
+    padding-block: 72px 96px;
+  }
+
+  #manufacturers > .container {
+    max-width: 100%;
+    padding-inline: 32px;
+  }
+
+  #manufacturers .manufacturers__grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+    gap: 22px;
+  }
+
+  #manufacturers .mfr-card {
+    width: 100%;
+  }
+
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .about__logo-wrap {
+    order: 2;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 48px;
+    padding-block: 56px 48px;
+    align-items: start;
+  }
+
+  /* No vertical rules once the columns stack */
+  .footer__logo {
+    grid-column: 1 / -1;
+    min-height: 0;
+    padding-right: 0;
+  }
+
+  .footer__col {
+    border-left: none;
+    min-height: 0;
+    padding: 0;
+  }
+}
+
+/* Below ~1080px the full desktop nav (logo + 5 links + CTA) runs out of
+   breathing room — "Who We Service" starts wrapping and the logo collides
+   with the links — so switch to the hamburger here rather than at mobile. */
+@media (max-width: 1200px) {
+  .nav__links { display: none; }
+  .nav__hamburger { display: flex; }
+}
+
+@media (max-width: 1240px) and (min-width: 1025px) {
+  .footer__grid {
+    grid-template-columns: 260px 1fr 1fr 0.9fr;
+  }
+
+  .footer__logo {
+    padding-inline: 0 48px;
+  }
+
+  .footer__logo-img {
+    width: 204px;
+  }
+
+  .footer__col {
+    padding-left: 44px;
+  }
+
+  .footer__col:last-child {
+    padding-left: 36px;
+  }
+}
+
+/* Tablet — the 3-up grid gets too cramped below ~900px. The angled grey
+   panel + building artwork are a desktop-composition device, so drop them
+   for a clean flat-grey field and lay the cards out 2-up (the third card
+   sits left-aligned on the next row). This uses the tablet width properly
+   instead of stranding one narrow, centred card over a busy background. */
+@media (max-width: 900px) {
+  .built {
+    background: #EBEBEB;
+  }
+
+  .built__bg-panel,
+  .midpage__bg {
+    display: none;
+  }
+
+  .built__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .customer-card__title {
+    font-size: 26px;
+    margin-bottom: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root { --section-v: 56px; }
+
+  .container { padding-inline: 20px; }
+
+  .services .container {
+    padding-inline: 20px;
+  }
+
+  /* Manufacturer cards go vertical — image on top, text below */
+  .manufacturers {
+    padding-block: 56px 64px;
+  }
+
+  .manufacturers > .container {
+    padding-inline: 20px;
+  }
+
+  .manufacturers__header {
+    margin-bottom: 32px;
+  }
+
+  #manufacturers {
+    padding-block: 56px 64px;
+  }
+
+  #manufacturers > .container {
+    padding-inline: 20px;
+  }
+
+  #manufacturers .manufacturers__header {
+    width: auto;
+    margin-bottom: 32px;
+  }
+
+  .manufacturers__header h2 {
+    font-size: 34px;
+  }
+
+  #manufacturers .manufacturers__header h2,
+  #manufacturers .manufacturers__header p {
+    width: auto;
+    max-width: none;
+  }
+
+  #manufacturers .manufacturers__header p {
+    min-height: 0;
+  }
+
+  #manufacturers .manufacturers__header h2 {
+    font-size: 34px;
+  }
+
+  .mfr-card {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    height: auto;
+  }
+
+  .mfr-card__image {
+    order: -1;
+    height: 190px;
+  }
+
+  .mfr-card__body {
+    padding: 24px 22px;
+  }
+
+  #manufacturers .mfr-card {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    height: auto;
+  }
+
+  #manufacturers .mfr-card__image {
+    order: -1;
+    width: 100%;
+    height: 190px;
+  }
+
+  #manufacturers .mfr-card__body {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 24px 22px;
+  }
+
+  #manufacturers .mfr-card__body h3,
+  #manufacturers .mfr-card__body p {
+    width: auto;
+  }
+
+  .mfr-card__body p {
+    margin-bottom: 20px;
+  }
+
+  #manufacturers .mfr-card__body p {
+    min-height: 0;
+    margin-bottom: 20px;
+  }
+
+  #manufacturers .mfr-card__link {
+    position: static;
+    display: inline-flex;
+  }
+
+  .mfr-card__link {
+    margin-top: 0;
+  }
+
+  .hero { min-height: 90vh; }
+
+  .nav__logo-img { height: 72px; }
+  .nav--compact .nav__logo-img { height: 64px; }
+  .nav--compact .nav__inner { height: 76px; }
+
+  .hero__content {
+    justify-content: center;
+    align-items: flex-start;
+    padding-block: 96px 0;
+  }
+
+  .hero__text {
+    width: 100%;
+    max-width: none;
+  }
+
+  .hero__headline {
+    font-size: clamp(48px, 12vw, 64px);
+  }
+
+  .hero__sub {
+    font-size: 16px;
+  }
+
+  .hero__brands {
+    --brand-gap: 76px;
+    --brand-fade: 82px;
+    --brand-duration: 54s;
+    padding-block: 10px 34px;
+  }
+
+  .hero__brands-label {
+    font-size: 11px;
+    letter-spacing: 0.035em;
+    margin-bottom: 20px;
+  }
+
+  .hero__brand-logos {
+    min-height: 50px;
+    padding-block: 3px;
+  }
+
+  .brand-logo-img--weiser { height: 19px; }
+  .brand-logo-img--record { height: 20px; }
+  .brand-logo-img--daybar { height: 22px; }
+  .brand-logo-img--taymor { height: 27px; }
+  .brand-logo-img--fleming { height: 34px; }
+  .brand-logo-img--hes { height: 37px; }
+  .brand-logo-img--camden { height: 30px; transform: translateY(-2px); }
+
+  /* Small screens — swap the angled panel export for a simple
+     solid grey section background and drop the large artwork */
+  .built__bg-panel {
+    display: none;
+  }
+
+  .built {
+    background: #EBEBEB;
+    padding-block: 56px 64px;
+  }
+
+  .midpage__bg {
+    display: none;
+  }
+
+  .built .container {
+    padding-inline: 20px;
+  }
+
+  .built__header {
+    margin-bottom: 32px;
+  }
+
+  /* Cards stay 2-up down to 600px (see the max-width:900 block); only the
+     overlay padding tightens here. */
+  .customer-card__overlay {
+    padding: 24px;
+  }
+
+  .who-service__cards {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+
+  .product-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card__image {
+    height: 200px;
+    order: -1;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .testimonial__line--timing,
+  .testimonial__line--closing {
+    white-space: normal;
+  }
+
+  .testimonial__attribution {
+    white-space: normal;
+  }
+
+  .services__cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Phones — 2-up cards get too small below ~600px, so stack to a single
+   centred column. */
+@media (max-width: 600px) {
+  .built__cards {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    margin-inline: auto;
+  }
+
+  .customer-card__title {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__headline {
+    font-size: 40px;
+    line-height: 0.95;
+  }
+
+  .hero .btn-primary {
+    width: auto;
+    min-width: 198px;
+  }
+
+  .hero__sub br {
+    display: none;
+  }
+
+  .hero__brands {
+    --brand-gap: 62px;
+    --brand-fade: 58px;
+    --brand-duration: 48s;
+    padding-block: 8px 30px;
+  }
+
+  .hero__brands-label {
+    font-size: 10px;
+    letter-spacing: 0.03em;
+    margin-bottom: 18px;
+  }
+
+  .hero__brand-logos {
+    min-height: 46px;
+  }
+
+  .brand-logo-img--weiser { height: 18px; }
+  .brand-logo-img--record { height: 18px; }
+  .brand-logo-img--daybar { height: 20px; }
+  .brand-logo-img--taymor { height: 25px; }
+  .brand-logo-img--fleming { height: 33px; }
+  .brand-logo-img--hes { height: 36px; }
+  .brand-logo-img--camden { height: 29px; transform: translateY(-2px); }
+
+  .about__logo-text .a1 { font-size: 32px; }
+}
+
+/* ============================================================
+   PRINT / REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

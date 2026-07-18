@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — All Door Supply</title>
+  <meta name="description" content="Comprehensive Division 8 supply, installation and project solutions for every scale of build — material supply, custom fabrication via weld shop, installation, automatic operators and project management." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,600&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="images/ADS_Logo_primary.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css?v=20260718-mfr-grey" />
+
+  <style>
+    /* ============================================================
+       SERVICES PAGE — page-specific styles
+       ============================================================ */
+
+    /* --- Page hero (Services) — 400px image band ---------------- */
+    .svc-hero {
+      position: relative;
+      height: 400px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background: var(--dark);
+    }
+    .svc-hero__image { position: absolute; inset: 0; }
+    .svc-hero__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    /* Figma overlay — exact Dev Mode value: top-to-bottom scrim that
+       keeps the top bright and darkens toward the bottom for legibility. */
+    /* Figma "Hero Gradient" (155:342): transparent → rgba(40,36,37,0.65) @ 100% */
+    .svc-hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(217, 217, 217, 0) 0%,
+        rgba(40, 36, 37, 0.65) 100%
+      );
+    }
+    /* Content aligns to the ~117px Figma gutter; headline sits at ~163px
+       from the top (bottom-aligned block, sub box reserves Figma's height). */
+    .svc-hero__content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1280px;
+      padding-bottom: 56px;
+    }
+    .svc-hero h1 {
+      font-family: var(--font-head);
+      font-size: 78px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 86px;
+      letter-spacing: 0;
+      margin-bottom: 19px;
+    }
+    .svc-hero__sub {
+      font-size: 18px;
+      line-height: 24px;
+      color: #ffffff;
+      max-width: 1048px;
+      min-height: 76px;
+    }
+
+    /* --- What We Do + service cards ----------------------------- */
+    .svc-work {
+      background: #fff;
+      padding-block: 134px 73px;
+    }
+
+    /* The "Explore the Products Behind Our Services" section is the shared,
+       reusable manufacturers component — identical to the homepage's
+       "Products You Can Trust" (layout + hover animation live in
+       css/styles.css). Only the header text below differs per page. */
+    .svc-grid {
+      max-width: 1280px;
+      margin-inline: auto;
+      padding-inline: 40px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 100px;
+      row-gap: 90px;
+      align-items: start;
+    }
+
+    /* Intro cell — logo + What We Do + copy (Figma: logo 266×199,
+       heading 48px red, body 15px black at 451px; 24px rhythm). */
+    .svc-intro { display: flex; flex-direction: column; }
+    .svc-intro__logo {
+      display: block;
+      width: 100%;
+      max-width: 266px;
+      height: auto;
+      margin-bottom: 24px;
+    }
+    .svc-intro h2 {
+      font-family: var(--font-head);
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--red);
+      line-height: normal;
+      letter-spacing: 0;
+      margin-bottom: 24px;
+    }
+    .svc-intro p {
+      font-size: 15px;
+      line-height: 24px;
+      color: #000000;
+      max-width: 451px;
+      margin-bottom: 24px;
+    }
+    .svc-intro p:last-child { margin-bottom: 0; }
+
+    /* Service card — photo, icon + title, description */
+    .svc-card { display: flex; flex-direction: column; }
+    .svc-card__image {
+      width: 100%;
+      aspect-ratio: 550 / 175;
+      overflow: hidden;
+      border-radius: 10px;
+      background: linear-gradient(160deg, #2a2624 0%, #16120f 100%);
+      margin-bottom: 31px;
+    }
+    .svc-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .svc-card__head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .svc-card__head img {
+      height: 50px;
+      width: auto;
+      flex-shrink: 0;
+      display: block;
+    }
+    .svc-card__head h3 {
+      font-family: var(--font-head);
+      font-size: 24px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #000000;
+      line-height: normal;
+      letter-spacing: 0;
+    }
+    .svc-card__body p {
+      font-size: 15px;
+      line-height: 24px;
+      letter-spacing: -0.15px;
+      color: #000000;
+      margin-bottom: 24px;
+    }
+    .svc-card__body p:last-child { margin-bottom: 0; }
+
+    /* --- Responsive -------------------------------------------- */
+    @media (max-width: 1024px) {
+      .svc-grid { column-gap: 48px; padding-inline: 32px; }
+      .svc-hero h1 { font-size: 64px; }
+    }
+
+    @media (max-width: 768px) {
+      .svc-hero { height: 300px; }
+      .svc-hero h1 { font-size: 46px; }
+      .svc-hero__sub { font-size: 15px; }
+
+      .svc-work { padding-block: 64px 56px; }
+      .svc-grid {
+        grid-template-columns: 1fr;
+        row-gap: 48px;
+        column-gap: 0;
+        padding-inline: 20px;
+        max-width: 620px;
+      }
+      .svc-intro h2 { font-size: 40px; }
+    }
+
+    @media (max-width: 480px) {
+      .svc-hero h1 { font-size: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <header class="nav nav--hero" id="nav" role="banner">
+    <div class="container">
+      <div class="nav__inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav__logo" aria-label="All Door Supply — Home">
+          <img src="images/ADS_Logo_primary.svg" alt="All Door Supply" class="nav__logo-img" />
+        </a>
+
+        <!-- Desktop links -->
+        <nav class="nav__links" aria-label="Main navigation">
+          <a href="services.html" aria-current="page">Services</a>
+
+          <div class="nav__item">
+            <a href="who-we-service.html" class="nav__toplink" aria-haspopup="true">Who We Serve
+              <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav__dropdown" role="menu">
+              <a href="contractors.html" role="menuitem">Contractors</a>
+              <a href="design-professionals.html" role="menuitem">Design Professionals</a>
+              <a href="residential-homeowners.html" role="menuitem">Residential Homeowners</a>
+            </div>
+          </div>
+
+          <div class="nav__item">
+            <a href="manufacturers.html" class="nav__toplink" aria-haspopup="true">Manufacturers
+              <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav__dropdown" role="menu">
+              <a href="doors.html" role="menuitem">Doors</a>
+              <a href="door-automation.html" role="menuitem">Door Automation</a>
+              <a href="hardware.html" role="menuitem">Hardware</a>
+              <a href="division-10.html" role="menuitem">Division 10</a>
+            </div>
+          </div>
+
+          <a href="projects.html">Projects</a>
+          <a href="about.html">About</a>
+          <a href="contact.html" class="btn-nav" aria-label="Request a quote">Request a Quote</a>
+        </nav>
+
+        <!-- Hamburger -->
+        <button
+          class="nav__hamburger"
+          id="hamburger"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile nav -->
+    <nav class="nav__mobile" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="services.html" aria-current="page">Services</a>
+      <a href="who-we-service.html">Who We Serve</a>
+      <a href="contractors.html" class="nav__mobile-sub">Contractors</a>
+      <a href="design-professionals.html" class="nav__mobile-sub">Design Professionals</a>
+      <a href="residential-homeowners.html" class="nav__mobile-sub">Residential Homeowners</a>
+      <a href="manufacturers.html">Manufacturers</a>
+      <a href="doors.html" class="nav__mobile-sub">Doors</a>
+      <a href="door-automation.html" class="nav__mobile-sub">Door Automation</a>
+      <a href="hardware.html" class="nav__mobile-sub">Hardware</a>
+      <a href="division-10.html" class="nav__mobile-sub">Division 10</a>
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="btn-nav">Request a Quote</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="svc-hero" aria-label="Services">
+      <div class="svc-hero__image">
+        <img
+          src="images/alldoor-supply-complete-door-solutions-services-hero.png"
+          alt="Close-up of a lever handle on a wood door"
+          loading="eager"
+        />
+      </div>
+      <div class="svc-hero__overlay" aria-hidden="true"></div>
+
+      <div class="svc-hero__content container">
+        <h1>Services</h1>
+        <p class="svc-hero__sub">Comprehensive Division 8 supply, installation and project solutions for every scale of build.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WHAT WE DO + SERVICE CARDS
+         ============================================================ -->
+    <section class="svc-work" aria-label="What we do">
+      <div class="svc-grid">
+
+        <!-- Intro cell -->
+        <div class="svc-intro">
+          <img src="images/ADS_Logo_primary.svg" alt="All Door Supply" class="svc-intro__logo" />
+          <h2>What We Do.</h2>
+          <p>All Door Supply delivers end-to-end support for commercial and architectural door, hardware, and specialty product needs — from initial material sourcing through custom fabrication and on-site installation.</p>
+          <p>Whether you're managing a single renovation or a multi-phase commercial build, our team brings the technical expertise and manufacturer relationships to keep your project moving.</p>
+        </div>
+
+        <!-- Supply of Division 8 Material -->
+        <article class="svc-card">
+          <div class="svc-card__image">
+            <img src="images/Manufacturer%20Card%20-%20Doors%20Image.png" alt="Wooden residential entry door with sidelites" loading="lazy" onerror="this.remove()" />
+          </div>
+          <div class="svc-card__head">
+            <img src="images/supply-division-8-material.svg" alt="" width="50" height="44" />
+            <h3>Supply of<br>Division 8 Material</h3>
+          </div>
+          <div class="svc-card__body">
+            <p>Division 8 material refers to all products related to openings in a building, including doors, frames, hardware, glazing, and access control components.</p>
+            <p>Supplying Division 8 material involves sourcing, coordinating, and delivering these items according to the project's specifications, schedule, and compliance requirements. The process typically includes reviewing architectural drawings, confirming measurements, selecting compatible hardware and finishes, and ensuring all components meet building codes and performance standards.</p>
+            <p>Accurate planning and coordination are essential, as these materials often impact security, accessibility, and fire-rating requirements throughout the project.</p>
+          </div>
+        </article>
+
+        <!-- Division 8 Installation Services -->
+        <article class="svc-card">
+          <div class="svc-card__image">
+            <img src="images/Contractors_Colour.png" alt="Installer fitting a door on a job site" loading="lazy" onerror="this.remove()" />
+          </div>
+          <div class="svc-card__head">
+            <img src="images/division-8-installation.svg" alt="" width="39" height="44" />
+            <h3>Division 8<br>Installation Services</h3>
+          </div>
+          <div class="svc-card__body">
+            <p>All Door Supply provides expert installation services for Division 8 products, including doors, frames, architectural hardware, access control components, and specialty openings. Our installation team ensures every unit is properly fit, aligned, and secured to meet performance, safety, and code requirements.</p>
+            <p>With strong coordination, attention to detail, and experience across commercial, industrial, and institutional builds, All Door Supply delivers a reliable, efficient installation process and long-lasting results.</p>
+          </div>
+        </article>
+
+        <!-- Project Management Services -->
+        <article class="svc-card">
+          <div class="svc-card__image">
+            <img src="images/DesignProfessionals_Colour.png" alt="Project schedule and coordination" loading="lazy" onerror="this.remove()" />
+          </div>
+          <div class="svc-card__head">
+            <img src="images/project-management.svg" alt="" width="44" height="43" />
+            <h3>Project<br>Management Services</h3>
+          </div>
+          <div class="svc-card__body">
+            <p>All Door Supply offers full project management services to support Division 8 and Division 10 scopes from start to finish. Our project management team oversees scheduling, procurement, coordination, and installation to ensure all materials meet specifications, building codes, and project requirements. We work closely with contractors, architects, and site teams to proactively address challenges, prevent delays, and maintain clear communication throughout the project lifecycle.</p>
+            <p>With detailed planning, accurate documentation, and a focus on accountability and efficiency, All Door Supply delivers a streamlined process and dependable results — helping projects stay on schedule and on budget.</p>
+          </div>
+        </article>
+
+        <!-- Custom Division 8 Products via Weld Shop -->
+        <article class="svc-card">
+          <div class="svc-card__image">
+            <img src="images/Manufacturer%20Card%20-%20Hardware%20Image.png" alt="Custom fabricated door hardware" loading="lazy" onerror="this.remove()" />
+          </div>
+          <div class="svc-card__head">
+            <img src="images/custom-division-8-products-via-weld-shop.svg" alt="" width="36" height="44" />
+            <h3>Custom Division 8 Products<br>via Weld Shop</h3>
+          </div>
+          <div class="svc-card__body">
+            <p>All Door Supply features an in-house weld shop, allowing us to fabricate and customize Division 8 products to meet unique project requirements. From specialized door frames and security doors to custom hardware supports, our skilled team can modify standard products or create entirely bespoke solutions.</p>
+            <p>By combining precision welding, high-quality materials, and strict adherence to industry standards, All Door Supply delivers durable, code-compliant, and fully customized Division 8 solutions for any design or performance need.</p>
+          </div>
+        </article>
+
+        <!-- Supply & Installation of Automatic Operators -->
+        <article class="svc-card">
+          <div class="svc-card__image">
+            <img src="images/Manufacturer%20Card%20-%20Door%20Automation%20Image.png" alt="Automatic sliding glass door entrance" loading="lazy" onerror="this.remove()" />
+          </div>
+          <div class="svc-card__head">
+            <img src="images/supply-installation-automatic-openers.svg" alt="" width="44" height="44" />
+            <h3>Supply &amp; Installation of<br>Automatic Operators</h3>
+          </div>
+          <div class="svc-card__body">
+            <p>All Door Supply provides complete supply and installation services for automatic door operators, enhancing accessibility, safety, and convenience for any facility. We work with a wide range of operators compatible with commercial, institutional, and industrial doors, ensuring each unit meets ADA requirements and manufacturer specifications.</p>
+            <p>Our experienced team handles everything from product selection and coordination to precise installation and testing, delivering reliable, code-compliant, and fully functional automatic door systems.</p>
+          </div>
+        </article>
+
+      </div><!-- /.svc-grid -->
+    </section>
+
+    <!-- ============================================================
+         EXPLORE THE PRODUCTS BEHIND OUR SERVICES — Manufacturers
+         ============================================================ -->
+    <section class="manufacturers manufacturers--grey" id="manufacturers" aria-label="Our Manufacturers">
+      <div class="container">
+        <div class="manufacturers__header">
+          <span class="manufacturers__eyebrow">Our Manufacturers</span>
+          <h2>Explore the Products Behind Our Services.</h2>
+          <p>
+            Every service above is backed by premium materials from the industry's most
+            trusted manufacturers. Browse by category to find exactly what your project needs.
+          </p>
+        </div>
+
+        <div class="manufacturers__grid">
+
+          <!-- Doors -->
+          <a href="doors.html" class="mfr-card">
+            <div class="mfr-card__body">
+              <h3>Doors</h3>
+              <p>Interior and exterior door solutions for residential, commercial and institutional applications.</p>
+              <span class="mfr-card__link">View Brands</span>
+            </div>
+            <div class="mfr-card__image">
+              <img src="images/Manufacturer%20Card%20-%20Doors%20Image.png" alt="Wooden residential entry door" loading="lazy">
+            </div>
+          </a>
+
+          <!-- Door Automation -->
+          <a href="door-automation.html" class="mfr-card">
+            <div class="mfr-card__body">
+              <h3>Door Automation</h3>
+              <p>Automatic operators, access control and powered door systems for commercial and accessibility applications.</p>
+              <span class="mfr-card__link">View Brands</span>
+            </div>
+            <div class="mfr-card__image">
+              <img src="images/Manufacturer%20Card%20-%20Door%20Automation%20Image.png" alt="Automatic sliding glass door entrance" loading="lazy">
+            </div>
+          </a>
+
+          <!-- Hardware -->
+          <a href="hardware.html" class="mfr-card">
+            <div class="mfr-card__body">
+              <h3>Hardware</h3>
+              <p>Handles, hinges, locks, closers and architectural hardware from the industry's most trusted manufacturers.</p>
+              <span class="mfr-card__link">View Brands</span>
+            </div>
+            <div class="mfr-card__image">
+              <img src="images/Manufacturer%20Card%20-%20Hardware%20Image.png" alt="Modern door with lever handle and locks" loading="lazy">
+            </div>
+          </a>
+
+          <!-- Division 10 -->
+          <a href="division-10.html" class="mfr-card">
+            <div class="mfr-card__body">
+              <h3>Division 10</h3>
+              <p>Specialty construction products including toilet partitions, lockers, visual display and washroom accessories.</p>
+              <span class="mfr-card__link">View Brands</span>
+            </div>
+            <div class="mfr-card__image">
+              <img src="images/Manufacturer%20Card%20-%20Division10%20Image.png" alt="Commercial toilet partitions" loading="lazy">
+            </div>
+          </a>
+
+        </div><!-- /.manufacturers__grid -->
+      </div><!-- /.container -->
+    </section>
+
+    <!-- ============================================================
+         CTA BANNER
+         ============================================================ -->
+    <section class="cta-banner" aria-label="Request a quote">
+      <div class="container">
+        <p class="cta-banner__eyebrow">Ready to Get Started?</p>
+        <h2>Let's Talk About Your Project.</h2>
+        <p>Contact our team today and let's find the right solution for your build.</p>
+        <a href="contact.html" class="btn-outline-white">Request a Quote</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer" id="contact" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+
+        <!-- Logo -->
+        <div class="footer__logo">
+          <img src="images/ADS_Logo_primary.svg" alt="All Door Supply" class="footer__logo-img" />
+        </div>
+
+        <!-- Contact -->
+        <div class="footer__col">
+          <h4>Contact Us</h4>
+          <address>
+            <p>Toll Free: 1.866.769.3667</p>
+            <p>Phone: 1-905.335.1638</p>
+            <p>Fax: 1.905.335.6822</p>
+            <p>Email: <a href="mailto:info@alldoorsupply.com">info@alldoorsupply.com</a></p>
+            <p>Location: 559 King Forest Court,<br>Burlington, Ontario L7P 5C1</p>
+          </address>
+        </div>
+
+        <!-- Navigate -->
+        <div class="footer__col">
+          <h4>Navigate</h4>
+          <nav aria-label="Footer navigation">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="who-we-service.html">Who We Serve</a>
+            <a href="manufacturers.html">Manufacturers</a>
+            <a href="projects.html">Projects</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="contact.html">Request a Quote</a>
+          </nav>
+        </div>
+
+        <!-- Hours -->
+        <div class="footer__col">
+          <h4>Hours</h4>
+          <p>Showroom &amp; Warehouse</p>
+          <p>Mon – Fri: 7:30am – 4:30pm</p>
+          <br/>
+          <p class="hours-highlight">24 Hour Service for<br>Established Customers</p>
+        </div>
+
+      </div><!-- /.footer__grid -->
+    </div><!-- /.container -->
+
+    <div class="footer__bottom">
+      <div class="container">
+        <p>© 2026 All Door Supply. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

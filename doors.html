@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doors — All Door Supply</title>
+  <meta name="description" content="Hollow metal, wood, fibreglass and specialty door solutions from industry-leading manufacturers for residential, commercial and institutional applications." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,600&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="images/ADS_Logo_primary.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css?v=20260718-mfr-grey" />
+
+  <style>
+    /* ============================================================
+       DOORS PAGE — page-specific sections (built to Figma 432:1028)
+       ============================================================ */
+
+    /* Hero headline is longer than other pages — size it to one line. */
+    .hero-band h1 { font-size: 60px; line-height: 1.02; }
+    @media (max-width: 900px) { .hero-band h1 { font-size: 40px; } }
+
+    .doors-inner { max-width: 1280px; margin-inline: auto; padding-inline: 40px; }
+
+    /* --- Doors intro (Figma 432:1057) --------------------------- */
+    .doors-intro { background: #fff; padding-block: 134px 0; }
+    .doors-intro h2 {
+      font-family: var(--font-head); font-size: 48px; font-weight: 700;
+      color: var(--red); line-height: 1; letter-spacing: 0;
+      max-width: 679px; margin-bottom: 24px;
+    }
+    .doors-intro p { font-size: 15px; line-height: 24px; color: #000; max-width: 679px; }
+
+    /* --- Brand card grids (Figma 432:1041 / 446:1208) ----------- */
+    .brand-section { background: #fff; padding-block: 84px 0; }
+    .brand-section--last { padding-bottom: 0; }
+    .brand-section__title {
+      font-family: var(--font-head); font-size: 28px; font-weight: 700;
+      color: var(--red); line-height: 1; letter-spacing: 0; margin-bottom: 26px;
+    }
+    .brand-grid {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px;
+    }
+    .brand-card {
+      display: flex; flex-direction: column;
+      min-height: 417px; background: #fff;
+      border: 1px solid #E4E2DE; border-radius: 8px;
+      padding: 46px 32px 32px;
+    }
+    .brand-card__logo {
+      height: 102px; display: flex; align-items: center; justify-content: flex-start;
+      margin-bottom: 24px;
+    }
+    /* Placeholder brand wordmark — swap for the real logo asset. */
+    .brand-card__logo .brand-wordmark {
+      font-family: var(--font-head); font-weight: 700; font-size: 30px;
+      color: #1a1a1a; line-height: 1; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .brand-card__logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .brand-card__desc { font-size: 15px; line-height: 24px; color: #000; }
+    .brand-card__link {
+      margin-top: auto; padding-top: 24px;
+      display: inline-flex; align-items: center; gap: 9px;
+      font-family: var(--font-body); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0; color: var(--black);
+      align-self: flex-start;
+    }
+    .brand-card__link::after {
+      content: ''; width: 0; height: 0; border-style: solid;
+      border-width: 4px 0 4px 6px;
+      border-color: transparent transparent transparent var(--red);
+      transition: transform 0.25s ease;
+    }
+    .brand-card:hover .brand-card__link::after { transform: translateX(4px); }
+
+    /* --- Our Process (Figma 464:1122) — dark timeline ----------- */
+    .process { position: relative; overflow: hidden; background: #231F20; padding-block: 70px 90px; }
+    .process__bg {
+      position: absolute; right: 4%; bottom: 0; width: 1028px; max-width: 72%;
+      opacity: 0.06; pointer-events: none;
+    }
+    .process__inner { position: relative; z-index: 1; max-width: 1440px; margin-inline: auto; padding-inline: 120px; }
+    .process__label {
+      display: inline-block; background: var(--red); color: #fff;
+      font-family: var(--font-body); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0; padding: 4px 8px; margin-bottom: 14px;
+    }
+    .process__heading {
+      font-family: var(--font-head); font-size: 48px; font-weight: 700; color: #fff;
+      line-height: 1; letter-spacing: 0; margin-bottom: 70px;
+    }
+    .process__timeline { position: relative; display: flex; min-height: 520px; }
+    .process__line { position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: rgba(255,255,255,0.22); }
+    .process__col { flex: 1; position: relative; padding-inline: 8px; }
+    .process__content { position: absolute; left: 8px; right: 8px; }
+    .process__col--up   .process__content { bottom: calc(50% + 78px); }
+    .process__col--down .process__content { top: calc(50% + 78px); }
+    .process__num  { font-family: var(--font-head); font-weight: 700; font-size: 15px; color: var(--red); margin-bottom: 8px; }
+    .process__title{ font-family: var(--font-head); font-weight: 700; font-size: 21px; color: #fff; line-height: 1; margin-bottom: 12px; }
+    .process__desc { font-size: 13px; line-height: 20px; color: rgba(255,255,255,0.55); }
+    /* red dot centered on the line for each column */
+    .process__dot {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 14px; height: 14px; border-radius: 50%; background: var(--red);
+      box-shadow: 0 0 0 4px #231F20; z-index: 2;
+    }
+    /* red connector from the dot up/down to the step content */
+    .process__col::after {
+      content: ''; position: absolute; left: 50%; transform: translateX(-50%);
+      width: 2px; background: var(--red);
+    }
+    .process__col--up::after   { bottom: 50%; height: 78px; }
+    .process__col--down::after { top: 50%; height: 78px; }
+
+    /* --- Door Inspiration (Figma 476:1115) ---------------------- */
+    .inspiration { background: #fff; padding-block: 90px 96px; }
+    .inspiration__inner { max-width: 1440px; margin-inline: auto; padding-inline: 130px; }
+    .inspiration__label {
+      display: inline-block; background: var(--red); color: #fff;
+      font-family: var(--font-body); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0; padding: 4px 8px; margin-bottom: 16px;
+    }
+    .inspiration h2 {
+      font-family: var(--font-head); font-size: 48px; font-weight: 700; color: var(--red);
+      line-height: 1; letter-spacing: 0; margin-bottom: 16px; max-width: 700px;
+    }
+    .inspiration__sub { font-size: 15px; line-height: 24px; color: #000; max-width: 700px; margin-bottom: 43px; }
+    .inspiration__gallery { display: grid; grid-template-columns: minmax(0, 860px) 304px; gap: 20px; align-items: start; }
+    .inspiration__featured {
+      aspect-ratio: 860 / 560; border-radius: 8px; overflow: hidden;
+      background: #d9d9d9 center/cover no-repeat;
+      display: flex; align-items: center; justify-content: center;
+      color: #8a8a8a; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .inspiration__thumbs { display: flex; flex-direction: column; gap: 16px; }
+    .inspiration__thumb {
+      height: 128px; border-radius: 8px; overflow: hidden; cursor: pointer;
+      background: #d9d9d9 center/cover no-repeat;
+      display: flex; align-items: center; justify-content: center;
+      color: #6f6f6f; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;
+      border: 2px solid transparent; transition: border-color 0.2s;
+    }
+    .inspiration__thumb--active,
+    .inspiration__thumb:hover { border-color: var(--red); }
+
+    /* --- Contact Form (Figma 479:1115) -------------------------- */
+    .contact-form { background: #EFEFF0; padding-block: 90px 96px; }
+    .contact-form__inner { max-width: 760px; margin-inline: auto; padding-inline: 20px; }
+    .contact-form__label {
+      display: inline-block; background: var(--red); color: #fff;
+      font-family: var(--font-body); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0; padding: 4px 8px; margin-bottom: 16px;
+    }
+    .contact-form h2 {
+      font-family: var(--font-head); font-size: 48px; font-weight: 700; color: var(--red);
+      line-height: 1; letter-spacing: 0; margin-bottom: 14px;
+    }
+    .contact-form__sub { font-size: 15px; line-height: 24px; color: #000; margin-bottom: 40px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-field { display: flex; flex-direction: column; }
+    .form-field--full { grid-column: 1 / -1; }
+    .form-field label {
+      font-family: var(--font-body); font-size: 13px; font-weight: 500; color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      font-family: var(--font-body); font-size: 15px; color: #1a1a1a;
+      background: #fff; border: 1px solid #d9d9dc; border-radius: 4px;
+      padding: 14px 16px; width: 100%;
+    }
+    .form-field textarea { min-height: 120px; resize: vertical; }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: #9a9a9a; }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { outline: none; border-color: var(--red); }
+    .form-submit {
+      margin-top: 28px; display: inline-flex; align-items: center; justify-content: center;
+      height: 52px; padding-inline: 44px; background: var(--red); color: #fff;
+      font-family: var(--font-body); font-size: 15px; font-weight: 500; text-transform: uppercase;
+      border: none; cursor: pointer; transition: background 0.2s;
+    }
+    .form-submit:hover { background: var(--red-hover); }
+
+    /* --- Responsive -------------------------------------------- */
+    @media (max-width: 1100px) {
+      .brand-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .process__inner, .inspiration__inner { padding-inline: 40px; }
+      .inspiration__gallery { grid-template-columns: 1fr; }
+      .inspiration__thumbs { flex-direction: row; overflow-x: auto; }
+      .inspiration__thumb { min-width: 220px; }
+      /* Timeline stacks vertically on smaller screens */
+      .process__timeline { flex-direction: column; gap: 32px; min-height: 0; }
+      .process__line, .process__dot { display: none; }
+      .process__col { padding-inline: 0; padding-left: 20px; border-left: 2px solid rgba(197,32,40,0.6); }
+      .process__content { position: static; }
+      .process__col--up .process__content,
+      .process__col--down .process__content { bottom: auto; top: auto; }
+      .process__col::after { display: none; }
+    }
+    @media (max-width: 768px) {
+      .doors-intro { padding-block: 64px 0; }
+      .doors-inner, .contact-form__inner { padding-inline: 20px; }
+      .brand-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .doors-intro h2, .inspiration h2, .contact-form h2, .process__heading { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <header class="nav nav--hero" id="nav" role="banner">
+    <div class="container">
+      <div class="nav__inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav__logo" aria-label="All Door Supply — Home">
+          <img src="images/ADS_Logo_primary.svg" alt="All Door Supply" class="nav__logo-img" />
+        </a>
+
+        <!-- Desktop links -->
+        <nav class="nav__links" aria-label="Main navigation">
+          <a href="services.html">Services</a>
+
+          <div class="nav__item">
+            <a href="who-we-service.html" class="nav__toplink" aria-haspopup="true">Who We Serve
+              <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav__dropdown" role="menu">
+              <a href="contractors.html" role="menuitem">Contractors</a>
+              <a href="design-professionals.html" role="menuitem">Design Professionals</a>
+              <a href="residential-homeowners.html" role="menuitem">Residential Homeowners</a>
+            </div>
+          </div>
+
+          <div class="nav__item">
+            <a href="manufacturers.html" class="nav__toplink is-section" aria-haspopup="true">Manufacturers
+              <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav__dropdown" role="menu">
+              <a href="doors.html" role="menuitem" aria-current="page">Doors</a>
+              <a href="door-automation.html" role="menuitem">Door Automation</a>
+              <a href="hardware.html" role="menuitem">Hardware</a>
+              <a href="division-10.html" role="menuitem">Division 10</a>
+            </div>
+          </div>
+
+          <a href="projects.html">Projects</a>
+          <a href="about.html">About</a>
+          <a href="contact.html" class="btn-nav" aria-label="Request a quote">Request a Quote</a>
+        </nav>
+
+        <!-- Hamburger -->
+        <button
+          class="nav__hamburger"
+          id="hamburger"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile nav -->
+    <nav class="nav__mobile" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="services.html">Services</a>
+      <a href="who-we-service.html">Who We Serve</a>
+      <a href="contractors.html" class="nav__mobile-sub">Contractors</a>
+      <a href="design-professionals.html" class="nav__mobile-sub">Design Professionals</a>
+      <a href="residential-homeowners.html" class="nav__mobile-sub">Residential Homeowners</a>
+      <a href="manufacturers.html">Manufacturers</a>
+      <a href="doors.html" class="nav__mobile-sub" aria-current="page">Doors</a>
+      <a href="door-automation.html" class="nav__mobile-sub">Door Automation</a>
+      <a href="hardware.html" class="nav__mobile-sub">Hardware</a>
+      <a href="division-10.html" class="nav__mobile-sub">Division 10</a>
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="btn-nav">Request a Quote</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero-band" aria-label="Doors">
+      <div class="hero-band__image">
+        <img src="images/Manufacturer%20Card%20-%20Doors%20Image.png" alt="Wooden residential entry door with sidelites" loading="eager" />
+      </div>
+      <div class="hero-band__overlay" aria-hidden="true"></div>
+      <div class="hero-band__content">
+        <h1>Doors Built for Every Application.</h1>
+        <p class="hero-band__sub">From hollow metal and wood to specialty and custom — the right door solution for every commercial, institutional and residential opening.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DOORS INTRO
+         ============================================================ -->
+    <section class="doors-intro" aria-label="Doors overview">
+      <div class="doors-inner">
+        <h2>The Right Door for Every Opening.</h2>
+        <p>All Door Supply partners with leading door manufacturers to offer an extensive selection of interior and exterior door solutions — from hollow metal and wood to specialty and custom applications. Whether you're specifying for a high-traffic commercial space or finishing a residential renovation, our team helps you find the right product from the right manufacturer, backed by 35 years of industry expertise.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         HOLLOW METAL DOOR & FRAME MANUFACTURERS
+         ============================================================ -->
+    <section class="brand-section" aria-label="Hollow metal door and frame manufacturers">
+      <div class="doors-inner">
+        <h2 class="brand-section__title">Hollow Metal Door &amp; Frame Manufacturers</h2>
+        <div class="brand-grid">
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><span class="brand-wordmark">Daybar</span></div>
+            <p class="brand-card__desc">Hollow metal doors and frames built for high-traffic commercial, institutional and industrial openings.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Daybar Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><span class="brand-wordmark">Artek</span></div>
+            <p class="brand-card__desc">Custom hollow metal door and frame assemblies engineered to exact project specifications.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Artek Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><span class="brand-wordmark">Vision</span></div>
+            <p class="brand-card__desc">Durable hollow metal doors and frames for demanding commercial and security applications.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Vision Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><span class="brand-wordmark">Fleming</span></div>
+            <p class="brand-card__desc">Commercial hollow metal doors and frames from a trusted ASSA ABLOY manufacturer.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Fleming Products</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WOOD DOOR MANUFACTURERS
+         ============================================================ -->
+    <section class="brand-section brand-section--last" aria-label="Wood door manufacturers">
+      <div class="doors-inner">
+        <h2 class="brand-section__title">Wood Door Manufacturers</h2>
+        <div class="brand-grid">
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><span class="brand-wordmark">Jeld-Wen</span></div>
+            <p class="brand-card__desc">Interior and exterior wood doors for residential and light-commercial projects.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Jeld-Wen Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><span class="brand-wordmark">Baillargeon</span></div>
+            <p class="brand-card__desc">Architectural wood doors crafted for interior and specialty applications.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Baillargeon Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><span class="brand-wordmark">Metrie</span></div>
+            <p class="brand-card__desc">Interior doors, mouldings and millwork for residential and commercial finishing.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Metrie Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><span class="brand-wordmark">Visser</span></div>
+            <p class="brand-card__desc">Custom wood doors and specialty millwork built to order for unique openings.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Visser Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><span class="brand-wordmark">Trimlite</span></div>
+            <p class="brand-card__desc">Interior and exterior wood and glass door systems for residential builds.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Trimlite Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><span class="brand-wordmark">VT Industries</span></div>
+            <p class="brand-card__desc">Architectural wood doors for commercial and institutional applications.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore VT Industries Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><span class="brand-wordmark">Ambico</span></div>
+            <p class="brand-card__desc">Specialty steel, acoustic and lead-lined door assemblies for demanding environments.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Ambico Products</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         OUR PROCESS — dark timeline
+         ============================================================ -->
+    <section class="process" aria-label="How we work with you">
+      <img class="process__bg" src="images/Logo%20Building%20Design%20Accent.png" alt="" aria-hidden="true" />
+      <div class="process__inner">
+        <span class="process__label">Our Process</span>
+        <h2 class="process__heading">How We Work With You.</h2>
+
+        <div class="process__timeline">
+          <div class="process__line" aria-hidden="true"></div>
+
+          <div class="process__col process__col--up">
+            <div class="process__content">
+              <p class="process__num">01</p>
+              <h3 class="process__title">Consultation</h3>
+              <p class="process__desc">We start by understanding your project requirements, specifications, timelines and budget — so we can point you to exactly the right products.</p>
+            </div>
+            <span class="process__dot" aria-hidden="true"></span>
+          </div>
+
+          <div class="process__col process__col--down">
+            <div class="process__content">
+              <p class="process__num">02</p>
+              <h3 class="process__title">Product Selection</h3>
+              <p class="process__desc">Our team identifies the right door products, hardware and manufacturers to match your application, whether residential, commercial or institutional.</p>
+            </div>
+            <span class="process__dot" aria-hidden="true"></span>
+          </div>
+
+          <div class="process__col process__col--up">
+            <div class="process__content">
+              <p class="process__num">03</p>
+              <h3 class="process__title">Quoting</h3>
+              <p class="process__desc">We provide accurate pricing and lead times based on your confirmed specifications — no surprises, no hidden costs.</p>
+            </div>
+            <span class="process__dot" aria-hidden="true"></span>
+          </div>
+
+          <div class="process__col process__col--down">
+            <div class="process__content">
+              <p class="process__num">04</p>
+              <h3 class="process__title">Order &amp; Procurement</h3>
+              <p class="process__desc">Once approved, we place orders directly with our manufacturer network and proactively manage delivery scheduling to keep your project on track.</p>
+            </div>
+            <span class="process__dot" aria-hidden="true"></span>
+          </div>
+
+          <div class="process__col process__col--up">
+            <div class="process__content">
+              <p class="process__num">05</p>
+              <h3 class="process__title">Delivery &amp; Support</h3>
+              <p class="process__desc">We coordinate delivery to site and remain available throughout the project lifecycle for questions, adjustments or additional requirements.</p>
+            </div>
+            <span class="process__dot" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DOOR INSPIRATION
+         ============================================================ -->
+    <section class="inspiration" aria-label="Door inspiration">
+      <div class="inspiration__inner">
+        <span class="inspiration__label">Inspiration</span>
+        <h2>Find Your Inspiration.</h2>
+        <p class="inspiration__sub">Browse completed projects and product galleries to see how the right door elevates every commercial, institutional and residential space.</p>
+
+        <div class="inspiration__gallery">
+          <!-- Placeholder gallery — swap the background-image URLs for real project photos. -->
+          <div class="inspiration__featured" role="img" aria-label="Featured door project">Featured Image</div>
+          <div class="inspiration__thumbs">
+            <div class="inspiration__thumb inspiration__thumb--active" role="button" tabindex="0">Commercial</div>
+            <div class="inspiration__thumb" role="button" tabindex="0">Residential</div>
+            <div class="inspiration__thumb" role="button" tabindex="0">Institutional</div>
+            <div class="inspiration__thumb" role="button" tabindex="0">Custom</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT FORM
+         ============================================================ -->
+    <section class="contact-form" aria-label="Request a quote">
+      <div class="contact-form__inner">
+        <span class="contact-form__label">Request a Quote</span>
+        <h2>Request a Quote.</h2>
+        <p class="contact-form__sub">Tell us about your project and our team will get back to you with the right door solution.</p>
+
+        <form class="doors-quote-form" action="#" method="post" novalidate>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="q-name">Name</label>
+              <input type="text" id="q-name" name="name" placeholder="Your name" />
+            </div>
+            <div class="form-field">
+              <label for="q-company">Company</label>
+              <input type="text" id="q-company" name="company" placeholder="Company name" />
+            </div>
+            <div class="form-field">
+              <label for="q-email">Email Address</label>
+              <input type="email" id="q-email" name="email" placeholder="you@example.com" />
+            </div>
+            <div class="form-field">
+              <label for="q-phone">Phone Number</label>
+              <input type="tel" id="q-phone" name="phone" placeholder="(000) 000-0000" />
+            </div>
+            <div class="form-field form-field--full">
+              <label for="q-type">Project Type</label>
+              <select id="q-type" name="project_type">
+                <option value="" disabled selected>Select a project type</option>
+                <option value="commercial">Commercial</option>
+                <option value="institutional">Institutional</option>
+                <option value="residential">Residential</option>
+                <option value="industrial">Industrial</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-field form-field--full">
+              <label for="q-message">Message</label>
+              <textarea id="q-message" name="message" placeholder="Tell us about your project…"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="form-submit">Submit Request</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CTA BANNER
+         ============================================================ -->
+    <section class="cta-banner" aria-label="Request a quote">
+      <div class="container">
+        <p class="cta-banner__eyebrow">Ready to Get Started?</p>
+        <h2>Let's Talk About Your Project.</h2>
+        <p>Contact our team today and let's find the right solution for your build.</p>
+        <a href="contact.html" class="btn-outline-white">Request a Quote</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__logo">
+          <img src="images/ADS_Logo_primary.svg" alt="All Door Supply" class="footer__logo-img" />
+        </div>
+        <div class="footer__col">
+          <h4>Contact Us</h4>
+          <address>
+            <p>Toll Free: 1.866.769.3667</p>
+            <p>Phone: 1-905.335.1638</p>
+            <p>Fax: 1.905.335.6822</p>
+            <p>Email: <a href="mailto:info@alldoorsupply.com">info@alldoorsupply.com</a></p>
+            <p>Location: 559 King Forest Court,<br>Burlington, Ontario L7P 5C1</p>
+          </address>
+        </div>
+        <div class="footer__col">
+          <h4>Navigate</h4>
+          <nav aria-label="Footer navigation">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="who-we-service.html">Who We Serve</a>
+            <a href="manufacturers.html">Manufacturers</a>
+            <a href="projects.html">Projects</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="contact.html">Request a Quote</a>
+          </nav>
+        </div>
+        <div class="footer__col">
+          <h4>Hours</h4>
+          <p>Showroom &amp; Warehouse</p>
+          <p>Mon – Fri: 7:30am – 4:30pm</p>
+          <br/>
+          <p class="hours-highlight">24 Hour Service for<br>Established Customers</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>© 2026 All Door Supply. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

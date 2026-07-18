@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manufacturers — All Door Supply</title>
+  <meta name="description" content="Decades of relationships with the industry's most trusted door, hardware, automation and specialty manufacturers — giving you direct access to premium products, technical support and dependable pricing." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,600&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="images/ADS_Logo_primary.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css?v=20260718-mfr-grey" />
+
+  <style>
+    /* ============================================================
+       MANUFACTURERS HUB — page-specific (Figma 156:682)
+       ============================================================ */
+    .hero-band h1 { font-size: 64px; line-height: 1.04; }
+    @media (max-width: 768px) { .hero-band h1 { font-size: 40px; } }
+
+    /* --- Manufacturer Network intro (Figma 156:826) ------------- */
+    /* Wrapper so the building accent graphic spans BOTH the intro and the
+       "Products You Can Trust" grid — same idea as the homepage .midpage. */
+    .mfr-mid { position: relative; isolation: isolate; background: #fff; overflow: hidden; }
+    .mfr-mid__bg {
+      position: absolute; right: 0; top: 40px; z-index: 0;
+      height: 955px; width: auto;
+      opacity: 0.5; pointer-events: none;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 40%);
+              mask-image: linear-gradient(90deg, transparent 0%, #000 40%);
+    }
+    /* Sections sit transparent over the wrapper so the graphic shows through
+       both, with their content held above it. */
+    .mfr-mid .manufacturer-network,
+    .mfr-mid #manufacturers { background: transparent; }
+    .mfr-mid .manufacturer-network__inner,
+    .mfr-mid #manufacturers > .container { position: relative; z-index: 2; }
+
+    .manufacturer-network { padding-block: 132px 0; }
+    .manufacturer-network__inner {
+      max-width: 1280px; margin-inline: auto; padding-inline: 40px;
+    }
+    .manufacturer-network h2 {
+      font-family: var(--font-head); font-size: 48px; font-weight: 700;
+      color: var(--red); line-height: 1; letter-spacing: 0;
+      max-width: 853px; margin-bottom: 24px;
+    }
+    .manufacturer-network p {
+      font-size: 15px; line-height: 24px; color: #000;
+      max-width: 791px; margin-bottom: 16px;
+    }
+    .manufacturer-network p:last-child { margin-bottom: 0; }
+    @media (max-width: 900px) {
+      .manufacturer-network { padding-block: 72px 0; }
+      .mfr-mid__bg { display: none; }
+    }
+    @media (max-width: 768px) {
+      .manufacturer-network__inner { padding-inline: 20px; }
+      .manufacturer-network h2 { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <header class="nav nav--hero" id="nav" role="banner">
+    <div class="container">
+      <div class="nav__inner">
+
+        <a href="index.html" class="nav__logo" aria-label="All Door Supply — Home">
+          <img src="images/ADS_Logo_primary.svg" alt="All Door Supply" class="nav__logo-img" />
+        </a>
+
+        <nav class="nav__links" aria-label="Main navigation">
+          <a href="services.html">Services</a>
+
+          <div class="nav__item">
+            <a href="who-we-service.html" class="nav__toplink" aria-haspopup="true">Who We Serve
+              <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav__dropdown" role="menu">
+              <a href="contractors.html" role="menuitem">Contractors</a>
+              <a href="design-professionals.html" role="menuitem">Design Professionals</a>
+              <a href="residential-homeowners.html" role="menuitem">Residential Homeowners</a>
+            </div>
+          </div>
+
+          <div class="nav__item">
+            <a href="manufacturers.html" class="nav__toplink is-section" aria-current="page" aria-haspopup="true">Manufacturers
+              <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav__dropdown" role="menu">
+              <a href="doors.html" role="menuitem">Doors</a>
+              <a href="door-automation.html" role="menuitem">Door Automation</a>
+              <a href="hardware.html" role="menuitem">Hardware</a>
+              <a href="division-10.html" role="menuitem">Division 10</a>
+            </div>
+          </div>
+
+          <a href="projects.html">Projects</a>
+          <a href="about.html">About</a>
+          <a href="contact.html" class="btn-nav" aria-label="Request a quote">Request a Quote</a>
+        </nav>
+
+        <button class="nav__hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+
+    <nav class="nav__mobile" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="services.html">Services</a>
+      <a href="who-we-service.html">Who We Serve</a>
+      <a href="contractors.html" class="nav__mobile-sub">Contractors</a>
+      <a href="design-professionals.html" class="nav__mobile-sub">Design Professionals</a>
+      <a href="residential-homeowners.html" class="nav__mobile-sub">Residential Homeowners</a>
+      <a href="manufacturers.html" aria-current="page">Manufacturers</a>
+      <a href="doors.html" class="nav__mobile-sub">Doors</a>
+      <a href="door-automation.html" class="nav__mobile-sub">Door Automation</a>
+      <a href="hardware.html" class="nav__mobile-sub">Hardware</a>
+      <a href="division-10.html" class="nav__mobile-sub">Division 10</a>
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="btn-nav">Request a Quote</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero-band" aria-label="Our Manufacturers">
+      <div class="hero-band__image">
+        <!-- Placeholder hero photo — replace with the Figma workbench/tools image. -->
+        <img src="images/alldoor-supply-complete-door-solutions-services-hero.png" alt="Workbench with door hardware and tools" loading="eager" />
+      </div>
+      <div class="hero-band__overlay" aria-hidden="true"></div>
+      <div class="hero-band__content">
+        <h1>Our Manufacturers</h1>
+        <p class="hero-band__sub">Comprehensive Division 8 supply, installation and project solutions for every scale of build.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MANUFACTURER NETWORK
+         ============================================================ -->
+    <!-- Wrapper: building accent graphic spans the intro AND the product grid -->
+    <div class="mfr-mid">
+      <img class="mfr-mid__bg" src="images/Logo%20Building%20Design%20Accent.png" alt="" aria-hidden="true" />
+
+    <section class="manufacturer-network" aria-label="Our manufacturer network">
+      <div class="manufacturer-network__inner">
+        <h2>Decades of Relationships. Built for Your Project.</h2>
+        <p>All Door Supply has spent over 35 years building relationships with the industry's most trusted manufacturers — partnerships earned through consistency, reliability, and a shared commitment to quality. That network gives us direct access to premium products, technical support, and the kind of pricing and availability that only comes from long-standing trust.</p>
+        <p>Whether you're a contractor managing a tight schedule, a design professional specifying for a demanding client, or a homeowner upgrading your entry, you benefit from the same thing: a supplier who's already done the work of finding the right manufacturer, so you don't have to.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PRODUCTS YOU CAN TRUST — shared reusable component (white)
+         ============================================================ -->
+    <section class="manufacturers" id="manufacturers" aria-label="Our Manufacturers">
+      <div class="container">
+        <div class="manufacturers__header">
+          <span class="manufacturers__eyebrow">Our Manufacturers</span>
+          <h2>Products You Can Trust.</h2>
+          <p>We partner with the industry's most respected manufacturers to bring you premium doors, hardware, automation and specialty products.</p>
+        </div>
+
+        <div class="manufacturers__grid">
+
+          <a href="doors.html" class="mfr-card">
+            <div class="mfr-card__body">
+              <h3>Doors</h3>
+              <p>Interior and exterior door solutions for residential, commercial and institutional applications.</p>
+              <span class="mfr-card__link">View Brands</span>
+            </div>
+            <div class="mfr-card__image">
+              <img src="images/Manufacturer%20Card%20-%20Doors%20Image.png" alt="Wooden residential entry door" loading="lazy">
+            </div>
+          </a>
+
+          <a href="door-automation.html" class="mfr-card">
+            <div class="mfr-card__body">
+              <h3>Door Automation</h3>
+              <p>Automatic operators, access control and powered door systems for commercial and accessibility applications.</p>
+              <span class="mfr-card__link">View Brands</span>
+            </div>
+            <div class="mfr-card__image">
+              <img src="images/Manufacturer%20Card%20-%20Door%20Automation%20Image.png" alt="Automatic sliding glass door entrance" loading="lazy">
+            </div>
+          </a>
+
+          <a href="hardware.html" class="mfr-card">
+            <div class="mfr-card__body">
+              <h3>Hardware</h3>
+              <p>Handles, hinges, locks, closers and architectural hardware from the industry's most trusted manufacturers.</p>
+              <span class="mfr-card__link">View Brands</span>
+            </div>
+            <div class="mfr-card__image">
+              <img src="images/Manufacturer%20Card%20-%20Hardware%20Image.png" alt="Modern door with lever handle and locks" loading="lazy">
+            </div>
+          </a>
+
+          <a href="division-10.html" class="mfr-card">
+            <div class="mfr-card__body">
+              <h3>Division 10</h3>
+              <p>Specialty construction products including toilet partitions, lockers, visual display and washroom accessories.</p>
+              <span class="mfr-card__link">View Brands</span>
+            </div>
+            <div class="mfr-card__image">
+              <img src="images/Manufacturer%20Card%20-%20Division10%20Image.png" alt="Commercial toilet partitions" loading="lazy">
+            </div>
+          </a>
+
+        </div><!-- /.manufacturers__grid -->
+      </div><!-- /.container -->
+    </section>
+    </div><!-- /.mfr-mid -->
+
+    <!-- ============================================================
+         CTA BANNER
+         ============================================================ -->
+    <section class="cta-banner" aria-label="Request a quote">
+      <div class="container">
+        <p class="cta-banner__eyebrow">Ready to Get Started?</p>
+        <h2>Let's Talk About Your Project.</h2>
+        <p>Contact our team today and let's find the right solution for your build.</p>
+        <a href="contact.html" class="btn-outline-white">Request a Quote</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__logo">
+          <img src="images/ADS_Logo_primary.svg" alt="All Door Supply" class="footer__logo-img" />
+        </div>
+        <div class="footer__col"><h4>Contact Us</h4><address><p>Toll Free: 1.866.769.3667</p><p>Phone: 1-905.335.1638</p><p>Fax: 1.905.335.6822</p><p>Email: <a href="mailto:info@alldoorsupply.com">info@alldoorsupply.com</a></p><p>Location: 559 King Forest Court,<br>Burlington, Ontario L7P 5C1</p></address></div>
+        <div class="footer__col"><h4>Navigate</h4><nav aria-label="Footer navigation"><a href="index.html">Home</a><a href="services.html">Services</a><a href="who-we-service.html">Who We Serve</a><a href="manufacturers.html">Manufacturers</a><a href="projects.html">Projects</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html">Request a Quote</a></nav></div>
+        <div class="footer__col"><h4>Hours</h4><p>Showroom &amp; Warehouse</p><p>Mon – Fri: 7:30am – 4:30pm</p><br/><p class="hours-highlight">24 Hour Service for<br>Established Customers</p></div>
+      </div>
+    </div>
+    <div class="footer__bottom"><div class="container"><p>© 2026 All Door Supply. All Rights Reserved.</p></div></div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
