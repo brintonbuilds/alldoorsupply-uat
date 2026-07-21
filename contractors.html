@@ -165,7 +165,16 @@
       font-weight: 300;
       margin-bottom: 40px;
     }
-    .ctr-quote__text strong { font-weight: 600; }
+    .ctr-quote__text span,
+    .ctr-quote__text strong {
+      display: block;
+    }
+    .ctr-quote__text strong {
+      font-family: var(--font-head);
+      font-size: 31px;
+      line-height: 34px;
+      font-weight: 700;
+    }
     .ctr-quote__attr {
       font-size: 13px;
       line-height: 20px;
@@ -229,6 +238,7 @@
       .ctr-quote__inner { flex-direction: column; gap: 18px; }
       .ctr-quote__mark { margin-top: 0; }
       .ctr-quote__text { font-size: 19px; line-height: 30px; }
+      .ctr-quote__text strong { font-size: 28px; line-height: 31px; }
     }
 
     @media (max-width: 480px) {
@@ -401,7 +411,7 @@
           </svg>
         </div>
         <blockquote>
-          <p class="ctr-quote__text">All Door Supply has been our go-to supplier for Division 8 products for over a decade. Their knowledge, reliability and ability to source exactly what we need — on time and on spec — <strong>makes them an invaluable partner on every project.</strong></p>
+          <p class="ctr-quote__text"><span>All Door Supply has been our go-to supplier for Division 8 products for over a decade.</span><span>Their knowledge, reliability and ability to source exactly what we need — on time and on spec —</span><strong>makes them an invaluable partner on every project.</strong></p>
           <footer class="ctr-quote__attr">— James R. General Contractor, Southern Ontario</footer>
         </blockquote>
       </div>
