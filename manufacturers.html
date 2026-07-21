@@ -18,7 +18,33 @@
     /* ============================================================
        MANUFACTURERS HUB — page-specific (Figma 156:682)
        ============================================================ */
-    .hero-band h1 { font-size: 64px; line-height: 1.04; }
+    .mfr-hero {
+      align-items: flex-end;
+    }
+    .mfr-hero .hero-band__image img {
+      object-position: 50% 58%;
+    }
+    .mfr-hero .hero-band__overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(217, 217, 217, 0) 0%,
+        rgba(40, 36, 37, 0.65) 100%
+      );
+    }
+    .mfr-hero .hero-band__content {
+      padding-top: 0;
+      padding-bottom: 56px;
+    }
+    .mfr-hero h1 {
+      font-size: 78px;
+      line-height: 86px;
+      margin-bottom: 19px;
+    }
+    .mfr-hero .hero-band__sub {
+      max-width: 1048px;
+      min-height: 76px;
+    }
+    @media (max-width: 1024px) { .mfr-hero h1 { font-size: 64px; } }
     @media (max-width: 768px) { .hero-band h1 { font-size: 40px; } }
 
     /* --- Manufacturer Network intro (Figma 156:826) ------------- */
@@ -26,11 +52,14 @@
        "Products You Can Trust" grid — same idea as the homepage .midpage. */
     .mfr-mid { position: relative; isolation: isolate; background: #fff; overflow: hidden; }
     .mfr-mid__bg {
-      position: absolute; right: 0; top: 40px; z-index: 0;
+      position: absolute; left: calc(50% + 31px); top: 138px; z-index: 0;
       height: 955px; width: auto;
-      opacity: 0.5; pointer-events: none;
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 40%);
-              mask-image: linear-gradient(90deg, transparent 0%, #000 40%);
+      pointer-events: none;
+    }
+    .mfr-mid__fade {
+      position: absolute; left: calc(50% + 31px); top: 515px; z-index: 1;
+      width: 689px; height: 598px;
+      pointer-events: none;
     }
     /* Sections sit transparent over the wrapper so the graphic shows through
        both, with their content held above it. */
@@ -53,13 +82,38 @@
       max-width: 791px; margin-bottom: 16px;
     }
     .manufacturer-network p:last-child { margin-bottom: 0; }
+
+    #manufacturers.mfr-products {
+      padding-block: 191px 232px;
+    }
+    #manufacturers.mfr-products .manufacturers__eyebrow {
+      min-height: 21px;
+      padding: 4px 8px;
+      font-size: 11px;
+      line-height: 13px;
+      letter-spacing: 0.55px;
+    }
+
+    .mfr-cta {
+      padding-block: 68px;
+    }
+
+    @media (min-width: 1025px) {
+      .mfr-footer .footer__grid {
+        padding-block: 40px 0;
+      }
+    }
+
     @media (max-width: 900px) {
       .manufacturer-network { padding-block: 72px 0; }
-      .mfr-mid__bg { display: none; }
+      .mfr-mid__bg,
+      .mfr-mid__fade { display: none; }
+      #manufacturers.mfr-products { padding-block: 72px 96px; }
     }
     @media (max-width: 768px) {
       .manufacturer-network__inner { padding-inline: 20px; }
       .manufacturer-network h2 { font-size: 36px; }
+      #manufacturers.mfr-products { padding-block: 56px 64px; }
     }
   </style>
 </head>
@@ -80,7 +134,7 @@
           <a href="services.html">Services</a>
 
           <div class="nav__item">
-            <a href="who-we-service.html" class="nav__toplink" aria-haspopup="true">Who We Serve
+            <a href="who-we-service.html" class="nav__toplink" aria-haspopup="true">Who We Service
               <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
             <div class="nav__dropdown" role="menu">
@@ -104,6 +158,7 @@
 
           <a href="projects.html">Projects</a>
           <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
           <a href="contact.html" class="btn-nav" aria-label="Request a quote">Request a Quote</a>
         </nav>
 
@@ -113,7 +168,7 @@
 
     <nav class="nav__mobile" id="mobile-nav" aria-label="Mobile navigation">
       <a href="services.html">Services</a>
-      <a href="who-we-service.html">Who We Serve</a>
+      <a href="who-we-service.html">Who We Service</a>
       <a href="contractors.html" class="nav__mobile-sub">Contractors</a>
       <a href="design-professionals.html" class="nav__mobile-sub">Design Professionals</a>
       <a href="residential-homeowners.html" class="nav__mobile-sub">Residential Homeowners</a>
@@ -133,10 +188,9 @@
     <!-- ============================================================
          HERO
          ============================================================ -->
-    <section class="hero-band" aria-label="Our Manufacturers">
+    <section class="hero-band mfr-hero" aria-label="Our Manufacturers">
       <div class="hero-band__image">
-        <!-- Placeholder hero photo — replace with the Figma workbench/tools image. -->
-        <img src="images/alldoor-supply-complete-door-solutions-services-hero.png" alt="Workbench with door hardware and tools" loading="eager" />
+        <img src="images/manufacturers-hero.jpg" alt="Workbench with door hardware and tools" loading="eager" />
       </div>
       <div class="hero-band__overlay" aria-hidden="true"></div>
       <div class="hero-band__content">
@@ -151,6 +205,7 @@
     <!-- Wrapper: building accent graphic spans the intro AND the product grid -->
     <div class="mfr-mid">
       <img class="mfr-mid__bg" src="images/Logo%20Building%20Design%20Accent.png" alt="" aria-hidden="true" />
+      <img class="mfr-mid__fade" src="images/manufacturers-white-gradient.svg" alt="" aria-hidden="true" />
 
     <section class="manufacturer-network" aria-label="Our manufacturer network">
       <div class="manufacturer-network__inner">
@@ -163,7 +218,7 @@
     <!-- ============================================================
          PRODUCTS YOU CAN TRUST — shared reusable component (white)
          ============================================================ -->
-    <section class="manufacturers" id="manufacturers" aria-label="Our Manufacturers">
+    <section class="manufacturers mfr-products" id="manufacturers" aria-label="Our Manufacturers">
       <div class="container">
         <div class="manufacturers__header">
           <span class="manufacturers__eyebrow">Our Manufacturers</span>
@@ -225,7 +280,7 @@
     <!-- ============================================================
          CTA BANNER
          ============================================================ -->
-    <section class="cta-banner" aria-label="Request a quote">
+    <section class="cta-banner mfr-cta" aria-label="Request a quote">
       <div class="container">
         <p class="cta-banner__eyebrow">Ready to Get Started?</p>
         <h2>Let's Talk About Your Project.</h2>
@@ -239,14 +294,14 @@
   <!-- ============================================================
        FOOTER
        ============================================================ -->
-  <footer class="footer" role="contentinfo">
+  <footer class="footer mfr-footer" role="contentinfo">
     <div class="container">
       <div class="footer__grid">
         <div class="footer__logo">
           <img src="images/ADS_Logo_primary.svg" alt="All Door Supply" class="footer__logo-img" />
         </div>
         <div class="footer__col"><h4>Contact Us</h4><address><p>Toll Free: 1.866.769.3667</p><p>Phone: 1-905.335.1638</p><p>Fax: 1.905.335.6822</p><p>Email: <a href="mailto:info@alldoorsupply.com">info@alldoorsupply.com</a></p><p>Location: 559 King Forest Court,<br>Burlington, Ontario L7P 5C1</p></address></div>
-        <div class="footer__col"><h4>Navigate</h4><nav aria-label="Footer navigation"><a href="index.html">Home</a><a href="services.html">Services</a><a href="who-we-service.html">Who We Serve</a><a href="manufacturers.html">Manufacturers</a><a href="projects.html">Projects</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html">Request a Quote</a></nav></div>
+        <div class="footer__col"><h4>Navigate</h4><nav aria-label="Footer navigation"><a href="index.html">Home</a><a href="services.html">Services</a><a href="who-we-service.html">Who We Service</a><a href="manufacturers.html">Manufacturers</a><a href="projects.html">Projects</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html">Request a Quote</a></nav></div>
         <div class="footer__col"><h4>Hours</h4><p>Showroom &amp; Warehouse</p><p>Mon – Fri: 7:30am – 4:30pm</p><br/><p class="hours-highlight">24 Hour Service for<br>Established Customers</p></div>
       </div>
     </div>

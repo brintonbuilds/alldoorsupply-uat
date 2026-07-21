@@ -76,7 +76,7 @@
     /* --- What We Do + service cards ----------------------------- */
     .svc-work {
       background: #fff;
-      padding-block: 134px 73px;
+      padding-block: 134px 183px;
     }
 
     /* The "Explore the Products Behind Our Services" section is the shared,
@@ -128,7 +128,7 @@
       width: 100%;
       aspect-ratio: 550 / 175;
       overflow: hidden;
-      border-radius: 10px;
+      border-radius: 8px;
       background: linear-gradient(160deg, #2a2624 0%, #16120f 100%);
       margin-bottom: 31px;
     }
@@ -167,6 +167,21 @@
       margin-bottom: 24px;
     }
     .svc-card__body p:last-child { margin-bottom: 0; }
+
+    .svc-manufacturers {
+      background: rgba(208, 210, 211, 0.2);
+    }
+    #manufacturers.svc-manufacturers .manufacturers__eyebrow {
+      min-height: 21px;
+      padding: 4px 8px;
+      font-size: 11px;
+      line-height: 13px;
+      letter-spacing: 0.55px;
+    }
+
+    .svc-cta {
+      padding-block: 74px 64px;
+    }
 
     /* --- Responsive -------------------------------------------- */
     @media (max-width: 1024px) {
@@ -214,7 +229,7 @@
           <a href="services.html" aria-current="page">Services</a>
 
           <div class="nav__item">
-            <a href="who-we-service.html" class="nav__toplink" aria-haspopup="true">Who We Serve
+            <a href="who-we-service.html" class="nav__toplink" aria-haspopup="true">Who We Service
               <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
             <div class="nav__dropdown" role="menu">
@@ -238,6 +253,7 @@
 
           <a href="projects.html">Projects</a>
           <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
           <a href="contact.html" class="btn-nav" aria-label="Request a quote">Request a Quote</a>
         </nav>
 
@@ -259,7 +275,7 @@
     <!-- Mobile nav -->
     <nav class="nav__mobile" id="mobile-nav" aria-label="Mobile navigation">
       <a href="services.html" aria-current="page">Services</a>
-      <a href="who-we-service.html">Who We Serve</a>
+      <a href="who-we-service.html">Who We Service</a>
       <a href="contractors.html" class="nav__mobile-sub">Contractors</a>
       <a href="design-professionals.html" class="nav__mobile-sub">Design Professionals</a>
       <a href="residential-homeowners.html" class="nav__mobile-sub">Residential Homeowners</a>
@@ -328,7 +344,7 @@
         <!-- Division 8 Installation Services -->
         <article class="svc-card">
           <div class="svc-card__image">
-            <img src="images/Contractors_Colour.png" alt="Installer fitting a door on a job site" loading="lazy" onerror="this.remove()" />
+            <img src="images/services-division-8-installation.jpg" alt="Door hardware installed above a glass entry" loading="lazy" onerror="this.remove()" />
           </div>
           <div class="svc-card__head">
             <img src="images/division-8-installation.svg" alt="" width="39" height="44" />
@@ -343,7 +359,7 @@
         <!-- Project Management Services -->
         <article class="svc-card">
           <div class="svc-card__image">
-            <img src="images/DesignProfessionals_Colour.png" alt="Project schedule and coordination" loading="lazy" onerror="this.remove()" />
+            <img src="images/services-project-management.jpg" alt="Project schedule on a tablet" loading="lazy" onerror="this.remove()" />
           </div>
           <div class="svc-card__head">
             <img src="images/project-management.svg" alt="" width="44" height="43" />
@@ -358,7 +374,7 @@
         <!-- Custom Division 8 Products via Weld Shop -->
         <article class="svc-card">
           <div class="svc-card__image">
-            <img src="images/Manufacturer%20Card%20-%20Hardware%20Image.png" alt="Custom fabricated door hardware" loading="lazy" onerror="this.remove()" />
+            <img src="images/services-custom-products-weld-shop.jpg" alt="Welding torch fabricating metal" loading="lazy" onerror="this.remove()" />
           </div>
           <div class="svc-card__head">
             <img src="images/custom-division-8-products-via-weld-shop.svg" alt="" width="36" height="44" />
@@ -391,7 +407,7 @@
     <!-- ============================================================
          EXPLORE THE PRODUCTS BEHIND OUR SERVICES — Manufacturers
          ============================================================ -->
-    <section class="manufacturers manufacturers--grey" id="manufacturers" aria-label="Our Manufacturers">
+    <section class="manufacturers manufacturers--grey svc-manufacturers" id="manufacturers" aria-label="Our Manufacturers">
       <div class="container">
         <div class="manufacturers__header">
           <span class="manufacturers__eyebrow">Our Manufacturers</span>
@@ -459,7 +475,7 @@
     <!-- ============================================================
          CTA BANNER
          ============================================================ -->
-    <section class="cta-banner" aria-label="Request a quote">
+    <section class="cta-banner svc-cta" aria-label="Request a quote">
       <div class="container">
         <p class="cta-banner__eyebrow">Ready to Get Started?</p>
         <h2>Let's Talk About Your Project.</h2>
@@ -500,7 +516,7 @@
           <nav aria-label="Footer navigation">
             <a href="index.html">Home</a>
             <a href="services.html">Services</a>
-            <a href="who-we-service.html">Who We Serve</a>
+            <a href="who-we-service.html">Who We Service</a>
             <a href="manufacturers.html">Manufacturers</a>
             <a href="projects.html">Projects</a>
             <a href="about.html">About</a>

@@ -75,10 +75,10 @@
     }
 
     /* --- Intro + value props ----------------------------------- */
-    /* Figma vertical rhythm: hero→intro 92px, value props→quote 105px. */
+    /* Figma vertical rhythm for the approved Contractors frame. */
     .ctr-work {
       background: #fff;
-      padding-block: 92px 105px;
+      padding-block: 97px 102px;
     }
     .ctr-inner {
       max-width: 1280px;
@@ -86,7 +86,7 @@
       padding-inline: 40px;
     }
 
-    .ctr-intro { margin-bottom: 68px; }
+    .ctr-intro { margin-bottom: 89px; }
     .ctr-intro h2 {
       font-family: var(--font-head);
       font-size: 48px;
@@ -176,14 +176,38 @@
     }
 
     /* The products callout uses the shared, reusable manufacturers component
-       (grey variant + hover animation live in css/styles.css) — same as the
-       Services / Design Professionals / Homeowners pages. */
+       (grey variant + hover animation live in css/styles.css), with
+       page-specific rhythm to match the approved Contractors frame. */
+    #manufacturers.contractors-products {
+      padding-block: 102px 216px;
+    }
+    #manufacturers.contractors-products .manufacturers__header {
+      margin-bottom: 80px;
+    }
+    #manufacturers.contractors-products .manufacturers__eyebrow {
+      min-height: 21px;
+      padding: 4px 8px;
+      font-size: 11px;
+      line-height: 13px;
+      letter-spacing: 0.55px;
+    }
+
+    .contractors-cta {
+      padding-block: 68px;
+    }
 
     /* --- Responsive -------------------------------------------- */
     @media (max-width: 1024px) {
       .ctr-hero h1 { font-size: 64px; }
       .ctr-inner { padding-inline: 32px; }
+      .ctr-intro { margin-bottom: 72px; }
       .ctr-vp { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px; }
+      #manufacturers.contractors-products {
+        padding-block: 72px 96px;
+      }
+      #manufacturers.contractors-products .manufacturers__header {
+        margin-bottom: 48px;
+      }
     }
 
     @media (max-width: 768px) {
@@ -192,8 +216,15 @@
       .ctr-hero__sub { font-size: 15px; }
       .ctr-work { padding-block: 64px 64px; }
       .ctr-inner { padding-inline: 20px; }
+      .ctr-intro { margin-bottom: 56px; }
       .ctr-intro h2 { font-size: 40px; }
       .ctr-vp { grid-template-columns: 1fr; gap: 40px; max-width: 480px; }
+      #manufacturers.contractors-products {
+        padding-block: 56px 64px;
+      }
+      #manufacturers.contractors-products .manufacturers__header {
+        margin-bottom: 32px;
+      }
       /* Stack the quote mark above the text so the copy uses full width. */
       .ctr-quote__inner { flex-direction: column; gap: 18px; }
       .ctr-quote__mark { margin-top: 0; }
@@ -224,7 +255,7 @@
           <a href="services.html">Services</a>
 
           <div class="nav__item">
-            <a href="who-we-service.html" class="nav__toplink is-section" aria-haspopup="true">Who We Serve
+            <a href="who-we-service.html" class="nav__toplink" aria-haspopup="true">Who We Service
               <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
             <div class="nav__dropdown" role="menu">
@@ -248,6 +279,7 @@
 
           <a href="projects.html">Projects</a>
           <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
           <a href="contact.html" class="btn-nav" aria-label="Request a quote">Request a Quote</a>
         </nav>
 
@@ -269,7 +301,7 @@
     <!-- Mobile nav -->
     <nav class="nav__mobile" id="mobile-nav" aria-label="Mobile navigation">
       <a href="services.html">Services</a>
-      <a href="who-we-service.html">Who We Serve</a>
+      <a href="who-we-service.html">Who We Service</a>
       <a href="contractors.html" class="nav__mobile-sub" aria-current="page">Contractors</a>
       <a href="design-professionals.html" class="nav__mobile-sub">Design Professionals</a>
       <a href="residential-homeowners.html" class="nav__mobile-sub">Residential Homeowners</a>
@@ -378,7 +410,7 @@
     <!-- ============================================================
          SOURCE WHAT YOUR JOB SITE NEEDS — Manufacturers
          ============================================================ -->
-    <section class="manufacturers manufacturers--grey" id="manufacturers" aria-label="Our Manufacturers">
+    <section class="manufacturers manufacturers--grey contractors-products" id="manufacturers" aria-label="Our Manufacturers">
       <div class="container">
         <div class="manufacturers__header">
           <span class="manufacturers__eyebrow">Our Manufacturers</span>
@@ -446,7 +478,7 @@
     <!-- ============================================================
          CTA BANNER
          ============================================================ -->
-    <section class="cta-banner" aria-label="Request a quote">
+    <section class="cta-banner contractors-cta" aria-label="Request a quote">
       <div class="container">
         <p class="cta-banner__eyebrow">Ready to Get Started?</p>
         <h2>Ready to Simplify Your Next Job</h2>
@@ -487,7 +519,7 @@
           <nav aria-label="Footer navigation">
             <a href="index.html">Home</a>
             <a href="services.html">Services</a>
-            <a href="who-we-service.html">Who We Serve</a>
+            <a href="who-we-service.html">Who We Service</a>
             <a href="manufacturers.html">Manufacturers</a>
             <a href="projects.html">Projects</a>
             <a href="about.html">About</a>
