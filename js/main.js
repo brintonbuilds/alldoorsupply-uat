@@ -34,17 +34,25 @@
   /* --- Scroll: transparent hero nav ----------------------- */
   if (nav && nav.classList.contains('nav--hero')) {
     var heroSection = document.querySelector('.hero, .svc-hero, .ctr-hero, .hero-band, .page-hero');
+    var isHomepageHero = heroSection && heroSection.classList.contains('hero');
     var navScrolled = false;
 
     function updateNavState() {
       /* Compact: trigger at 60px */
       nav.classList.toggle('nav--compact', window.scrollY > 60);
 
-      /* Background: switch to solid as the fixed nav reaches the next section. */
-      var threshold = heroSection
-        ? heroSection.offsetHeight - nav.offsetHeight
-        : window.innerHeight * 0.8;
-      var should = window.scrollY > threshold;
+      /* The homepage has a full-height hero, so keep its slower transition.
+         Interior pages have shorter heroes with the white content visible much
+         sooner; begin their nav transition before the hero fully clears. */
+      var threshold = window.innerHeight * 0.8;
+      if (heroSection) {
+        var navHeight = nav.offsetHeight || 80;
+        threshold = isHomepageHero
+          ? heroSection.offsetHeight - navHeight
+          : heroSection.offsetHeight - navHeight - 120;
+      }
+
+      var should = window.scrollY >= Math.max(0, threshold);
       if (should !== navScrolled) {
         navScrolled = should;
         nav.classList.toggle('nav--scrolled', should);
