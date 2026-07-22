@@ -417,13 +417,6 @@ ul { list-style: none; }
   align-items: flex-start;
 }
 
-@media (min-width: 1280px) {
-  .hero__content.container {
-    max-width: none;
-    padding-inline: clamp(192px, 15vw, 640px);
-  }
-}
-
 .hero__eyebrow {
   display: none;
 }
