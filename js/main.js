@@ -18,6 +18,7 @@
   /* Close mobile nav on link click */
   document.querySelectorAll('.nav__mobile a').forEach(function (link) {
     link.addEventListener('click', function () {
+      if (!nav || !hamburger) return;
       nav.classList.remove('nav--open');
       hamburger.setAttribute('aria-expanded', 'false');
     });
@@ -32,14 +33,14 @@
 
   /* --- Scroll: transparent hero nav ----------------------- */
   if (nav && nav.classList.contains('nav--hero')) {
-    var heroSection = document.querySelector('.hero');
+    var heroSection = document.querySelector('.hero, .svc-hero, .ctr-hero, .hero-band, .page-hero');
     var navScrolled = false;
 
     function updateNavState() {
       /* Compact: trigger at 60px */
       nav.classList.toggle('nav--compact', window.scrollY > 60);
 
-      /* Background: switch to solid once hero is past */
+      /* Background: switch to solid as the fixed nav reaches the next section. */
       var threshold = heroSection
         ? heroSection.offsetHeight - nav.offsetHeight
         : window.innerHeight * 0.8;
@@ -58,6 +59,7 @@
     /* --- Scroll: nav shadow + compact (non-hero pages) ---- */
     var scrolled = false;
     window.addEventListener('scroll', function () {
+      if (!nav) return;
       nav.classList.toggle('nav--compact', window.scrollY > 60);
 
       var should = window.scrollY > 8;

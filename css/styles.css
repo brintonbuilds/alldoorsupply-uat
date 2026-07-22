@@ -2001,6 +2001,11 @@ ul { list-style: none; }
   overflow: hidden;
 }
 
+.nav--hero + main .page-hero {
+  margin-top: 0;
+  padding-top: 152px;
+}
+
 .page-hero__bg {
   position: absolute;
   inset: 0;
