@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,600&display=swap" rel="stylesheet" />
 
   <link rel="icon" href="images/ADS_Logo_primary.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="css/styles.css?v=20260722-nav-flow" />
+  <link rel="stylesheet" href="css/styles.css?v=20260718-mfr-grey" />
 
   <style>
     /* ============================================================
@@ -45,7 +45,7 @@
       min-height: 76px;
     }
     @media (max-width: 1024px) { .mfr-hero h1 { font-size: 64px; } }
-    @media (max-width: 768px) { .hero-band h1 { font-size: 40px; } }
+    @media (max-width: 768px) { .mfr-hero h1 { font-size: 40px; line-height: 1.05; } }
 
     /* --- Manufacturer Network intro (Figma 156:826) ------------- */
     /* Wrapper so the building accent graphic spans BOTH the intro and the
@@ -134,7 +134,7 @@
           <a href="services.html">Services</a>
 
           <div class="nav__item">
-            <a href="who-we-service.html" class="nav__toplink" aria-haspopup="true">Who We Service
+            <a href="who-we-service.html" class="nav__toplink" aria-haspopup="true"><span class="nav__label">Who We Service</span>
               <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
             <div class="nav__dropdown" role="menu">
@@ -145,7 +145,7 @@
           </div>
 
           <div class="nav__item">
-            <a href="manufacturers.html" class="nav__toplink is-section" aria-current="page" aria-haspopup="true">Manufacturers
+            <a href="manufacturers.html" class="nav__toplink is-section" aria-current="page" aria-haspopup="true"><span class="nav__label">Manufacturers</span>
               <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
             <div class="nav__dropdown" role="menu">
@@ -179,6 +179,7 @@
       <a href="division-10.html" class="nav__mobile-sub">Division 10</a>
       <a href="projects.html">Projects</a>
       <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
       <a href="contact.html" class="btn-nav">Request a Quote</a>
     </nav>
   </header>
@@ -308,6 +309,6 @@
     <div class="footer__bottom"><div class="container"><p>© 2026 All Door Supply. All Rights Reserved.</p></div></div>
   </footer>
 
-  <script src="js/main.js?v=20260722-nav-trigger"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

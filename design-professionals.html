@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Design Professionals — All Door Supply</title>
-  <meta name="description" content="All Door Supply works with architects and interior designers to source and supply exactly what's on the plans — from standard hardware schedules to unique specialty items." />
+  <meta name="description" content="All Door Supply works alongside architects and design professionals to source, specify and supply Division 8 and 10 products that meet your drawings — from hardware schedules to custom millwork." />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,7 +12,222 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,600&display=swap" rel="stylesheet" />
 
   <link rel="icon" href="images/ADS_Logo_primary.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="css/styles.css?v=20260722-nav-flow" />
+  <link rel="stylesheet" href="css/styles.css?v=20260718-mfr-grey" />
+
+  <style>
+    /* ============================================================
+       DESIGN PROFESSIONALS PAGE — page-specific styles
+       (built to Figma 425-705 — same layout system as Contractors)
+       ============================================================ */
+
+    /* --- Page hero — 400px image band -------------------------- */
+    .dp-hero {
+      position: relative;
+      height: 400px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background: var(--dark);
+    }
+    .dp-hero__image { position: absolute; inset: 0; }
+    .dp-hero__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 22%;
+    }
+    /* Figma overlay — top-to-bottom scrim. */
+    .dp-hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(217, 217, 217, 0) 0%,
+        rgba(40, 36, 37, 0.8) 69.7%
+      );
+    }
+    .dp-hero__content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1280px;
+      padding-bottom: 56px;
+    }
+    .dp-hero h1 {
+      font-family: var(--font-head);
+      font-size: 78px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 86px;
+      letter-spacing: 0;
+      margin-bottom: 19px;
+    }
+    .dp-hero__sub {
+      font-size: 18px;
+      line-height: 24px;
+      color: #ffffff;
+      max-width: 1048px;
+    }
+
+    /* --- Intro + value props ----------------------------------- */
+    .dp-work {
+      background: #fff;
+      padding-block: 97px 102px;
+    }
+    .dp-inner {
+      max-width: 1280px;
+      margin-inline: auto;
+      padding-inline: 40px;
+    }
+
+    .dp-intro { margin-bottom: 89px; }
+    .dp-intro h2 {
+      font-family: var(--font-head);
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1;
+      letter-spacing: 0;
+      margin-bottom: 24px;
+    }
+    .dp-intro p {
+      font-size: 15px;
+      line-height: 24px;
+      color: #000;
+      max-width: 681px;
+    }
+
+    /* Value props — 4-up row of icon cards (Figma: gap 40, icon 75×75,
+       title Barlow 24px uppercase). */
+    .dp-vp {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 40px;
+      align-items: start;
+    }
+    .dp-vp__card { display: flex; flex-direction: column; gap: 21px; }
+    .dp-vp__head {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+    }
+    .dp-vp__icon { width: 75px; height: 75px; flex-shrink: 0; }
+    .dp-vp__icon img { width: 100%; height: 100%; display: block; }
+    .dp-vp__card h3 {
+      font-family: var(--font-head);
+      font-size: 24px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #000;
+      line-height: normal;
+      letter-spacing: 0;
+      max-width: 256px; /* Figma title box — keeps every title to two lines */
+    }
+    .dp-vp__card p {
+      font-size: 15px;
+      line-height: 24px;
+      color: #000;
+    }
+
+    /* --- Quote — dark band (Figma 1439×341, red mark beside a
+       1099px text block; lead-in light + statement bold, inline,
+       both Inter 22/36). ---------------------------------------- */
+    .dp-quote {
+      background: #231F20;
+      padding-block: 92px 80px;
+    }
+    .dp-quote__inner {
+      max-width: 1280px;
+      margin-inline: auto;
+      padding-inline: 40px;
+      display: flex;
+      align-items: flex-start;
+      gap: 33px;
+    }
+    .dp-quote__mark {
+      flex-shrink: 0;
+      margin-top: 8px;
+      line-height: 0;
+    }
+    .dp-quote__mark svg { display: block; }
+    .dp-quote blockquote { margin: 0; max-width: 1099px; }
+    .dp-quote__text {
+      font-family: var(--font-body);
+      font-size: 22px;
+      line-height: 36px;
+      color: #fff;
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+    /* Figma: the pull-quote statement switches to the display face at
+       40px/700 (ADS/Quote Bold Text) — not just a bold weight of the
+       body copy — flowing inline with the light lead-in above. */
+    .dp-quote__text strong {
+      font-family: var(--font-head);
+      font-size: 40px;
+      font-weight: 700;
+      line-height: normal;
+    }
+    .dp-quote__attr {
+      font-size: 13px;
+      line-height: 36px;
+      font-style: italic;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* Products callout — shared manufacturers component (grey variant
+       + hover animation in css/styles.css) with page-specific rhythm. */
+    #manufacturers.dp-products {
+      padding-block: 102px 216px;
+    }
+    #manufacturers.dp-products .manufacturers__header {
+      margin-bottom: 80px;
+    }
+    #manufacturers.dp-products .manufacturers__eyebrow {
+      min-height: 21px;
+      padding: 4px 8px;
+      font-size: 11px;
+      line-height: 13px;
+      letter-spacing: 0.55px;
+    }
+
+    .dp-cta {
+      padding-block: 68px;
+    }
+
+    /* --- Responsive -------------------------------------------- */
+    @media (max-width: 1024px) {
+      .dp-hero h1 { font-size: 60px; }
+      .dp-inner { padding-inline: 32px; }
+      .dp-intro { margin-bottom: 72px; }
+      .dp-vp { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px; }
+      #manufacturers.dp-products { padding-block: 72px 96px; }
+      #manufacturers.dp-products .manufacturers__header { margin-bottom: 48px; }
+    }
+
+    @media (max-width: 768px) {
+      .dp-hero { height: auto; min-height: 340px; padding-top: 80px; }
+      .dp-hero h1 { font-size: 44px; line-height: 1.05; }
+      .dp-hero__sub { font-size: 15px; }
+      .dp-work { padding-block: 64px 64px; }
+      .dp-inner { padding-inline: 20px; }
+      .dp-intro { margin-bottom: 56px; }
+      .dp-intro h2 { font-size: 40px; }
+      .dp-vp { grid-template-columns: 1fr; gap: 40px; max-width: 480px; }
+      #manufacturers.dp-products { padding-block: 56px 64px; }
+      #manufacturers.dp-products .manufacturers__header { margin-bottom: 32px; }
+      .dp-quote__inner { flex-direction: column; gap: 18px; }
+      .dp-quote__mark { margin-top: 0; }
+      .dp-quote__text { font-size: 19px; line-height: 30px; }
+      .dp-quote__text strong { font-size: 30px; }
+    }
+
+    @media (max-width: 480px) {
+      .dp-hero h1 { font-size: 40px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -33,7 +248,7 @@
           <a href="services.html">Services</a>
 
           <div class="nav__item">
-            <a href="who-we-service.html" class="nav__toplink is-section" aria-haspopup="true">Who We Serve
+            <a href="who-we-service.html" class="nav__toplink is-section" aria-haspopup="true"><span class="nav__label">Who We Service</span>
               <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
             <div class="nav__dropdown" role="menu">
@@ -44,7 +259,7 @@
           </div>
 
           <div class="nav__item">
-            <a href="manufacturers.html" class="nav__toplink" aria-haspopup="true">Manufacturers
+            <a href="manufacturers.html" class="nav__toplink" aria-haspopup="true"><span class="nav__label">Manufacturers</span>
               <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
             <div class="nav__dropdown" role="menu">
@@ -57,6 +272,7 @@
 
           <a href="projects.html">Projects</a>
           <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
           <a href="contact.html" class="btn-nav" aria-label="Request a quote">Request a Quote</a>
         </nav>
 
@@ -78,7 +294,7 @@
     <!-- Mobile nav -->
     <nav class="nav__mobile" id="mobile-nav" aria-label="Mobile navigation">
       <a href="services.html">Services</a>
-      <a href="who-we-service.html">Who We Serve</a>
+      <a href="who-we-service.html">Who We Service</a>
       <a href="contractors.html" class="nav__mobile-sub">Contractors</a>
       <a href="design-professionals.html" class="nav__mobile-sub" aria-current="page">Design Professionals</a>
       <a href="residential-homeowners.html" class="nav__mobile-sub">Residential Homeowners</a>
@@ -89,6 +305,7 @@
       <a href="division-10.html" class="nav__mobile-sub">Division 10</a>
       <a href="projects.html">Projects</a>
       <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
       <a href="contact.html" class="btn-nav">Request a Quote</a>
     </nav>
   </header>
@@ -98,86 +315,150 @@
     <!-- ============================================================
          HERO
          ============================================================ -->
-    <section class="hero-band" aria-label="Design Professionals">
-      <div class="hero-band__image">
-        <img src="images/DesignProfessionals_Colour.png" alt="Design professional reviewing architectural plans" loading="eager" />
+    <section class="dp-hero" aria-label="Design Professionals">
+      <div class="dp-hero__image">
+        <img
+          src="images/DesignProfessionals_Colour.png"
+          alt="Design professional reviewing project drawings"
+          loading="eager"
+        />
       </div>
-      <div class="hero-band__overlay" aria-hidden="true"></div>
-      <div class="hero-band__content">
-        <h1>Design Professionals</h1>
-        <p class="hero-band__sub">Spec it, source it, done — All Door Supply helps architects and interior designers turn drawings into delivered, code-compliant openings.</p>
+      <div class="dp-hero__overlay" aria-hidden="true"></div>
+
+      <div class="dp-hero__content container">
+        <h1>Spec with Confidence</h1>
+        <p class="dp-hero__sub">From hardware schedules to custom millwork, All Door Supply works alongside architects and design professionals to source, specify and supply Division 8 and 10 products that meet your drawings — and your client's expectations.</p>
       </div>
     </section>
 
     <!-- ============================================================
-         INTRO
+         INTRO + VALUE PROPS
          ============================================================ -->
-    <section class="page-intro" aria-label="How we work with design professionals">
-      <div class="page-intro__inner">
-        <h2>Spec It. Source It. Done.</h2>
-        <p>We work with architects and interior designers to source and supply exactly what's on the plans. From standard hardware schedules to unique specialty items, we can source it and get it to site.</p>
-        <p>We speak your language — bring us your hardware schedule and we'll work through it with you.</p>
+    <section class="dp-work" aria-label="How we work with design professionals">
+      <div class="dp-inner">
+
+        <div class="dp-intro">
+          <h2>The Supplier That Speaks Your Language.</h2>
+          <p>Architects and design professionals need more than a supplier — they need a partner who understands specifications, lead times and the pressure of delivering exactly what's on the drawings. All Door Supply brings product knowledge, manufacturer access and project coordination to every engagement. Here's what that looks like in practice.</p>
+        </div>
+
+        <div class="dp-vp">
+
+          <!-- Spec Right -->
+          <article class="dp-vp__card">
+            <div class="dp-vp__head">
+              <span class="dp-vp__icon"><img src="images/icon-codecompliant.svg" alt="" width="75" height="75" /></span>
+              <h3>Spec Right,<br>Every Time</h3>
+            </div>
+            <p>Products sourced and confirmed to your exact specifications — hardware schedules, finish selections and custom requirements handled with the precision your drawings demand.</p>
+          </article>
+
+          <!-- Lead Times -->
+          <article class="dp-vp__card">
+            <div class="dp-vp__head">
+              <span class="dp-vp__icon"><img src="images/icon-reliability.svg" alt="" width="75" height="75" /></span>
+              <h3>Lead Times You<br>Can Plan Around</h3>
+            </div>
+            <p>Accurate availability and proactive communication mean you can schedule with confidence — no surprises that push your project timeline back.</p>
+          </article>
+
+          <!-- Premium Manufacturer Lines -->
+          <article class="dp-vp__card">
+            <div class="dp-vp__head">
+              <span class="dp-vp__icon"><img src="images/icon-pricing.svg" alt="" width="75" height="75" /></span>
+              <h3>Access to Premium<br>Manufacturer Lines</h3>
+            </div>
+            <p>Our manufacturer relationships give design professionals access to a broad range of premium Division 8 and 10 products — from standard to fully custom — all from a single source.</p>
+          </article>
+
+          <!-- Team / Process -->
+          <article class="dp-vp__card">
+            <div class="dp-vp__head">
+              <span class="dp-vp__icon"><img src="images/icon-expertise.svg" alt="" width="75" height="75" /></span>
+              <h3>A Team That Understands<br>the Process</h3>
+            </div>
+            <p>From schematic through construction documents to site installation, our team knows where you are in the process and what you need at each stage — without having to explain it every time.</p>
+          </article>
+
+        </div><!-- /.dp-vp -->
+      </div><!-- /.dp-inner -->
+    </section>
+
+    <!-- ============================================================
+         QUOTE — dark band
+         ============================================================ -->
+    <section class="dp-quote" aria-label="Customer testimonial">
+      <div class="dp-quote__inner">
+        <div class="dp-quote__mark" aria-hidden="true">
+          <svg width="42" height="28" viewBox="0 0 52 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 40V26.4C0 17.6 2.13333 10.6667 6.4 5.6C10.6667 0.533333 17.0667 0 25.6 0V8C21.3333 8 18.1333 9.46667 16 12.4C13.8667 15.3333 12.8 19.4667 12.8 24.8H22.4V40H0ZM29.6 40V26.4C29.6 17.6 31.7333 10.6667 36 5.6C40.2667 0.533333 46.6667 0 55.2 0V8C50.9333 8 47.7333 9.46667 45.6 12.4C43.4667 15.3333 42.4 19.4667 42.4 24.8H52V40H29.6Z" fill="#C5132E"/>
+          </svg>
+        </div>
+        <blockquote>
+          <p class="dp-quote__text">All Door Supply consistently delivers on specification and on schedule. <strong>Their product knowledge and responsiveness make them the easiest part of any project.</strong></p>
+          <footer class="dp-quote__attr">— M. Chen, Architectural Associate, Toronto</footer>
+        </blockquote>
       </div>
     </section>
 
-    <!-- TODO (sitemap): Speaking to Design Professionals · The Value for
-         Design Professionals · 4 Manufacturer Sectors · Contact Form.
-         Foundation only — full content to be designed next. -->
-
     <!-- ============================================================
-         PRODUCTS & MANUFACTURERS CALLOUT
+         EXPLORE THE PRODUCTS — Manufacturers
          ============================================================ -->
-    <section class="manufacturers manufacturers--grey" id="manufacturers" aria-label="Products and manufacturers">
+    <section class="manufacturers manufacturers--grey dp-products" id="manufacturers" aria-label="Our Manufacturers">
       <div class="container">
         <div class="manufacturers__header">
-          <span class="manufacturers__eyebrow">Manufacturers</span>
-          <h2>Explore the Products We Supply.</h2>
+          <span class="manufacturers__eyebrow">Our Manufacturers</span>
+          <h2>Explore the Products That Bring Your Specs to Life.</h2>
           <p>
-            Every specification is backed by premium materials from the industry's most
+            Every service above is backed by premium materials from the industry's most
             trusted manufacturers. Browse by category to find exactly what your project needs.
           </p>
         </div>
 
         <div class="manufacturers__grid">
 
+          <!-- Doors -->
           <a href="doors.html" class="mfr-card">
             <div class="mfr-card__body">
               <h3>Doors</h3>
               <p>Interior and exterior door solutions for residential, commercial and institutional applications.</p>
-              <span class="mfr-card__link">View Category</span>
+              <span class="mfr-card__link">View Brands</span>
             </div>
             <div class="mfr-card__image">
               <img src="images/Manufacturer%20Card%20-%20Doors%20Image.png" alt="Wooden residential entry door" loading="lazy">
             </div>
           </a>
 
+          <!-- Door Automation -->
           <a href="door-automation.html" class="mfr-card">
             <div class="mfr-card__body">
               <h3>Door Automation</h3>
               <p>Automatic operators, access control and powered door systems for commercial and accessibility applications.</p>
-              <span class="mfr-card__link">View Category</span>
+              <span class="mfr-card__link">View Brands</span>
             </div>
             <div class="mfr-card__image">
               <img src="images/Manufacturer%20Card%20-%20Door%20Automation%20Image.png" alt="Automatic sliding glass door entrance" loading="lazy">
             </div>
           </a>
 
+          <!-- Hardware -->
           <a href="hardware.html" class="mfr-card">
             <div class="mfr-card__body">
               <h3>Hardware</h3>
               <p>Handles, hinges, locks, closers and architectural hardware from the industry's most trusted manufacturers.</p>
-              <span class="mfr-card__link">View Category</span>
+              <span class="mfr-card__link">View Brands</span>
             </div>
             <div class="mfr-card__image">
               <img src="images/Manufacturer%20Card%20-%20Hardware%20Image.png" alt="Modern door with lever handle and locks" loading="lazy">
             </div>
           </a>
 
+          <!-- Division 10 -->
           <a href="division-10.html" class="mfr-card">
             <div class="mfr-card__body">
               <h3>Division 10</h3>
               <p>Specialty construction products including toilet partitions, lockers, visual display and washroom accessories.</p>
-              <span class="mfr-card__link">View Category</span>
+              <span class="mfr-card__link">View Brands</span>
             </div>
             <div class="mfr-card__image">
               <img src="images/Manufacturer%20Card%20-%20Division10%20Image.png" alt="Commercial toilet partitions" loading="lazy">
@@ -191,12 +472,12 @@
     <!-- ============================================================
          CTA BANNER
          ============================================================ -->
-    <section class="cta-banner" aria-label="Request a quote">
+    <section class="cta-banner dp-cta" aria-label="Request a product consultation">
       <div class="container">
         <p class="cta-banner__eyebrow">Ready to Get Started?</p>
-        <h2>Let's Talk About Your Project.</h2>
+        <h2>Request a Product Consultation</h2>
         <p>Contact our team today and let's find the right solution for your build.</p>
-        <a href="contact.html" class="btn-outline-white">Request a Quote</a>
+        <a href="contact.html" class="btn-outline-white">Contact Our Team</a>
       </div>
     </section>
 
@@ -205,12 +486,16 @@
   <!-- ============================================================
        FOOTER
        ============================================================ -->
-  <footer class="footer" role="contentinfo">
+  <footer class="footer" id="contact" role="contentinfo">
     <div class="container">
       <div class="footer__grid">
+
+        <!-- Logo -->
         <div class="footer__logo">
           <img src="images/ADS_Logo_primary.svg" alt="All Door Supply" class="footer__logo-img" />
         </div>
+
+        <!-- Contact -->
         <div class="footer__col">
           <h4>Contact Us</h4>
           <address>
@@ -221,12 +506,14 @@
             <p>Location: 559 King Forest Court,<br>Burlington, Ontario L7P 5C1</p>
           </address>
         </div>
+
+        <!-- Navigate -->
         <div class="footer__col">
           <h4>Navigate</h4>
           <nav aria-label="Footer navigation">
             <a href="index.html">Home</a>
             <a href="services.html">Services</a>
-            <a href="who-we-service.html">Who We Serve</a>
+            <a href="who-we-service.html">Who We Service</a>
             <a href="manufacturers.html">Manufacturers</a>
             <a href="projects.html">Projects</a>
             <a href="about.html">About</a>
@@ -234,6 +521,8 @@
             <a href="contact.html">Request a Quote</a>
           </nav>
         </div>
+
+        <!-- Hours -->
         <div class="footer__col">
           <h4>Hours</h4>
           <p>Showroom &amp; Warehouse</p>
@@ -241,8 +530,10 @@
           <br/>
           <p class="hours-highlight">24 Hour Service for<br>Established Customers</p>
         </div>
-      </div>
-    </div>
+
+      </div><!-- /.footer__grid -->
+    </div><!-- /.container -->
+
     <div class="footer__bottom">
       <div class="container">
         <p>© 2026 All Door Supply. All Rights Reserved.</p>
@@ -250,6 +541,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=20260722-nav-trigger"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

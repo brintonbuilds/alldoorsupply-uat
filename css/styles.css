@@ -69,10 +69,6 @@ ul { list-style: none; }
   color: var(--white);
 }
 
-.nav--hero .nav__links a:hover {
-  color: rgba(255,255,255,0.7);
-}
-
 .nav--hero .nav__hamburger span {
   background: var(--white);
 }
@@ -87,11 +83,6 @@ ul { list-style: none; }
 .nav--hero.nav--scrolled .nav__links a,
 .nav--hero.nav--open .nav__links a {
   color: var(--black);
-}
-
-.nav--hero.nav--scrolled .nav__links a:hover,
-.nav--hero.nav--open .nav__links a:hover {
-  color: var(--red);
 }
 
 .nav--hero.nav--scrolled .nav__hamburger span,
@@ -148,7 +139,8 @@ ul { list-style: none; }
   transition: color 0.2s;
 }
 
-.nav__links a:hover { color: var(--red); }
+/* Hover feedback for primary links lives in the shared underline
+   system below (see “NAV — active-page + hover indicator”). */
 
 .btn-nav {
   display: inline-flex;
@@ -250,15 +242,71 @@ ul { list-style: none; }
 .nav .container { max-width: 1280px; }
 .nav__links { gap: 28px; }
 
-/* Active page indicator */
-.nav__links a[aria-current="page"],
-.nav--hero .nav__links a[aria-current="page"] { color: var(--red); }
+/* ============================================================
+   NAV — active-page + hover indicator (shared underline system)
+   The active item keeps the SAME text colour as its siblings — white
+   on the translucent hero nav, dark on the solid/scrolled nav — and is
+   marked by a thin, centred red underline plus a subtle weight bump.
+   Hover shows a faint preview of the same underline, so it never
+   competes with the active state or the red “Request a Quote” CTA.
+   Chevrons use currentColor, so they follow the link text colour.
+   ============================================================ */
 
-/* Active section (parent of the current dropdown page) */
+/* Underline carrier — every primary link + dropdown top-link label.
+   Top-links wrap their text in .nav__label so the underline hugs the
+   text only, never the chevron. */
+.nav__links > a:not(.btn-nav),
+.nav__toplink .nav__label {
+  position: relative;
+}
+
+.nav__links > a:not(.btn-nav)::after,
+.nav__toplink .nav__label::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  width: calc(100% - 12px); /* slightly shorter than the label, centred */
+  height: 2px;
+  background: var(--red);
+  border-radius: 1px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+/* Hover — understated underline preview (text colour stays put).
+   Excludes the active item so its underline never fades on hover. */
+.nav__links > a:not(.btn-nav):not([aria-current="page"]):hover::after,
+.nav__item:hover .nav__toplink:not(.is-section):not([aria-current="page"]) .nav__label::after {
+  opacity: 0.4;
+}
+
+/* Active page, and active dropdown parent (via .is-section on a child
+   page, or aria-current on its own page) — solid underline + weight. */
+.nav__links > a[aria-current="page"]:not(.btn-nav),
 .nav__toplink.is-section,
-.nav--hero .nav__links .nav__toplink.is-section { color: var(--red); }
+.nav__toplink[aria-current="page"] {
+  font-weight: 600;
+}
+.nav__links > a[aria-current="page"]:not(.btn-nav)::after,
+.nav__toplink.is-section .nav__label::after,
+.nav__toplink[aria-current="page"] .nav__label::after {
+  opacity: 1;
+}
+
+/* Dropdown panel child item keeps a clear active marker on its white
+   panel (contrast/CTA concerns don’t apply inside the menu). */
 .nav__dropdown a[aria-current="page"] { color: var(--red) !important; }
-.nav__mobile a[aria-current="page"] { color: var(--red); }
+
+/* Mobile — the stacked menu uses a red edge accent + weight bump
+   instead of red text (the CTA button is excluded). */
+.nav__mobile a[aria-current="page"]:not(.btn-nav) {
+  color: var(--black) !important;
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 var(--red);
+}
 
 /* Dropdown parent */
 .nav__item {
@@ -348,8 +396,6 @@ ul { list-style: none; }
    HERO
    ============================================================ */
 .hero {
-  --hero-copy-width: 600px;
-  --hero-gutter-x: 32px;
   position: relative;
   margin-top: 0;
   min-height: 100vh;
@@ -412,12 +458,11 @@ ul { list-style: none; }
 }
 
 .hero__text {
-  width: var(--hero-copy-width);
+  width: 600px;
   max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  container-type: inline-size;
 }
 
 .hero__eyebrow {
@@ -426,9 +471,9 @@ ul { list-style: none; }
 
 .hero__headline {
   font-family: var(--font-head);
-  font-size: 92px;
+  font-size: clamp(82px, 7.1875vw, 92px);
   font-weight: 700;
-  line-height: 86px;
+  line-height: clamp(78px, 6.71875vw, 86px);
   color: var(--white);
   margin-bottom: 17px;
   letter-spacing: 0;
@@ -436,34 +481,17 @@ ul { list-style: none; }
 
 .hero__sub {
   width: 100%;
-  font-size: 18px;
-  line-height: 24.5px;
+  font-size: clamp(17px, 1.40625vw, 18px);
+  line-height: clamp(24px, 1.9140625vw, 24.5px);
   color: rgba(255,255,255,0.88);
   max-width: 100%;
   margin-bottom: 25px;
 }
 
-@supports (font-size: 1cqw) {
-  .hero__headline {
-    font-size: clamp(82px, 15.333cqw, 92px);
-    line-height: clamp(78px, 14.333cqw, 86px);
-  }
-
+@media (max-width: 1208px) {
   .hero__sub {
-    font-size: clamp(17px, 3cqw, 18px);
-    line-height: clamp(24px, 4.083cqw, 24.5px);
-  }
-}
-
-@media (min-width: 1025px) {
-  .hero {
-    --hero-gutter-x: clamp(96px, calc((100vw - 1016px) / 2), 560px);
-  }
-
-  .hero__content.container {
-    max-width: none;
-    margin-inline: 0;
-    padding-inline: var(--hero-gutter-x);
+    width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -2001,11 +2029,6 @@ ul { list-style: none; }
   overflow: hidden;
 }
 
-.nav--hero + main .page-hero {
-  margin-top: 0;
-  padding-top: 152px;
-}
-
 .page-hero__bg {
   position: absolute;
   inset: 0;
@@ -2126,9 +2149,12 @@ ul { list-style: none; }
   .hero-band h1 { font-size: 64px; }
 }
 @media (max-width: 768px) {
-  .hero-band { height: 300px; }
-  .hero-band h1 { font-size: 46px; line-height: 1; }
+  /* Let the band grow with its copy and reserve the fixed 80px header up
+     top so the heading can never ride up behind the menu bar. */
+  .hero-band { height: auto; min-height: 340px; padding-top: 80px; }
+  .hero-band h1 { font-size: 46px; line-height: 1.05; }
   .hero-band__sub { font-size: 15px; }
+  .hero-band__content { padding-top: 0; }
   .page-intro { padding-block: 56px; }
   .page-intro h2 { font-size: 36px; }
   .hero-band__content,
