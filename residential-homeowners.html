@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Built for the Job Site — All Door Supply</title>
-  <meta name="description" content="All Door Supply works alongside contractors to deliver Division 8 and 10 products with the speed, accuracy and reliability your projects demand — reliable delivery, code-compliant products, direct manufacturer pricing and job-site expertise." />
+  <title>Residential Homeowners — All Door Supply</title>
+  <meta name="description" content="All Door Supply supplies homeowners with premium doors, locks and hardware, backed by expert guidance and showroom consultations in Burlington, Ontario." />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,11 +16,13 @@
 
   <style>
     /* ============================================================
-       CONTRACTORS PAGE — page-specific styles
+       RESIDENTIAL HOMEOWNERS PAGE — page-specific styles
+       (built to Figma 425-706 — same layout system as Design
+       Professionals / Contractors)
        ============================================================ */
 
     /* --- Page hero — 400px image band -------------------------- */
-    .ctr-hero {
+    .ho-hero {
       position: relative;
       height: 400px;
       display: flex;
@@ -28,16 +30,15 @@
       overflow: hidden;
       background: var(--dark);
     }
-    .ctr-hero__image { position: absolute; inset: 0; }
-    .ctr-hero__image img {
+    .ho-hero__image { position: absolute; inset: 0; }
+    .ho-hero__image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      /* Figma crop: image at 301.71% height, top -47.6% → vertical focus ~24% */
-      object-position: 50% 24%;
+      object-position: 50% 38%;
     }
-    /* Figma overlay — exact Dev Mode value (top-to-bottom scrim). */
-    .ctr-hero__overlay {
+    /* Figma overlay — top-to-bottom scrim. */
+    .ho-hero__overlay {
       position: absolute;
       inset: 0;
       background: linear-gradient(
@@ -46,81 +47,79 @@
         rgba(40, 36, 37, 0.8) 69.7%
       );
     }
-    .ctr-hero__content {
+    .ho-hero__content {
       position: relative;
       z-index: 2;
       width: 100%;
       max-width: 1280px;
       padding-bottom: 56px;
     }
-    .ctr-hero h1 {
+    .ho-hero h1 {
       font-family: var(--font-head);
-      font-size: 92px;
+      font-size: 78px;
       font-weight: 700;
       color: var(--white);
       line-height: 86px;
       letter-spacing: 0;
       margin-bottom: 19px;
     }
-    .ctr-hero__sub {
+    .ho-hero__sub {
       font-size: 18px;
       line-height: 24px;
       color: #ffffff;
       max-width: 1048px;
     }
-    /* Figma authors the sub as three hard-wrapped lines; below ~900px the
-       container is too narrow for them, so let the copy reflow naturally. */
-    @media (max-width: 900px) {
-      .ctr-hero__br { display: none; }
-    }
 
     /* --- Intro + value props ----------------------------------- */
-    /* Figma vertical rhythm for the approved Contractors frame. */
-    .ctr-work {
+    /* Figma: hero ends 400, intro text starts 482, value props end
+       1057, quote band starts 1162 → 82px top / 105px bottom. */
+    .ho-work {
       background: #fff;
-      padding-block: 97px 102px;
+      padding-block: 82px 126px;
     }
-    .ctr-inner {
+    .ho-inner {
       max-width: 1280px;
       margin-inline: auto;
       padding-inline: 40px;
     }
 
-    .ctr-intro { margin-bottom: 89px; }
-    .ctr-intro h2 {
+    /* Figma intro frame: 828×194, column, gap 10. The frame carries ~30px
+       of trailing padding that no text node accounts for, so the gap here
+       is measured frame-end → value-props-start (Figma y 744). */
+    .ho-intro { margin-bottom: 98px; max-width: 828px; }
+    .ho-intro h2 {
       font-family: var(--font-head);
       font-size: 48px;
       font-weight: 700;
       color: var(--red);
-      line-height: 1;
+      line-height: normal;
       letter-spacing: 0;
-      margin-bottom: 24px;
+      margin-bottom: 10px;
     }
-    .ctr-intro p {
+    .ho-intro p {
       font-size: 15px;
       line-height: 24px;
       color: #000;
-      max-width: 681px;
     }
 
-    /* Value props — 4-up row of icon cards (Figma: gap 40, card gap 21,
-       icon→title 18, icon 75×75, title Barlow 24px). */
-    .ctr-vp {
+    /* Value props — 4-up row of icon cards (Figma: 1190×313, gap 40,
+       icon 75×75, title Barlow 24px uppercase). */
+    .ho-vp {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 40px;
       align-items: start;
     }
-    .ctr-vp__card { display: flex; flex-direction: column; gap: 21px; }
-    .ctr-vp__head {
+    .ho-vp__card { display: flex; flex-direction: column; gap: 21px; }
+    .ho-vp__head {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 18px;
     }
-    .ctr-vp__icon { width: 75px; height: 75px; flex-shrink: 0; }
-    .ctr-vp__icon img { width: 100%; height: 100%; display: block; }
-    .ctr-vp__card h3 {
+    .ho-vp__icon { width: 75px; height: 75px; flex-shrink: 0; }
+    .ho-vp__icon img { width: 100%; height: 100%; display: block; }
+    .ho-vp__card h3 {
       font-family: var(--font-head);
       font-size: 24px;
       font-weight: 700;
@@ -128,21 +127,24 @@
       color: #000;
       line-height: normal;
       letter-spacing: 0;
-      max-width: 230px; /* Figma header-row width → matches 2-line wrap */
+      max-width: 256px; /* Figma title box — keeps every title to two lines */
     }
-    .ctr-vp__card p {
+    .ho-vp__card p {
       font-size: 15px;
       line-height: 24px;
       color: #000;
     }
 
-    /* --- Contractor quote — dark band (Figma: 1439×341, left-aligned,
-       red mark beside a 993px text block) ------------------------ */
-    .ctr-quote {
+    /* --- Quote — dark band (Figma 1439×341, red mark beside the
+       text block; lead-in light + statement bold, inline). -------- */
+    /* Measured off the Figma band (341 tall): ~106 above the first line,
+       ~89 below the attribution, and a wider gap between the statement and
+       the attribution than the sibling pages use. */
+    .ho-quote {
       background: #231F20;
-      padding-block: 92px 80px;
+      padding-block: 106px 89px;
     }
-    .ctr-quote__inner {
+    .ho-quote__inner {
       max-width: 1280px;
       margin-inline: auto;
       padding-inline: 40px;
@@ -150,50 +152,51 @@
       align-items: flex-start;
       gap: 33px;
     }
-    .ctr-quote__mark {
+    .ho-quote__mark {
       flex-shrink: 0;
       margin-top: 8px;
       line-height: 0;
     }
-    .ctr-quote__mark svg { display: block; }
-    .ctr-quote blockquote { margin: 0; max-width: 993px; }
-    .ctr-quote__text {
+    .ho-quote__mark svg { display: block; }
+    .ho-quote blockquote { margin: 0; max-width: 1099px; }
+    .ho-quote__text {
       font-family: var(--font-body);
       font-size: 22px;
       line-height: 36px;
       color: #fff;
       font-weight: 300;
-      margin-bottom: 40px;
+      margin-bottom: 24px;
     }
-    .ctr-quote__text span,
-    .ctr-quote__text strong {
-      display: block;
-    }
-    .ctr-quote__text strong {
+    /* Figma: the pull-quote statement switches to the display face at
+       40px/700 — not just a bold weight of the body copy. */
+    .ho-quote__text strong {
       font-family: var(--font-head);
-      font-size: 31px;
-      line-height: 34px;
+      font-size: 40px;
       font-weight: 700;
+      line-height: normal;
     }
-    .ctr-quote__attr {
+    .ho-quote__attr {
       font-size: 13px;
-      line-height: 20px;
+      line-height: 36px;
       font-style: italic;
       font-weight: 600;
       color: rgba(255,255,255,0.55);
-      text-transform: none;
     }
 
-    /* The products callout uses the shared, reusable manufacturers component
-       (grey variant + hover animation live in css/styles.css), with
-       page-specific rhythm to match the approved Contractors frame. */
-    #manufacturers.contractors-products {
-      padding-block: 102px 216px;
+    /* Products callout — shared manufacturers component. Unlike the
+       other interior pages this one stays WHITE in Figma (#FFF), so it
+       opts out of `manufacturers--grey` and re-states the wider header
+       body width that the grey variant would otherwise supply. */
+    #manufacturers.ho-products {
+      padding-block: 100px 226px;
     }
-    #manufacturers.contractors-products .manufacturers__header {
+    #manufacturers.ho-products .manufacturers__header {
       margin-bottom: 80px;
     }
-    #manufacturers.contractors-products .manufacturers__eyebrow {
+    #manufacturers.ho-products .manufacturers__header p {
+      max-width: 720px;
+    }
+    #manufacturers.ho-products .manufacturers__eyebrow {
       min-height: 21px;
       padding: 4px 8px;
       font-size: 11px;
@@ -201,50 +204,40 @@
       letter-spacing: 0.55px;
     }
 
-    .contractors-cta {
-      padding-block: 68px;
+    /* Figma CTA band is 321px tall against the shared component's 333. */
+    .ho-cta {
+      padding-block: 70px;
     }
 
     /* --- Responsive -------------------------------------------- */
     @media (max-width: 1024px) {
-      .ctr-hero h1 { font-size: 64px; }
-      .ctr-inner { padding-inline: 32px; }
-      .ctr-intro { margin-bottom: 72px; }
-      .ctr-vp { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px; }
-      #manufacturers.contractors-products {
-        padding-block: 72px 96px;
-      }
-      #manufacturers.contractors-products .manufacturers__header {
-        margin-bottom: 48px;
-      }
+      .ho-hero h1 { font-size: 60px; }
+      .ho-inner { padding-inline: 32px; }
+      .ho-intro { margin-bottom: 56px; }
+      .ho-vp { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px; }
+      #manufacturers.ho-products { padding-block: 72px 96px; }
+      #manufacturers.ho-products .manufacturers__header { margin-bottom: 48px; }
     }
 
     @media (max-width: 768px) {
-      /* Let the hero grow with its copy and reserve the fixed 80px header
-         up top so the heading can never ride up behind the menu bar. */
-      .ctr-hero { height: auto; min-height: 340px; padding-top: 80px; }
-      .ctr-hero h1 { font-size: 46px; line-height: 1.05; }
-      .ctr-hero__sub { font-size: 15px; }
-      .ctr-work { padding-block: 64px 64px; }
-      .ctr-inner { padding-inline: 20px; }
-      .ctr-intro { margin-bottom: 56px; }
-      .ctr-intro h2 { font-size: 40px; }
-      .ctr-vp { grid-template-columns: 1fr; gap: 40px; max-width: 480px; }
-      #manufacturers.contractors-products {
-        padding-block: 56px 64px;
-      }
-      #manufacturers.contractors-products .manufacturers__header {
-        margin-bottom: 32px;
-      }
-      /* Stack the quote mark above the text so the copy uses full width. */
-      .ctr-quote__inner { flex-direction: column; gap: 18px; }
-      .ctr-quote__mark { margin-top: 0; }
-      .ctr-quote__text { font-size: 19px; line-height: 30px; }
-      .ctr-quote__text strong { font-size: 28px; line-height: 31px; }
+      .ho-hero { height: auto; min-height: 340px; padding-top: 80px; }
+      .ho-hero h1 { font-size: 44px; line-height: 1.05; }
+      .ho-hero__sub { font-size: 15px; }
+      .ho-work { padding-block: 64px 64px; }
+      .ho-inner { padding-inline: 20px; }
+      .ho-intro { margin-bottom: 48px; }
+      .ho-intro h2 { font-size: 40px; }
+      .ho-vp { grid-template-columns: 1fr; gap: 40px; max-width: 480px; }
+      #manufacturers.ho-products { padding-block: 56px 64px; }
+      #manufacturers.ho-products .manufacturers__header { margin-bottom: 32px; }
+      .ho-quote__inner { flex-direction: column; gap: 18px; }
+      .ho-quote__mark { margin-top: 0; }
+      .ho-quote__text { font-size: 19px; line-height: 30px; }
+      .ho-quote__text strong { font-size: 30px; }
     }
 
     @media (max-width: 480px) {
-      .ctr-hero h1 { font-size: 40px; }
+      .ho-hero h1 { font-size: 40px; }
     }
   </style>
 </head>
@@ -271,9 +264,9 @@
               <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
             <div class="nav__dropdown" role="menu">
-              <a href="contractors.html" role="menuitem" aria-current="page">Contractors</a>
+              <a href="contractors.html" role="menuitem">Contractors</a>
               <a href="design-professionals.html" role="menuitem">Design Professionals</a>
-              <a href="residential-homeowners.html" role="menuitem">Residential Homeowners</a>
+              <a href="residential-homeowners.html" role="menuitem" aria-current="page">Residential Homeowners</a>
             </div>
           </div>
 
@@ -314,9 +307,9 @@
     <nav class="nav__mobile" id="mobile-nav" aria-label="Mobile navigation">
       <a href="services.html">Services</a>
       <a href="#">Who We Service</a>
-      <a href="contractors.html" class="nav__mobile-sub" aria-current="page">Contractors</a>
+      <a href="contractors.html" class="nav__mobile-sub">Contractors</a>
       <a href="design-professionals.html" class="nav__mobile-sub">Design Professionals</a>
-      <a href="residential-homeowners.html" class="nav__mobile-sub">Residential Homeowners</a>
+      <a href="residential-homeowners.html" class="nav__mobile-sub" aria-current="page">Residential Homeowners</a>
       <a href="manufacturers.html">Manufacturers</a>
       <a href="doors.html" class="nav__mobile-sub">Doors</a>
       <a href="door-automation.html" class="nav__mobile-sub">Door Automation</a>
@@ -334,100 +327,100 @@
     <!-- ============================================================
          HERO
          ============================================================ -->
-    <section class="ctr-hero" aria-label="Built for the Job Site">
-      <div class="ctr-hero__image">
+    <section class="ho-hero" aria-label="Residential Homeowners">
+      <div class="ho-hero__image">
         <img
-          src="images/contractors-hero.jpg"
-          alt="Contractor measuring lumber on a wood-framed job site"
+          src="images/Homeowners_Colour.png"
+          alt="Homeowner entering a code on a keypad door lock"
           loading="eager"
         />
       </div>
-      <div class="ctr-hero__overlay" aria-hidden="true"></div>
+      <div class="ho-hero__overlay" aria-hidden="true"></div>
 
-      <div class="ctr-hero__content container">
-        <h1>Built for the Job Site</h1>
-        <p class="ctr-hero__sub">From sourcing the right materials to keeping your schedule on track, All Door Supply works <br class="ctr-hero__br">alongside contractors to deliver Division 8 and 10 products with the speed, accuracy, <br class="ctr-hero__br">and reliability your projects demand.</p>
+      <div class="ho-hero__content container">
+        <h1>Quality for Your Home</h1>
+        <p class="ho-hero__sub">Whether you're upgrading a front entry, replacing interior doors or finishing a renovation, All Door Supply gives homeowners access to premium products and the same expert guidance we bring to every professional build.</p>
       </div>
     </section>
 
     <!-- ============================================================
          INTRO + VALUE PROPS
          ============================================================ -->
-    <section class="ctr-work" aria-label="How we work with contractors">
-      <div class="ctr-inner">
+    <section class="ho-work" aria-label="How we work with homeowners">
+      <div class="ho-inner">
 
-        <div class="ctr-intro">
-          <h2>The Partner That Keeps Your Job Site Moving.</h2>
-          <p>Contractors don't have time for delays, guesswork, or chasing down the right part. All Door Supply works as an extension of your team — sourcing the right Division 8 and 10 products, confirming specs before they become a problem, and delivering on the timeline your project demands. Here's what that looks like in practice.</p>
+        <div class="ho-intro">
+          <h2>Premium Products, Expert Guidance.</h2>
+          <p>Most homeowners only buy doors and hardware once or twice in a lifetime — and the options can be overwhelming. All Door Supply takes the guesswork out of it, giving you access to the same premium products and manufacturer expertise we bring to professional builds, with the personal guidance to make sure you get exactly what your home needs. Here's what sets us apart.</p>
         </div>
 
-        <div class="ctr-vp">
+        <div class="ho-vp">
 
-          <!-- Reliability -->
-          <article class="ctr-vp__card">
-            <div class="ctr-vp__head">
-              <span class="ctr-vp__icon"><img src="images/icon-reliability.svg" alt="" width="75" height="75" /></span>
-              <h3>Reliability You Can Schedule Around</h3>
+          <!-- Products Worth Investing In -->
+          <article class="ho-vp__card">
+            <div class="ho-vp__head">
+              <span class="ho-vp__icon"><img src="images/icon-reliability.svg" alt="" width="75" height="75" /></span>
+              <h3>Products Worth<br>Investing In</h3>
             </div>
-            <p>Reliable delivery and proactive scheduling mean your materials arrive when your job site needs them — not when it's convenient for us.</p>
+            <p>We carry premium doors, hardware and accessories from the industry's most trusted manufacturers — products built to last, not just to look good at the showroom.</p>
           </article>
 
-          <!-- Code Compliant -->
-          <article class="ctr-vp__card">
-            <div class="ctr-vp__head">
-              <span class="ctr-vp__icon"><img src="images/icon-codecompliant.svg" alt="" width="75" height="75" /></span>
-              <h3>Code-Compliant,<br>Job-Ready Products</h3>
+          <!-- Guidance From People Who Know -->
+          <article class="ho-vp__card">
+            <div class="ho-vp__head">
+              <span class="ho-vp__icon"><img src="images/icon-codecompliant.svg" alt="" width="75" height="75" /></span>
+              <h3>Guidance From<br>People Who Know</h3>
             </div>
-            <p>Every product we supply meets the specification, safety, and code requirements your project demands, reducing rework and inspection delays.</p>
+            <p>Our team helps you navigate finish selections, hardware compatibility and installation requirements — so you make decisions with confidence, not guesswork.</p>
           </article>
 
-          <!-- Pricing -->
-          <article class="ctr-vp__card">
-            <div class="ctr-vp__head">
-              <span class="ctr-vp__icon"><img src="images/icon-pricing.svg" alt="" width="75" height="75" /></span>
-              <h3>Direct Access to Manufacturer Pricing</h3>
+          <!-- Access to the Showroom -->
+          <article class="ho-vp__card">
+            <div class="ho-vp__head">
+              <span class="ho-vp__icon"><img src="images/icon-pricing.svg" alt="" width="75" height="75" /></span>
+              <h3>Access To<br>The Showroom</h3>
             </div>
-            <p>Decades of manufacturer relationships mean better pricing and availability — value that gets passed directly to your bottom line.</p>
+            <p>Visit our Southern Ontario showroom to see products in person, compare finishes side by side and get hands-on guidance from our team before you commit.</p>
           </article>
 
-          <!-- Expertise -->
-          <article class="ctr-vp__card">
-            <div class="ctr-vp__head">
-              <span class="ctr-vp__icon"><img src="images/icon-expertise.svg" alt="" width="75" height="75" /></span>
-              <h3>Expertise That<br>Adapts With You</h3>
+          <!-- From Selection to Installation -->
+          <article class="ho-vp__card">
+            <div class="ho-vp__head">
+              <span class="ho-vp__icon"><img src="images/icon-expertise.svg" alt="" width="75" height="75" /></span>
+              <h3>From Selection<br>To Installation</h3>
             </div>
-            <p>Schedules shift. Scopes change. Our team brings the technical knowledge to answer questions fast and the flexibility to keep your project moving — no matter what the job site throws at you.</p>
+            <p>We don't just supply the product — we can handle installation too, so your project gets done right from start to finish without coordinating multiple trades.</p>
           </article>
 
-        </div><!-- /.ctr-vp -->
-      </div><!-- /.ctr-inner -->
+        </div><!-- /.ho-vp -->
+      </div><!-- /.ho-inner -->
     </section>
 
     <!-- ============================================================
-         CONTRACTOR QUOTE — dark band
+         QUOTE — dark band
          ============================================================ -->
-    <section class="ctr-quote" aria-label="Customer testimonial">
-      <div class="ctr-quote__inner">
-        <div class="ctr-quote__mark" aria-hidden="true">
+    <section class="ho-quote" aria-label="Customer testimonial">
+      <div class="ho-quote__inner">
+        <div class="ho-quote__mark" aria-hidden="true">
           <svg width="42" height="28" viewBox="0 0 52 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 40V26.4C0 17.6 2.13333 10.6667 6.4 5.6C10.6667 0.533333 17.0667 0 25.6 0V8C21.3333 8 18.1333 9.46667 16 12.4C13.8667 15.3333 12.8 19.4667 12.8 24.8H22.4V40H0ZM29.6 40V26.4C29.6 17.6 31.7333 10.6667 36 5.6C40.2667 0.533333 46.6667 0 55.2 0V8C50.9333 8 47.7333 9.46667 45.6 12.4C43.4667 15.3333 42.4 19.4667 42.4 24.8H52V40H29.6Z" fill="#C5132E"/>
+            <path d="M0 40V26.4C0 17.6 2.13333 10.6667 6.4 5.6C10.6667 0.533333 17.0667 0 25.6 0V8C21.3333 8 18.1333 9.46667 16 12.4C13.8667 15.3333 12.8 19.4667 12.8 24.8H22.4V40H0ZM29.6 40V26.4C29.6 17.6 31.7333 10.6667 36 5.6C40.2667 0.533333 46.6667 0 55.2 0V8C50.9333 8 47.7333 9.46667 45.6 12.4C43.4667 15.3333 42.4 19.4667 42.4 24.8H52V40H29.6Z" fill="#C52028"/>
           </svg>
         </div>
         <blockquote>
-          <p class="ctr-quote__text"><span>All Door Supply has been our go-to supplier for Division 8 products for over a decade.</span><span>Their knowledge, reliability and ability to source exactly what we need — on time and on spec —</span><strong>makes them an invaluable partner on every project.</strong></p>
-          <footer class="ctr-quote__attr">— James R. General Contractor, Southern Ontario</footer>
+          <p class="ho-quote__text">I had no idea where to start with our front entry renovation. The team at All Door Supply walked us through every option and <strong>the finished result exceeded what we imagined.</strong></p>
+          <footer class="ho-quote__attr">— Sarah T., Homeowner, Burlington</footer>
         </blockquote>
       </div>
     </section>
 
     <!-- ============================================================
-         SOURCE WHAT YOUR JOB SITE NEEDS — Manufacturers
+         PRODUCTS & MANUFACTURERS CALLOUT
          ============================================================ -->
-    <section class="manufacturers manufacturers--grey contractors-products" id="manufacturers" aria-label="Our Manufacturers">
+    <section class="manufacturers ho-products" id="manufacturers" aria-label="Our Manufacturers">
       <div class="container">
         <div class="manufacturers__header">
           <span class="manufacturers__eyebrow">Our Manufacturers</span>
-          <h2>Source What Your Job Site Needs.</h2>
+          <h2>Explore the Products That Make It Home.</h2>
           <p>
             Every service above is backed by premium materials from the industry's most
             trusted manufacturers. Browse by category to find exactly what your project needs.
@@ -436,7 +429,6 @@
 
         <div class="manufacturers__grid">
 
-          <!-- Doors -->
           <a href="doors.html" class="mfr-card">
             <div class="mfr-card__body">
               <h3>Doors</h3>
@@ -448,7 +440,6 @@
             </div>
           </a>
 
-          <!-- Door Automation -->
           <a href="door-automation.html" class="mfr-card">
             <div class="mfr-card__body">
               <h3>Door Automation</h3>
@@ -460,7 +451,6 @@
             </div>
           </a>
 
-          <!-- Hardware -->
           <a href="hardware.html" class="mfr-card">
             <div class="mfr-card__body">
               <h3>Hardware</h3>
@@ -472,7 +462,6 @@
             </div>
           </a>
 
-          <!-- Division 10 -->
           <a href="division-10.html" class="mfr-card">
             <div class="mfr-card__body">
               <h3>Division 10</h3>
@@ -491,12 +480,12 @@
     <!-- ============================================================
          CTA BANNER
          ============================================================ -->
-    <section class="cta-banner contractors-cta" aria-label="Request a quote">
+    <section class="cta-banner ho-cta" aria-label="Request a quote">
       <div class="container">
         <p class="cta-banner__eyebrow">Ready to Get Started?</p>
-        <h2>Ready to Simplify Your Next Job</h2>
-        <p>Contact our team today and let's find the right solution for your build.</p>
-        <a href="#" class="btn-outline-white">Request Contractor Pricing</a>
+        <h2>Request a Quote</h2>
+        <p>Contact our team today and let's find the right solution for your home.</p>
+        <a href="#" class="btn-outline-white">Contact Our Team</a>
       </div>
     </section>
 
@@ -505,16 +494,12 @@
   <!-- ============================================================
        FOOTER
        ============================================================ -->
-  <footer class="footer" id="contact" role="contentinfo">
+  <footer class="footer" role="contentinfo">
     <div class="container">
       <div class="footer__grid">
-
-        <!-- Logo -->
         <div class="footer__logo">
           <img src="images/ADS_Logo_primary.svg" alt="All Door Supply" class="footer__logo-img" />
         </div>
-
-        <!-- Contact -->
         <div class="footer__col">
           <h4>Contact Us</h4>
           <address>
@@ -525,8 +510,6 @@
             <p>Location: 559 King Forest Court,<br>Burlington, Ontario L7P 5C1</p>
           </address>
         </div>
-
-        <!-- Navigate -->
         <div class="footer__col">
           <h4>Navigate</h4>
           <nav aria-label="Footer navigation">
@@ -540,8 +523,6 @@
             <a href="#">Request a Quote</a>
           </nav>
         </div>
-
-        <!-- Hours -->
         <div class="footer__col">
           <h4>Hours</h4>
           <p>Showroom &amp; Warehouse</p>
@@ -549,10 +530,8 @@
           <br/>
           <p class="hours-highlight">24 Hour Service for<br>Established Customers</p>
         </div>
-
-      </div><!-- /.footer__grid -->
-    </div><!-- /.container -->
-
+      </div>
+    </div>
     <div class="footer__bottom">
       <div class="container">
         <p>© 2026 All Door Supply. All Rights Reserved.</p>

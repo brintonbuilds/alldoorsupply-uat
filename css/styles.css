@@ -458,8 +458,8 @@ ul { list-style: none; }
 }
 
 .hero__text {
-  width: 56%;
-  max-width: 600px;
+  width: 600px;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -471,21 +471,28 @@ ul { list-style: none; }
 
 .hero__headline {
   font-family: var(--font-head);
-  font-size: 92px;
+  font-size: clamp(82px, 7.1875vw, 92px);
   font-weight: 700;
-  line-height: 86px;
+  line-height: clamp(78px, 6.71875vw, 86px);
   color: var(--white);
   margin-bottom: 17px;
   letter-spacing: 0;
 }
 
 .hero__sub {
-  width: 665px;
-  font-size: 18px;
-  line-height: 24.5px;
+  width: 100%;
+  font-size: clamp(17px, 1.40625vw, 18px);
+  line-height: clamp(24px, 1.9140625vw, 24.5px);
   color: rgba(255,255,255,0.88);
-  max-width: 665px;
+  max-width: 100%;
   margin-bottom: 25px;
+}
+
+@media (max-width: 1208px) {
+  .hero__sub {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .btn-primary {
@@ -2142,9 +2149,12 @@ ul { list-style: none; }
   .hero-band h1 { font-size: 64px; }
 }
 @media (max-width: 768px) {
-  .hero-band { height: 300px; }
-  .hero-band h1 { font-size: 46px; line-height: 1; }
+  /* Let the band grow with its copy and reserve the fixed 80px header up
+     top so the heading can never ride up behind the menu bar. */
+  .hero-band { height: auto; min-height: 340px; padding-top: 80px; }
+  .hero-band h1 { font-size: 46px; line-height: 1.05; }
   .hero-band__sub { font-size: 15px; }
+  .hero-band__content { padding-top: 0; }
   .page-intro { padding-block: 56px; }
   .page-intro h2 { font-size: 36px; }
   .hero-band__content,

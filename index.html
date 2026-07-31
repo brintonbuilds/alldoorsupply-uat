@@ -14,84 +14,9 @@
   <link rel="icon" href="images/ADS_Logo_primary.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/styles.css?v=20260718-mfr-grey" />
 
-  <!-- ============================================================
-       PRODUCTS YOU CAN TRUST — premium card micro-interactions
-       Restrained, engineered hover. Three layers, each on its own
-       timing so the card gains physical depth: the surface lifts
-       with a two-part shadow (tight contact + soft ambient), the
-       photograph slowly blooms behind its frame, and the marker
-       advances. Nothing announces itself; the whole thing just
-       feels weighted and precise. Motion honours reduced-motion.
-       ============================================================ -->
-  <style>
-    #manufacturers .mfr-card {
-      transition:
-        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-        box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-      will-change: transform;
-    }
-
-    #manufacturers .mfr-card:hover {
-      transform: translateY(-6px);
-      border-color: transparent;
-      box-shadow:
-        inset 0 0 0 1.5px #DCD9D3,
-        0 2px 3px rgba(15, 12, 10, 0.04),
-        0 26px 48px -20px rgba(15, 12, 10, 0.24);
-    }
-
-    /* Tactile settle on press — the surface has real weight. */
-    #manufacturers .mfr-card:active {
-      transform: translateY(-3px);
-      transition-duration: 0.12s;
-    }
-
-    /* Keyboard focus mirrors hover so the interaction is inclusive. */
-    #manufacturers .mfr-card:focus-visible {
-      outline: none;
-      transform: translateY(-6px);
-      box-shadow:
-        inset 0 0 0 1.5px #DCD9D3,
-        0 0 0 3px rgba(197, 32, 40, 0.35),
-        0 26px 48px -20px rgba(15, 12, 10, 0.24);
-    }
-
-    /* Photograph: a slow bloom (scale + a whisper of warmth) on a
-       longer curve than the lift, so it reads as depth, not a zoom. */
-    #manufacturers .mfr-card__image img {
-      transition:
-        transform 0.9s cubic-bezier(0.19, 1, 0.22, 1),
-        filter 0.9s ease;
-      will-change: transform;
-      backface-visibility: hidden;
-    }
-    #manufacturers .mfr-card:hover .mfr-card__image img,
-    #manufacturers .mfr-card:focus-visible .mfr-card__image img {
-      transform: scale(1.045);
-      filter: saturate(1.05) brightness(1.02);
-    }
-
-    /* View Brands marker advances with intent. */
-    #manufacturers .mfr-card__link::after {
-      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    #manufacturers .mfr-card:hover .mfr-card__link::after,
-    #manufacturers .mfr-card:focus-visible .mfr-card__link::after {
-      transform: translateX(6px);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      #manufacturers .mfr-card,
-      #manufacturers .mfr-card__image img,
-      #manufacturers .mfr-card__link::after { transition: none; }
-      #manufacturers .mfr-card:hover,
-      #manufacturers .mfr-card:focus-visible { transform: none; }
-      #manufacturers .mfr-card:hover .mfr-card__image img,
-      #manufacturers .mfr-card:focus-visible .mfr-card__image img { transform: none; filter: none; }
-      #manufacturers .mfr-card:hover .mfr-card__link::after,
-      #manufacturers .mfr-card:focus-visible .mfr-card__link::after { transform: none; }
-    }
-  </style>
+  <!-- "Products You Can Trust" premium card hover/focus animation now
+       lives in css/styles.css (.mfr-card) so every .manufacturers section
+       across the site shares it. -->
 
   <!-- ============================================================
        INTRO LOADER — plays once on first visit / refresh, then
@@ -179,8 +104,8 @@
             </a>
             <div class="nav__dropdown" role="menu">
               <a href="contractors.html" role="menuitem">Contractors</a>
-              <a href="#" role="menuitem">Design Professionals</a>
-              <a href="#" role="menuitem">Residential Homeowners</a>
+              <a href="design-professionals.html" role="menuitem">Design Professionals</a>
+              <a href="residential-homeowners.html" role="menuitem">Residential Homeowners</a>
             </div>
           </div>
 
@@ -189,10 +114,10 @@
               <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
             <div class="nav__dropdown" role="menu">
-              <a href="#" role="menuitem">Doors</a>
-              <a href="#" role="menuitem">Door Automation</a>
-              <a href="#" role="menuitem">Hardware</a>
-              <a href="#" role="menuitem">Division 10</a>
+              <a href="doors.html" role="menuitem">Doors</a>
+              <a href="door-automation.html" role="menuitem">Door Automation</a>
+              <a href="hardware.html" role="menuitem">Hardware</a>
+              <a href="division-10.html" role="menuitem">Division 10</a>
             </div>
           </div>
 
@@ -222,13 +147,13 @@
       <a href="services.html">Services</a>
       <a href="#">Who We Service</a>
       <a href="contractors.html" class="nav__mobile-sub">Contractors</a>
-      <a href="#" class="nav__mobile-sub">Design Professionals</a>
-      <a href="#" class="nav__mobile-sub">Residential Homeowners</a>
+      <a href="design-professionals.html" class="nav__mobile-sub">Design Professionals</a>
+      <a href="residential-homeowners.html" class="nav__mobile-sub">Residential Homeowners</a>
       <a href="manufacturers.html">Manufacturers</a>
-      <a href="#" class="nav__mobile-sub">Doors</a>
-      <a href="#" class="nav__mobile-sub">Door Automation</a>
-      <a href="#" class="nav__mobile-sub">Hardware</a>
-      <a href="#" class="nav__mobile-sub">Division 10</a>
+      <a href="doors.html" class="nav__mobile-sub">Doors</a>
+      <a href="door-automation.html" class="nav__mobile-sub">Door Automation</a>
+      <a href="hardware.html" class="nav__mobile-sub">Hardware</a>
+      <a href="division-10.html" class="nav__mobile-sub">Division 10</a>
       <a href="#">Projects</a>
       <a href="#">About</a>
       <a href="#">Contact</a>
@@ -456,7 +381,7 @@
               <span class="customer-card__label">For Design Professionals</span>
               <h3 class="customer-card__title">Spec with Confidence</h3>
               <p class="customer-card__desc">From custom millwork to precision hardware — we work with design professionals to source and supply exactly what's on the plans.</p>
-              <a href="#" class="customer-card__link">Learn More</a>
+              <a href="design-professionals.html" class="customer-card__link">Learn More</a>
             </div>
           </article>
 
@@ -481,7 +406,7 @@
               <span class="customer-card__label">For Homeowners</span>
               <h3 class="customer-card__title">Quality for Your Home</h3>
               <p class="customer-card__desc">Upgrade your entry, interior doors or hardware with premium products and expert guidance from our team.</p>
-              <a href="#" class="customer-card__link">Learn More</a>
+              <a href="residential-homeowners.html" class="customer-card__link">Learn More</a>
             </div>
           </article>
 
@@ -507,7 +432,7 @@
         <div class="manufacturers__grid">
 
           <!-- Doors -->
-          <a href="manufacturers.html" class="mfr-card">
+          <a href="doors.html" class="mfr-card">
             <div class="mfr-card__body">
               <h3>Doors</h3>
               <p>Interior and exterior door solutions for residential, commercial and institutional applications.</p>
@@ -519,7 +444,7 @@
           </a>
 
           <!-- Door Automation -->
-          <a href="manufacturers.html" class="mfr-card">
+          <a href="door-automation.html" class="mfr-card">
             <div class="mfr-card__body">
               <h3>Door Automation</h3>
               <p>Automatic operators, access control and powered door systems for commercial and accessibility applications.</p>
@@ -531,7 +456,7 @@
           </a>
 
           <!-- Hardware -->
-          <a href="manufacturers.html" class="mfr-card">
+          <a href="hardware.html" class="mfr-card">
             <div class="mfr-card__body">
               <h3>Hardware</h3>
               <p>Handles, hinges, locks, closers and architectural hardware from the industry's most trusted manufacturers.</p>
@@ -543,7 +468,7 @@
           </a>
 
           <!-- Division 10 -->
-          <a href="manufacturers.html" class="mfr-card">
+          <a href="division-10.html" class="mfr-card">
             <div class="mfr-card__body">
               <h3>Division 10</h3>
               <p>Specialty construction products including toilet partitions, lockers, visual display and washroom accessories.</p>
@@ -660,7 +585,7 @@
             <p>Toll Free: 1.866.769.3667</p>
             <p>Phone: 1-905.335.1638</p>
             <p>Fax: 1.905.335.6822</p>
-            <p>Email: <a href="#">info@alldoorsupply.com</a></p>
+            <p>Email: <a href="mailto:info@alldoorsupply.com">info@alldoorsupply.com</a></p>
             <p>Location: 559 King Forest Court,<br>Burlington, Ontario L7P 5C1</p>
           </address>
         </div>

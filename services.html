@@ -190,8 +190,10 @@
     }
 
     @media (max-width: 768px) {
-      .svc-hero { height: 300px; }
-      .svc-hero h1 { font-size: 46px; }
+      /* Let the hero grow with its copy and reserve the fixed 80px header
+         up top so the heading can never ride up behind the menu bar. */
+      .svc-hero { height: auto; min-height: 340px; padding-top: 80px; }
+      .svc-hero h1 { font-size: 46px; line-height: 1.05; }
       .svc-hero__sub { font-size: 15px; }
 
       .svc-work { padding-block: 64px 56px; }
@@ -234,8 +236,8 @@
             </a>
             <div class="nav__dropdown" role="menu">
               <a href="contractors.html" role="menuitem">Contractors</a>
-              <a href="#" role="menuitem">Design Professionals</a>
-              <a href="#" role="menuitem">Residential Homeowners</a>
+              <a href="design-professionals.html" role="menuitem">Design Professionals</a>
+              <a href="residential-homeowners.html" role="menuitem">Residential Homeowners</a>
             </div>
           </div>
 
@@ -244,10 +246,10 @@
               <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
             <div class="nav__dropdown" role="menu">
-              <a href="#" role="menuitem">Doors</a>
-              <a href="#" role="menuitem">Door Automation</a>
-              <a href="#" role="menuitem">Hardware</a>
-              <a href="#" role="menuitem">Division 10</a>
+              <a href="doors.html" role="menuitem">Doors</a>
+              <a href="door-automation.html" role="menuitem">Door Automation</a>
+              <a href="hardware.html" role="menuitem">Hardware</a>
+              <a href="division-10.html" role="menuitem">Division 10</a>
             </div>
           </div>
 
@@ -277,13 +279,13 @@
       <a href="services.html" aria-current="page">Services</a>
       <a href="#">Who We Service</a>
       <a href="contractors.html" class="nav__mobile-sub">Contractors</a>
-      <a href="#" class="nav__mobile-sub">Design Professionals</a>
-      <a href="#" class="nav__mobile-sub">Residential Homeowners</a>
+      <a href="design-professionals.html" class="nav__mobile-sub">Design Professionals</a>
+      <a href="residential-homeowners.html" class="nav__mobile-sub">Residential Homeowners</a>
       <a href="manufacturers.html">Manufacturers</a>
-      <a href="#" class="nav__mobile-sub">Doors</a>
-      <a href="#" class="nav__mobile-sub">Door Automation</a>
-      <a href="#" class="nav__mobile-sub">Hardware</a>
-      <a href="#" class="nav__mobile-sub">Division 10</a>
+      <a href="doors.html" class="nav__mobile-sub">Doors</a>
+      <a href="door-automation.html" class="nav__mobile-sub">Door Automation</a>
+      <a href="hardware.html" class="nav__mobile-sub">Hardware</a>
+      <a href="division-10.html" class="nav__mobile-sub">Division 10</a>
       <a href="#">Projects</a>
       <a href="#">About</a>
       <a href="#">Contact</a>
@@ -422,7 +424,7 @@
         <div class="manufacturers__grid">
 
           <!-- Doors -->
-          <a href="#" class="mfr-card">
+          <a href="doors.html" class="mfr-card">
             <div class="mfr-card__body">
               <h3>Doors</h3>
               <p>Interior and exterior door solutions for residential, commercial and institutional applications.</p>
@@ -434,7 +436,7 @@
           </a>
 
           <!-- Door Automation -->
-          <a href="#" class="mfr-card">
+          <a href="door-automation.html" class="mfr-card">
             <div class="mfr-card__body">
               <h3>Door Automation</h3>
               <p>Automatic operators, access control and powered door systems for commercial and accessibility applications.</p>
@@ -446,7 +448,7 @@
           </a>
 
           <!-- Hardware -->
-          <a href="#" class="mfr-card">
+          <a href="hardware.html" class="mfr-card">
             <div class="mfr-card__body">
               <h3>Hardware</h3>
               <p>Handles, hinges, locks, closers and architectural hardware from the industry's most trusted manufacturers.</p>
@@ -458,7 +460,7 @@
           </a>
 
           <!-- Division 10 -->
-          <a href="#" class="mfr-card">
+          <a href="division-10.html" class="mfr-card">
             <div class="mfr-card__body">
               <h3>Division 10</h3>
               <p>Specialty construction products including toilet partitions, lockers, visual display and washroom accessories.</p>

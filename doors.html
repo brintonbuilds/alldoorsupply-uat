@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doors — All Door Supply</title>
+  <meta name="description" content="Hollow metal, wood and specialty door solutions from industry-leading manufacturers for commercial, institutional and residential applications." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,600&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="images/ADS_Logo_primary.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css?v=20260718-mfr-grey" />
+
+  <style>
+    /* ============================================================
+       DOORS PAGE — page-specific sections (built to Figma 432:1028)
+       Content width 1200 (1280 max − 40 gutters), matching Figma's
+       1200px content block inside the 1440 frame.
+       ============================================================ */
+
+    .doors-inner { max-width: 1280px; margin-inline: auto; padding-inline: 40px; }
+
+    /* Hero headline (Figma: Barlow Condensed 78/86, white) ------- */
+    .hero-band--doors h1 { font-size: 78px; line-height: 86px; }
+    @media (max-width: 1024px) { .hero-band--doors h1 { font-size: 60px; line-height: 1.04; } }
+    @media (max-width: 768px)  { .hero-band--doors h1 { font-size: 44px; line-height: 1.05; } }
+    @media (max-width: 480px)  { .hero-band--doors h1 { font-size: 38px; } }
+
+    /* Shared red pill eyebrow (Process / Inspiration / Contact) --- */
+    .eyebrow-pill {
+      display: inline-block; background: var(--red); color: #fff;
+      font-family: var(--font-body); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 1px; line-height: normal;
+      padding: 5px 10px; margin-bottom: 16px;
+    }
+    /* Inspiration uses a black label variant (Figma 476:1115). */
+    .eyebrow-pill--dark { background: #000; }
+
+    /* --- Doors intro (Figma 432:1057) --------------------------- */
+    .doors-intro { background: #fff; padding-block: 120px 0; }
+    .doors-intro h2 {
+      font-family: var(--font-head); font-size: 48px; font-weight: 700;
+      color: var(--red); line-height: 1.02; letter-spacing: 0;
+      max-width: 679px; margin-bottom: 24px;
+    }
+    .doors-intro p { font-size: 15px; line-height: 24px; color: #000; max-width: 679px; }
+
+    /* --- Manufacturer card grids (Figma 432:1291 / 446:1208) ---- */
+    .brand-section { background: #fff; padding-block: 84px 0; }
+    .brand-section--last { padding-bottom: 96px; }
+    .brand-section__eyebrow {
+      display: block; font-family: var(--font-body); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 1.65px; color: var(--red);
+      margin-bottom: 12px;
+    }
+    .brand-section__title {
+      font-family: var(--font-head); font-size: 40px; font-weight: 700;
+      color: #231F20; line-height: 1.02; letter-spacing: 0; margin-bottom: 34px;
+    }
+    .brand-grid {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px;
+    }
+    .brand-card {
+      display: flex; flex-direction: column;
+      min-height: 417px; background: #fff;
+      border: 1px solid #D0D1D2; border-radius: 8px;
+      padding: 46px 32px 32px;
+    }
+    .brand-card__logo {
+      height: 72px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 28px;
+    }
+    .brand-card__logo img { max-width: 82%; max-height: 100%; object-fit: contain; }
+    .brand-card__desc { font-size: 14px; line-height: 22.4px; color: #231F20; }
+    .brand-card__link {
+      margin-top: auto; padding-top: 24px;
+      display: inline-flex; align-items: center; gap: 9px;
+      font-family: var(--font-body); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0; color: var(--red);
+      align-self: flex-start;
+    }
+    .brand-card__link::after {
+      content: ''; width: 0; height: 0; border-style: solid;
+      border-width: 4px 0 4px 6px;
+      border-color: transparent transparent transparent var(--red);
+      transition: transform 0.25s ease;
+    }
+    .brand-card:hover .brand-card__link::after { transform: translateX(4px); }
+
+    /* --- Our Process (Figma 464:1122) — dark timeline ----------- */
+    .process { position: relative; overflow: hidden; background: #2E3032; padding-block: 70px 90px; }
+    /* Figma: buildings accent — 1028px wide, centered, top 68.5px, #999999
+       fill blended onto the dark bg via multiply @ 70% (renders as a dark
+       charcoal silhouette). */
+    .process__bg {
+      position: absolute; top: 68.5px; left: 50%; transform: translateX(-50%);
+      width: 1028px; height: auto; max-width: none;
+      mix-blend-mode: multiply; opacity: 0.7; pointer-events: none;
+    }
+    .process__inner { position: relative; z-index: 1; max-width: 1440px; margin-inline: auto; padding-inline: 120px; }
+    .process__heading {
+      font-family: var(--font-head); font-size: 48px; font-weight: 700; color: #fff;
+      line-height: 1.02; letter-spacing: 0; margin-bottom: 70px;
+    }
+    .process__timeline { position: relative; display: flex; min-height: 520px; }
+    .process__line { position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: rgba(255,255,255,0.22); }
+    .process__col { flex: 1; position: relative; padding-inline: 8px; }
+    .process__content { position: absolute; left: 8px; right: 8px; }
+    .process__col--up   .process__content { bottom: calc(50% + 80px); }
+    .process__col--down .process__content { top: calc(50% + 80px); }
+    .process__num  { font-family: var(--font-head); font-weight: 700; font-size: 15px; color: var(--red); margin-bottom: 8px; }
+    .process__title{ font-family: var(--font-head); font-weight: 700; font-size: 21px; color: #fff; line-height: 1; margin-bottom: 12px; }
+    .process__desc { font-size: 12px; line-height: 18px; color: rgba(255,255,255,0.75); max-width: 200px; }
+    .process__dot {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 16px; height: 16px; border-radius: 50%; background: var(--red);
+      z-index: 2;
+    }
+    .process__col::after {
+      content: ''; position: absolute; left: 50%; transform: translateX(-50%);
+      width: 2px; background: var(--red);
+    }
+    .process__col--up::after   { bottom: 50%; height: 80px; }
+    .process__col--down::after { top: 50%; height: 80px; }
+
+    /* --- Door Inspiration (Figma 476:1115) — product showcase carousel
+       Section: 1440x1075, bg #D0D2D3 @ 20%. Header left @120px; the
+       showcase (door image + info) is centred; red arrows flank it and
+       5 pagination dots sit centred beneath. --------------------------- */
+    .inspiration { background: rgba(208, 210, 211, 0.2); padding: 80px 0 101px; overflow: hidden; }
+    .inspiration__inner { max-width: 1440px; margin-inline: auto; padding-inline: 120px; }
+    .inspiration h2 {
+      font-family: var(--font-head); font-size: 48px; font-weight: 700; color: var(--red);
+      line-height: 1.02; letter-spacing: 0; margin-bottom: 16px; max-width: 700px;
+    }
+    .inspiration__sub { font-size: 15px; line-height: 24px; color: #676A6D; max-width: 700px; margin-bottom: 0; }
+
+    /* Carousel row: prev arrow · centred stage · next arrow (≈1071px span). */
+    .inspiration__carousel {
+      position: relative; max-width: 1071px; margin: 45px auto 0;
+      display: flex; align-items: center; justify-content: center; gap: 22px;
+    }
+    .inspiration__stage { position: relative; flex: 0 1 995px; min-height: 600px; }
+    .inspiration__slide {
+      position: absolute; inset: 0; display: flex; align-items: center;
+      justify-content: center; gap: 88px;
+      opacity: 0; visibility: hidden; transition: opacity 0.45s ease;
+    }
+    .inspiration__slide.is-active { opacity: 1; visibility: visible; position: relative; min-height: 600px; }
+    .inspiration__figure { flex: 0 0 176px; align-self: center; }
+    .inspiration__figure img { display: block; width: 176px; height: 573px; object-fit: contain; object-position: center; }
+    .inspiration__info { flex: 0 0 401px; max-width: 401px; }
+    .inspiration__logo { margin-bottom: 26px; display: flex; align-items: flex-end; min-height: 28px; }
+    .inspiration__logo img { max-height: 44px; max-width: 213px; width: auto; height: auto; display: block; }
+    .inspiration__name {
+      font-family: var(--font-head); font-size: 48px; font-weight: 700; color: var(--red);
+      line-height: 1; letter-spacing: 0; margin: 0 0 6px;
+    }
+    .inspiration__tagline {
+      font-family: var(--font-head); font-size: 28px; font-weight: 500; color: #A6A6AB;
+      line-height: 1.1; letter-spacing: 0; margin: 0 0 26px; max-width: 360px;
+    }
+    .inspiration__features { list-style: none; margin: 0 0 32px; padding: 0; }
+    .inspiration__features li {
+      position: relative; padding-left: 20px;
+      font-family: var(--font-body); font-size: 15px; line-height: 24px; color: #000;
+    }
+    .inspiration__features li::before {
+      content: ''; position: absolute; left: 3px; top: 10px;
+      width: 4px; height: 4px; border-radius: 50%; background: #676A6D;
+    }
+    .inspiration__cta {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 24px; border: 1.5px solid var(--red); background: transparent;
+      color: #000; font-family: var(--font-body); font-size: 13px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;
+      transition: background 0.2s, color 0.2s;
+    }
+    .inspiration__cta:hover, .inspiration__cta:focus-visible { background: var(--red); color: #fff; }
+
+    .inspiration__arrow {
+      flex: 0 0 auto; width: 16px; height: 40px; border: none; background: transparent;
+      padding: 0; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+    }
+    .inspiration__arrow svg { width: 16px; height: 20px; display: block; }
+    .inspiration__arrow--prev svg { transform: scaleX(-1); }
+    .inspiration__arrow:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+
+    .inspiration__dots { display: flex; justify-content: center; gap: 12px; margin-top: 60px; }
+    .inspiration__dot {
+      width: 8px; height: 8px; border-radius: 50%; border: none; padding: 0;
+      background: rgba(103, 106, 109, 0.3); cursor: pointer; transition: background 0.2s;
+    }
+    .inspiration__dot.is-active { background: var(--red); }
+    .inspiration__dot:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .inspiration__slide { transition: none; }
+    }
+
+    /* Inspiration — responsive (laptop / tablet / mobile) */
+    @media (max-width: 1180px) {
+      .inspiration__carousel { max-width: 100%; padding-inline: 40px; column-gap: 18px; }
+      .inspiration__stage { flex: 1 1 auto; }
+    }
+    @media (max-width: 900px) {
+      .inspiration__slide { gap: 64px; }
+      .inspiration__info { flex: 0 1 401px; }
+    }
+    @media (max-width: 760px) {
+      .inspiration { padding: 56px 0 72px; }
+      .inspiration__carousel { padding-inline: 24px; column-gap: 10px; margin-top: 36px; }
+      .inspiration__stage { min-height: 0; }
+      .inspiration__slide, .inspiration__slide.is-active { flex-direction: column; align-items: center; gap: 30px; text-align: left; min-height: 0; }
+      .inspiration__figure img { width: 150px; height: 488px; }
+      .inspiration__info { flex: 1 1 auto; max-width: 420px; }
+      .inspiration__dots { margin-top: 32px; }
+    }
+    @media (max-width: 480px) {
+      .inspiration__figure img { width: 118px; height: 384px; }
+      .inspiration__name { font-size: 40px; }
+      .inspiration__tagline { font-size: 24px; }
+      .inspiration__carousel { column-gap: 6px; padding-inline: 12px; }
+    }
+
+    /* --- Contact Form (Figma 479:1115) — underline inputs -------- */
+    .contact-form { background: #fff; padding-block: 90px 96px; }
+    .contact-form__inner { max-width: 760px; margin-inline: auto; padding-inline: 20px; }
+    .contact-form h2 {
+      font-family: var(--font-head); font-size: 48px; font-weight: 700; color: #231F20;
+      line-height: 1.02; letter-spacing: 0; margin-bottom: 14px;
+    }
+    .contact-form__sub { font-size: 15px; line-height: 24px; color: #000; margin-bottom: 40px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 40px; }
+    .form-field { display: flex; flex-direction: column; }
+    .form-field--full { grid-column: 1 / -1; }
+    .form-field label {
+      font-family: var(--font-body); font-size: 13px; font-weight: 600; color: #231F20;
+      margin-bottom: 10px;
+    }
+    .form-field label .req { color: var(--red); margin-left: 2px; }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      font-family: var(--font-body); font-size: 15px; color: #231F20;
+      background: transparent; border: none; border-bottom: 1px solid #C7C7CC;
+      border-radius: 0; padding: 8px 2px; width: 100%;
+    }
+    .form-field textarea { min-height: 96px; resize: vertical; }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: #9a9a9a; }
+    .form-field select { color: #9a9a9a; }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { outline: none; border-bottom-color: var(--red); }
+    .form-submit {
+      margin-top: 36px; display: inline-flex; align-items: center; justify-content: center;
+      height: 48px; padding-inline: 40px; background: var(--red); color: #fff;
+      font-family: var(--font-body); font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+      text-transform: uppercase; border: none; cursor: pointer; transition: background 0.2s;
+    }
+    .form-submit:hover { background: var(--red-hover); }
+
+    /* --- Responsive -------------------------------------------- */
+    @media (max-width: 1100px) {
+      .brand-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .process__inner { padding-inline: 40px; }
+      /* Timeline stacks vertically on smaller screens */
+      .process__timeline { flex-direction: column; gap: 32px; min-height: 0; }
+      .process__line, .process__dot { display: none; }
+      .process__col { padding-inline: 0; padding-left: 20px; border-left: 2px solid rgba(197,32,40,0.6); }
+      .process__content { position: static; }
+      .process__col--up .process__content,
+      .process__col--down .process__content { bottom: auto; top: auto; }
+      .process__col::after { display: none; }
+      .process__desc { max-width: none; }
+    }
+    @media (max-width: 768px) {
+      .doors-intro { padding-block: 64px 0; }
+      .doors-inner, .inspiration__inner { padding-inline: 20px; }
+      .brand-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .doors-intro h2, .inspiration h2, .contact-form h2, .process__heading { font-size: 36px; }
+      .brand-section__title { font-size: 30px; }
+      .inspiration__arrow { width: 30px; }
+      .process__bg { width: 760px; top: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <header class="nav nav--hero" id="nav" role="banner">
+    <div class="container">
+      <div class="nav__inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav__logo" aria-label="All Door Supply — Home">
+          <img src="images/ADS_Logo_primary.svg" alt="All Door Supply" class="nav__logo-img" />
+        </a>
+
+        <!-- Desktop links -->
+        <nav class="nav__links" aria-label="Main navigation">
+          <a href="services.html">Services</a>
+
+          <div class="nav__item">
+            <a href="#" class="nav__toplink" aria-haspopup="true"><span class="nav__label">Who We Service</span>
+              <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav__dropdown" role="menu">
+              <a href="contractors.html" role="menuitem">Contractors</a>
+              <a href="design-professionals.html" role="menuitem">Design Professionals</a>
+              <a href="residential-homeowners.html" role="menuitem">Residential Homeowners</a>
+            </div>
+          </div>
+
+          <div class="nav__item">
+            <a href="manufacturers.html" class="nav__toplink is-section" aria-haspopup="true"><span class="nav__label">Manufacturers</span>
+              <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav__dropdown" role="menu">
+              <a href="doors.html" role="menuitem" aria-current="page">Doors</a>
+              <a href="door-automation.html" role="menuitem">Door Automation</a>
+              <a href="hardware.html" role="menuitem">Hardware</a>
+              <a href="division-10.html" role="menuitem">Division 10</a>
+            </div>
+          </div>
+
+          <a href="#">Projects</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#" class="btn-nav" aria-label="Request a quote">Request a Quote</a>
+        </nav>
+
+        <!-- Hamburger -->
+        <button
+          class="nav__hamburger"
+          id="hamburger"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile nav -->
+    <nav class="nav__mobile" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="services.html">Services</a>
+      <a href="#">Who We Service</a>
+      <a href="contractors.html" class="nav__mobile-sub">Contractors</a>
+      <a href="design-professionals.html" class="nav__mobile-sub">Design Professionals</a>
+      <a href="residential-homeowners.html" class="nav__mobile-sub">Residential Homeowners</a>
+      <a href="manufacturers.html">Manufacturers</a>
+      <a href="doors.html" class="nav__mobile-sub" aria-current="page">Doors</a>
+      <a href="door-automation.html" class="nav__mobile-sub">Door Automation</a>
+      <a href="hardware.html" class="nav__mobile-sub">Hardware</a>
+      <a href="division-10.html" class="nav__mobile-sub">Division 10</a>
+      <a href="#">Projects</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#" class="btn-nav">Request a Quote</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero-band hero-band--doors" aria-label="Doors">
+      <div class="hero-band__image">
+        <img src="images/Manufacturer%20Card%20-%20Doors%20Image.png" alt="Doors for every application" loading="eager" />
+      </div>
+      <div class="hero-band__overlay" aria-hidden="true"></div>
+      <div class="hero-band__content">
+        <h1>Doors Built for Every Application.</h1>
+        <p class="hero-band__sub">From residential entries to commercial and institutional builds, All Door Supply carries a curated range of door products from the industry's most trusted manufacturers.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DOORS INTRO
+         ============================================================ -->
+    <section class="doors-intro" aria-label="Doors overview">
+      <div class="doors-inner">
+        <h2>The Right Door for Every Opening.</h2>
+        <p>All Door Supply partners with leading door manufacturers to offer an extensive selection of interior and exterior door solutions — from hollow metal and wood to specialty and custom applications. Whether you're specifying for a high-traffic commercial space or finishing a residential renovation, our team helps you find the right product from the right manufacturer, backed by 35 years of industry expertise.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         HOLLOW METAL DOOR & FRAME MANUFACTURERS
+         ============================================================ -->
+    <section class="brand-section" aria-label="Hollow metal door and frame manufacturers">
+      <div class="doors-inner">
+        <span class="brand-section__eyebrow">Hollow Metal Doors</span>
+        <h2 class="brand-section__title">Hollow Metal Door &amp; Frame Manufacturers</h2>
+        <div class="brand-grid">
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-daybar.svg" alt="Daybar" /></div>
+            <p class="brand-card__desc">North America's largest independent commercial steel door and frame manufacturer. Daybar delivers high-performance hollow metal doors and frames for commercial, institutional and residential applications — engineered for longevity and manufactured in Canada and the US.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Daybar Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-artek@2x.png" alt="Artek Door" /></div>
+            <p class="brand-card__desc">A Canadian-owned manufacturer with over 30 years of experience producing fire rated and non-rated steel doors and frames for commercial, industrial, institutional and high-rise applications. Artek is built on a reputation for quality, precision and reliable service across Canada and the US.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Artek Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-vision.svg" alt="Vision Hollow Metal" /></div>
+            <p class="brand-card__desc">An Ontario-based manufacturer specializing in hollow metal steel doors and frames. Vision combines over 130 years of combined management expertise with efficient production, flexible lead times and a warehouse stocked for quick shipment.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Vision Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-baron-fleming.svg" alt="Fleming Door Products" /></div>
+            <p class="brand-card__desc">Part of the ASSA ABLOY Group, Fleming Door Products is a recognized leader in hollow metal doors and frames. Fleming brings engineering precision, broad product range and the backing of a global security solutions leader to every commercial and institutional project.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Fleming Products</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WOOD DOOR & FRAME MANUFACTURERS
+         ============================================================ -->
+    <section class="brand-section brand-section--last" aria-label="Wood door and frame manufacturers">
+      <div class="doors-inner">
+        <span class="brand-section__eyebrow">Wood Doors</span>
+        <h2 class="brand-section__title">Wood Door &amp; Frame Manufacturers</h2>
+        <div class="brand-grid">
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-jeld-wen@2x.png" alt="Jeld-Wen" /></div>
+            <p class="brand-card__desc">A proudly Canadian manufacturer with over 50 years of experience producing wood, fiberglass and steel doors and windows. JELD-WEN offers a full range of residential solutions designed for performance, energy efficiency and lasting curb appeal.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Jeld-Wen Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-forte@2x.png" alt="Baillargeon — Forte Opening Solutions" /></div>
+            <p class="brand-card__desc">A Quebec-based manufacturer with over 40 years specializing in premium architectural wood doors and frames. Now part of Forte Opening Solutions, Baillargeon serves healthcare, education and hospitality projects across North America.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Baillargeon Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-metrie.svg" alt="Metrie" /></div>
+            <p class="brand-card__desc">North America's largest manufacturer of solid wood and composite moulding, trim and interior doors, with over 100 years of experience. Metrie delivers a broad assortment of door solutions backed by deep millwork expertise and coast-to-coast distribution.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Metrie Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-visser@2x.png" alt="Visser Manufacturing" /></div>
+            <p class="brand-card__desc">An Ottawa-based commercial wood door manufacturer with over 33 years in the industry. Visser specializes in wood doors and frames for commercial applications, offering pre-machining, finishing and complete hardware installation with advanced CNC precision.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Visser Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-trimlite@2x.png" alt="Trimlite" /></div>
+            <p class="brand-card__desc">Operating since 1982 out of Vancouver, BC, Trimlite has grown into one of North America's leading door manufacturers. Trimlite produces premium exterior and interior wood doors, decorative glass and millwork through a trusted dealer network across North America.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Trimlite Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-vt-industries@2x.png" alt="VT Industries" /></div>
+            <p class="brand-card__desc">A leading commercial wood door manufacturer known for quality craftsmanship and a broad range of design options. VT Industries serves contractors, distributors and design professionals across North America with fast-turnaround commercial door programs.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore VT Industries Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-ambico@2x.png" alt="Ambico" /></div>
+            <p class="brand-card__desc">An Ottawa-based, family-owned manufacturer with over 70 years of expertise in specialized doors, frames and windows. Ambico engineers acoustic, blast-resistant, bullet-resistant and RF-shielding assemblies for government, healthcare and security-critical applications.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Ambico Products</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DOOR INSPIRATION — spec-sheet carousel
+         ============================================================ -->
+    <section class="inspiration" aria-label="Door inspiration">
+      <div class="inspiration__inner">
+        <span class="eyebrow-pill eyebrow-pill--dark">Door Inspiration</span>
+        <h2>Find Your Inspiration.</h2>
+        <p class="inspiration__sub">Browse our curated collection of door installations — from classic residential entries to striking commercial applications. Click any image to explore it in detail.</p>
+      </div>
+
+      <div class="inspiration__carousel" role="group" aria-roledescription="carousel" aria-label="Featured door products">
+        <button class="inspiration__arrow inspiration__arrow--prev" type="button" aria-label="Previous product" data-insp-prev>
+          <svg viewBox="0 0 16 20" aria-hidden="true"><path d="M2 2l12 8-12 8V2z" fill="#C52028"/></svg>
+        </button>
+
+        <div class="inspiration__stage" id="insp-stage" aria-live="polite">
+
+          <article class="inspiration__slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 5">
+            <div class="inspiration__figure"><img src="images/inspiration/daybar-delta-tr.png" width="176" height="573" alt="Daybar Delta TR temperature-rise-rated hollow metal door" loading="lazy" /></div>
+            <div class="inspiration__info">
+              <div class="inspiration__logo"><img src="images/inspiration/logo-daybar.svg" alt="Daybar" /></div>
+              <h3 class="inspiration__name">Delta TR</h3>
+              <p class="inspiration__tagline">Enhanced fire protection for critical life safety requirements</p>
+              <ul class="inspiration__features">
+                <li>Premium fire protection</li>
+                <li>450&deg;F / 250&deg;C temperature rise</li>
+                <li>10-year warranty</li>
+                <li>Full size closer reinforcing</li>
+                <li>Temperature rise rated core</li>
+                <li>Beveled edges</li>
+                <li>7-Gauge hinge reinforcing</li>
+                <li>18-Gauge A60 galvanneal</li>
+                <li>Water-based primer finish</li>
+              </ul>
+              <a class="inspiration__cta" href="manufacturers.html">View Product</a>
+            </div>
+          </article>
+
+          <article class="inspiration__slide" role="group" aria-roledescription="slide" aria-label="2 of 5" hidden>
+            <div class="inspiration__figure"><img src="images/inspiration/daybar-delta-tr.png" alt="Fleming hollow metal steel door" loading="lazy" /></div>
+            <div class="inspiration__info">
+              <div class="inspiration__logo"><img src="images/logos/logo-baron-fleming.svg" alt="Fleming Door Products" /></div>
+              <h3 class="inspiration__name">Hollow Metal Doors</h3>
+              <p class="inspiration__tagline">ASSA ABLOY engineering for commercial and institutional openings</p>
+              <ul class="inspiration__features">
+                <li>Part of the ASSA ABLOY Group</li>
+                <li>Recognized leader in hollow metal</li>
+                <li>Broad, standardized product range</li>
+                <li>Engineering precision</li>
+                <li>Global security-solutions backing</li>
+                <li>Commercial &amp; institutional rated</li>
+              </ul>
+              <a class="inspiration__cta" href="manufacturers.html">View Product</a>
+            </div>
+          </article>
+
+          <article class="inspiration__slide" role="group" aria-roledescription="slide" aria-label="3 of 5" hidden>
+            <div class="inspiration__figure"><img src="images/inspiration/daybar-delta-tr.png" alt="Artek Door steel door and frame" loading="lazy" /></div>
+            <div class="inspiration__info">
+              <div class="inspiration__logo"><img src="images/logos/logo-artek@2x.png" alt="Artek Door" /></div>
+              <h3 class="inspiration__name">Steel Doors &amp; Frames</h3>
+              <p class="inspiration__tagline">Fire-rated and non-rated assemblies built for demanding projects</p>
+              <ul class="inspiration__features">
+                <li>Canadian-owned, 30+ years</li>
+                <li>Fire-rated &amp; non-rated steel</li>
+                <li>Commercial, industrial &amp; institutional</li>
+                <li>High-rise applications</li>
+                <li>Precision manufacturing</li>
+                <li>Reliable service across Canada &amp; the US</li>
+              </ul>
+              <a class="inspiration__cta" href="manufacturers.html">View Product</a>
+            </div>
+          </article>
+
+          <article class="inspiration__slide" role="group" aria-roledescription="slide" aria-label="4 of 5" hidden>
+            <div class="inspiration__figure"><img src="images/inspiration/daybar-delta-tr.png" alt="Vision hollow metal door system" loading="lazy" /></div>
+            <div class="inspiration__info">
+              <div class="inspiration__logo"><img src="images/logos/logo-vision.svg" alt="Vision Hollow Metal" /></div>
+              <h3 class="inspiration__name">Hollow Metal Systems</h3>
+              <p class="inspiration__tagline">Efficient production and flexible lead times, stocked for quick shipment</p>
+              <ul class="inspiration__features">
+                <li>Ontario-based specialist</li>
+                <li>130+ years combined expertise</li>
+                <li>Efficient production</li>
+                <li>Flexible lead times</li>
+                <li>Warehouse-stocked for quick shipment</li>
+              </ul>
+              <a class="inspiration__cta" href="manufacturers.html">View Product</a>
+            </div>
+          </article>
+
+          <article class="inspiration__slide" role="group" aria-roledescription="slide" aria-label="5 of 5" hidden>
+            <div class="inspiration__figure"><img src="images/Manufacturer%20Card%20-%20Doors%20Image.png" alt="Jeld-Wen residential wood entry door" loading="lazy" /></div>
+            <div class="inspiration__info">
+              <div class="inspiration__logo"><img src="images/logos/logo-jeld-wen@2x.png" alt="Jeld-Wen" /></div>
+              <h3 class="inspiration__name">Wood &amp; Fibreglass Doors</h3>
+              <p class="inspiration__tagline">Residential solutions built for performance and lasting curb appeal</p>
+              <ul class="inspiration__features">
+                <li>50+ years of experience</li>
+                <li>Wood, fibreglass &amp; steel doors</li>
+                <li>Full residential range</li>
+                <li>Energy-efficient designs</li>
+                <li>Performance-engineered</li>
+                <li>Lasting curb appeal</li>
+              </ul>
+              <a class="inspiration__cta" href="manufacturers.html">View Product</a>
+            </div>
+          </article>
+
+        </div>
+
+        <button class="inspiration__arrow inspiration__arrow--next" type="button" aria-label="Next product" data-insp-next>
+          <svg viewBox="0 0 16 20" aria-hidden="true"><path d="M2 2l12 8-12 8V2z" fill="#C52028"/></svg>
+        </button>
+      </div>
+
+      <div class="inspiration__dots" id="insp-dots" role="tablist" aria-label="Choose product">
+        <button class="inspiration__dot is-active" type="button" role="tab" aria-selected="true" aria-label="Daybar Delta TR"></button>
+        <button class="inspiration__dot" type="button" role="tab" aria-selected="false" aria-label="Fleming Hollow Metal Doors"></button>
+        <button class="inspiration__dot" type="button" role="tab" aria-selected="false" aria-label="Artek Steel Doors &amp; Frames"></button>
+        <button class="inspiration__dot" type="button" role="tab" aria-selected="false" aria-label="Vision Hollow Metal Systems"></button>
+        <button class="inspiration__dot" type="button" role="tab" aria-selected="false" aria-label="Jeld-Wen Wood &amp; Fibreglass Doors"></button>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         OUR PROCESS — dark timeline
+         ============================================================ -->
+    <section class="process" aria-label="How we work with you">
+      <img class="process__bg" src="images/process-buildings.svg" alt="" aria-hidden="true" />
+      <div class="process__inner">
+        <span class="eyebrow-pill">Our Process</span>
+        <h2 class="process__heading">How We Work With You.</h2>
+
+        <div class="process__timeline">
+          <div class="process__line" aria-hidden="true"></div>
+
+          <div class="process__col process__col--up">
+            <div class="process__content">
+              <p class="process__num">01</p>
+              <h3 class="process__title">Consultation</h3>
+              <p class="process__desc">We start by understanding your project requirements, specifications, timelines and budget — so we can point you to exactly the right products.</p>
+            </div>
+            <span class="process__dot" aria-hidden="true"></span>
+          </div>
+
+          <div class="process__col process__col--down">
+            <div class="process__content">
+              <p class="process__num">02</p>
+              <h3 class="process__title">Product Selection</h3>
+              <p class="process__desc">Our team identifies the right door products, hardware and manufacturers to match your application, whether residential, commercial or institutional.</p>
+            </div>
+            <span class="process__dot" aria-hidden="true"></span>
+          </div>
+
+          <div class="process__col process__col--up">
+            <div class="process__content">
+              <p class="process__num">03</p>
+              <h3 class="process__title">Quoting</h3>
+              <p class="process__desc">We provide accurate pricing and lead times based on your confirmed specifications — no surprises, no hidden costs.</p>
+            </div>
+            <span class="process__dot" aria-hidden="true"></span>
+          </div>
+
+          <div class="process__col process__col--down">
+            <div class="process__content">
+              <p class="process__num">04</p>
+              <h3 class="process__title">Order &amp; Procurement</h3>
+              <p class="process__desc">Once approved, we place orders directly with our manufacturer network and proactively manage delivery scheduling to keep your project on track.</p>
+            </div>
+            <span class="process__dot" aria-hidden="true"></span>
+          </div>
+
+          <div class="process__col process__col--up">
+            <div class="process__content">
+              <p class="process__num">05</p>
+              <h3 class="process__title">Delivery &amp; Support</h3>
+              <p class="process__desc">We coordinate delivery to site and remain available throughout the project lifecycle for questions, adjustments or additional requirements.</p>
+            </div>
+            <span class="process__dot" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT FORM — Request a Quote
+         ============================================================ -->
+    <section class="contact-form" aria-label="Request a quote">
+      <div class="contact-form__inner">
+        <span class="eyebrow-pill">Get in Touch</span>
+        <h2>Request a Quote.</h2>
+        <p class="contact-form__sub">Fill out the form below and a member of our team will be in touch within one business day.</p>
+
+        <form class="doors-quote-form" action="#" method="post" novalidate>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="q-name">Full Name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="q-name" name="name" placeholder="John Smith" required />
+            </div>
+            <div class="form-field">
+              <label for="q-company">Company</label>
+              <input type="text" id="q-company" name="company" placeholder="Company Name" />
+            </div>
+            <div class="form-field">
+              <label for="q-email">Email Address <span class="req" aria-hidden="true">*</span></label>
+              <input type="email" id="q-email" name="email" placeholder="john@company.com" required />
+            </div>
+            <div class="form-field">
+              <label for="q-phone">Phone Number <span class="req" aria-hidden="true">*</span></label>
+              <input type="tel" id="q-phone" name="phone" placeholder="(xxx) xxx-xxxx" required />
+            </div>
+            <div class="form-field form-field--full">
+              <label for="q-type">Project Type <span class="req" aria-hidden="true">*</span></label>
+              <select id="q-type" name="project_type" required>
+                <option value="" disabled selected>Select a project type</option>
+                <option value="commercial">Commercial</option>
+                <option value="institutional">Institutional</option>
+                <option value="industrial">Industrial</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-field form-field--full">
+              <label for="q-message">Message <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="q-message" name="message" placeholder="Tell us about your project…" required></textarea>
+            </div>
+          </div>
+          <button type="submit" class="form-submit">Submit</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__logo">
+          <img src="images/ADS_Logo_primary.svg" alt="All Door Supply" class="footer__logo-img" />
+        </div>
+        <div class="footer__col">
+          <h4>Contact Us</h4>
+          <address>
+            <p>Toll Free: 1.866.769.3667</p>
+            <p>Phone: 1-905.335.1638</p>
+            <p>Fax: 1.905.335.6822</p>
+            <p>Email: <a href="mailto:info@alldoorsupply.com">info@alldoorsupply.com</a></p>
+            <p>Location: 559 King Forest Court,<br>Burlington, Ontario L7P 5C1</p>
+          </address>
+        </div>
+        <div class="footer__col">
+          <h4>Navigate</h4>
+          <nav aria-label="Footer navigation">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="#">Who We Service</a>
+            <a href="manufacturers.html">Manufacturers</a>
+            <a href="#">Projects</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="#">Request a Quote</a>
+          </nav>
+        </div>
+        <div class="footer__col">
+          <h4>Hours</h4>
+          <p>Showroom &amp; Warehouse</p>
+          <p>Mon – Fri: 7:30am – 4:30pm</p>
+          <br/>
+          <p class="hours-highlight">24 Hour Service for<br>Established Customers</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>© 2026 All Door Supply. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    /* Door Inspiration — product showcase carousel */
+    (function () {
+      var stage = document.getElementById('insp-stage');
+      var dotsWrap = document.getElementById('insp-dots');
+      if (!stage || !dotsWrap) return;
+      var slides = Array.prototype.slice.call(stage.querySelectorAll('.inspiration__slide'));
+      var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll('.inspiration__dot'));
+      var prev = document.querySelector('[data-insp-prev]');
+      var next = document.querySelector('[data-insp-next]');
+      var current = 0;
+
+      function show(i) {
+        current = (i + slides.length) % slides.length;
+        slides.forEach(function (s, n) {
+          var on = n === current;
+          s.classList.toggle('is-active', on);
+          if (on) { s.removeAttribute('hidden'); } else { s.setAttribute('hidden', ''); }
+        });
+        dots.forEach(function (d, n) {
+          var on = n === current;
+          d.classList.toggle('is-active', on);
+          d.setAttribute('aria-selected', on ? 'true' : 'false');
+          d.setAttribute('tabindex', on ? '0' : '-1');
+        });
+      }
+
+      dots.forEach(function (d, n) { d.addEventListener('click', function () { show(n); }); });
+      if (prev) prev.addEventListener('click', function () { show(current - 1); });
+      if (next) next.addEventListener('click', function () { show(current + 1); });
+
+      /* Keyboard: arrow keys move between products when a control is focused. */
+      dotsWrap.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1); dots[current].focus(); }
+        else if (e.key === 'ArrowRight') { e.preventDefault(); show(current + 1); dots[current].focus(); }
+        else if (e.key === 'Home') { e.preventDefault(); show(0); dots[current].focus(); }
+        else if (e.key === 'End') { e.preventDefault(); show(slides.length - 1); dots[current].focus(); }
+      });
+
+      show(0);
+    })();
+  </script>
+</body>
+</html>
