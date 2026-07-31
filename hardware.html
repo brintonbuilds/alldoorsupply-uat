@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hardware — All Door Supply</title>
+  <meta name="description" content="Locksets, closers, exit devices, hinges, pulls and specialty hardware from ASSA ABLOY, Allegion, Dormakaba, Taymor, Emtek and more, for commercial, institutional and residential applications." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,600&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="images/ADS_Logo_primary.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css?v=20260718-mfr-grey" />
+
+  <style>
+    /* ============================================================
+       HARDWARE PAGE — page-specific sections
+       (built to Figma 668:1332 — same shared component system as
+       Doors / Door Automation)
+       ============================================================ */
+
+    .hw-inner { max-width: 1280px; margin-inline: auto; padding-inline: 40px; }
+
+    /* Hero headline (Figma: Barlow Condensed 78/86, white) --------- */
+    .hero-band--hardware h1 { font-size: 78px; line-height: 86px; }
+    @media (max-width: 1024px) { .hero-band--hardware h1 { font-size: 60px; line-height: 1.04; } }
+    @media (max-width: 768px)  { .hero-band--hardware h1 { font-size: 44px; line-height: 1.05; } }
+    @media (max-width: 480px)  { .hero-band--hardware h1 { font-size: 38px; } }
+
+    /* Shared red pill eyebrow (Process / Contact) ------------------ */
+    .eyebrow-pill {
+      display: inline-block; background: var(--red); color: #fff;
+      font-family: var(--font-body); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 1px; line-height: normal;
+      padding: 5px 10px; margin-bottom: 16px;
+    }
+    /* Inspiration uses a black label variant (Figma 668:1392). */
+    .eyebrow-pill--dark { background: #000; }
+
+    /* --- Hardware intro (Figma 668:1506) --------------------------- */
+    .hw-intro { background: #fff; padding-block: 120px 87px; }
+    .hw-intro h2 {
+      font-family: var(--font-head); font-size: 48px; font-weight: 700;
+      color: var(--red); line-height: 1.02; letter-spacing: 0;
+      max-width: 679px; margin-bottom: 24px;
+    }
+    .hw-intro p { font-size: 15px; line-height: 24px; color: #000; max-width: 679px; }
+
+    /* --- Manufacturer card grids (Figma 668:1457 / 668:1435 / 669:1741) */
+    .brand-section { background: #fff; padding-block: 84px 6px; }
+    .brand-section__eyebrow {
+      display: block; font-family: var(--font-body); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 1.65px; color: var(--red);
+      margin-bottom: 12px;
+    }
+    .brand-section__title {
+      font-family: var(--font-head); font-size: 40px; font-weight: 700;
+      color: #231F20; line-height: 1.02; letter-spacing: 0; margin-bottom: 34px;
+    }
+    .brand-grid {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px;
+    }
+    .brand-card {
+      display: flex; flex-direction: column;
+      min-height: 417px; background: #fff;
+      border: 1px solid #D0D1D2; border-radius: 8px;
+      padding: 46px 32px 32px;
+    }
+    .brand-card__logo {
+      height: 72px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 28px;
+    }
+    .brand-card__logo img { max-width: 82%; max-height: 100%; object-fit: contain; }
+    .brand-card__desc { font-size: 14px; line-height: 22.4px; color: #231F20; }
+    .brand-card__link {
+      margin-top: auto; padding-top: 24px;
+      display: inline-flex; align-items: center; gap: 9px;
+      font-family: var(--font-body); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0; color: var(--red);
+      align-self: flex-start;
+    }
+    .brand-card__link::after {
+      content: ''; width: 0; height: 0; border-style: solid;
+      border-width: 4px 0 4px 6px;
+      border-color: transparent transparent transparent var(--red);
+      transition: transform 0.25s ease;
+    }
+    .brand-card:hover .brand-card__link::after { transform: translateX(4px); }
+
+    /* Commercial section carries a 2-row, 6-card grid (Figma 979px
+       tall vs the single-row sections' 537px), so it gets its own
+       top/bottom rhythm rather than the shared .brand-section default. */
+    .brand-section--commercial { padding-block: 74px 61px; }
+    .brand-section--residential { padding-block: 56px 78px; }
+    .brand-section--specialty { padding-block: 56px 132px; }
+
+    /* --- Our Process (Figma 668:1393) — dark timeline, identical
+       component/copy to the Doors / Door Automation pages. ---------- */
+    .process { position: relative; overflow: hidden; background: #2E3032; padding-block: 70px 103px; }
+    .process__bg {
+      position: absolute; top: 68.5px; left: 50%; transform: translateX(-50%);
+      width: 1028px; height: auto; max-width: none;
+      mix-blend-mode: multiply; opacity: 0.7; pointer-events: none;
+    }
+    .process__inner { position: relative; z-index: 1; max-width: 1440px; margin-inline: auto; padding-inline: 120px; }
+    .process__heading {
+      font-family: var(--font-head); font-size: 48px; font-weight: 700; color: #fff;
+      line-height: 1.02; letter-spacing: 0; margin-bottom: 70px;
+    }
+    .process__timeline { position: relative; display: flex; min-height: 520px; }
+    .process__line { position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: rgba(255,255,255,0.22); }
+    .process__col { flex: 1; position: relative; padding-inline: 8px; }
+    .process__content { position: absolute; left: 8px; right: 8px; }
+    .process__col--up   .process__content { bottom: calc(50% + 80px); }
+    .process__col--down .process__content { top: calc(50% + 80px); }
+    .process__num  { font-family: var(--font-head); font-weight: 700; font-size: 15px; color: var(--red); margin-bottom: 8px; }
+    .process__title{ font-family: var(--font-head); font-weight: 700; font-size: 21px; color: #fff; line-height: 1; margin-bottom: 12px; }
+    .process__desc { font-size: 12px; line-height: 18px; color: rgba(255,255,255,0.75); max-width: 200px; }
+    .process__dot {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 16px; height: 16px; border-radius: 50%; background: var(--red);
+      z-index: 2;
+    }
+    .process__col::after {
+      content: ''; position: absolute; left: 50%; transform: translateX(-50%);
+      width: 2px; background: var(--red);
+    }
+    .process__col--up::after   { bottom: 50%; height: 80px; }
+    .process__col--down::after { top: 50%; height: 80px; }
+
+    /* --- Hardware Inspiration (Figma 668:1365) — showcase.
+       Only one product's content is populated in the Figma source
+       (see build notes), so this is a single static showcase rather
+       than a multi-slide carousel — no arrows/dots to navigate to
+       content that doesn't exist. --------------------------------- */
+    .inspiration { background: rgba(208, 210, 211, 0.2); padding: 80px 0 101px; overflow: hidden; }
+    .inspiration__inner { max-width: 1440px; margin-inline: auto; padding-inline: 120px; }
+    .inspiration h2 {
+      font-family: var(--font-head); font-size: 48px; font-weight: 700; color: var(--red);
+      line-height: 1.02; letter-spacing: 0; margin-bottom: 16px; max-width: 700px;
+    }
+    .inspiration__sub { font-size: 15px; line-height: 24px; color: #676A6D; max-width: 700px; margin-bottom: 0; }
+
+    .inspiration__carousel {
+      position: relative; max-width: 1071px; margin: 45px auto 0;
+      display: flex; align-items: center; justify-content: center; gap: 22px;
+    }
+    .inspiration__stage { position: relative; flex: 0 1 995px; min-height: 600px; }
+    .inspiration__slide {
+      display: flex; align-items: center;
+      justify-content: center; gap: 88px; min-height: 600px;
+    }
+    .inspiration__figure { flex: 0 0 176px; align-self: center; }
+    .inspiration__figure img { display: block; width: 176px; height: 573px; object-fit: contain; object-position: center; }
+    .inspiration__info { flex: 0 0 401px; max-width: 401px; }
+    .inspiration__logo { margin-bottom: 26px; display: flex; align-items: flex-end; min-height: 28px; }
+    .inspiration__logo img { max-height: 44px; max-width: 213px; width: auto; height: auto; display: block; }
+    .inspiration__name {
+      font-family: var(--font-head); font-size: 48px; font-weight: 700; color: var(--red);
+      line-height: 1; letter-spacing: 0; margin: 0 0 6px;
+    }
+    .inspiration__tagline {
+      font-family: var(--font-head); font-size: 28px; font-weight: 500; color: #A6A6AB;
+      line-height: 1.1; letter-spacing: 0; margin: 0 0 26px; max-width: 360px;
+    }
+    .inspiration__features { list-style: none; margin: 0 0 32px; padding: 0; }
+    .inspiration__features li {
+      position: relative; padding-left: 20px;
+      font-family: var(--font-body); font-size: 15px; line-height: 24px; color: #000;
+    }
+    .inspiration__features li::before {
+      content: ''; position: absolute; left: 3px; top: 10px;
+      width: 4px; height: 4px; border-radius: 50%; background: #676A6D;
+    }
+    .inspiration__cta {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 24px; border: 1.5px solid var(--red); background: transparent;
+      color: #000; font-family: var(--font-body); font-size: 13px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;
+      transition: background 0.2s, color 0.2s;
+    }
+    .inspiration__cta:hover, .inspiration__cta:focus-visible { background: var(--red); color: #fff; }
+
+    @media (max-width: 1180px) {
+      .inspiration__carousel { max-width: 100%; padding-inline: 40px; column-gap: 18px; }
+      .inspiration__stage { flex: 1 1 auto; }
+    }
+    @media (max-width: 900px) {
+      .inspiration__slide { gap: 64px; }
+      .inspiration__info { flex: 0 1 401px; }
+    }
+    @media (max-width: 760px) {
+      .inspiration { padding: 56px 0 72px; }
+      .inspiration__carousel { padding-inline: 24px; column-gap: 10px; margin-top: 36px; }
+      .inspiration__stage { min-height: 0; }
+      .inspiration__slide { flex-direction: column; align-items: center; gap: 30px; text-align: left; min-height: 0; }
+      .inspiration__figure img { width: 150px; height: 488px; }
+      .inspiration__info { flex: 1 1 auto; max-width: 420px; }
+    }
+    @media (max-width: 480px) {
+      .inspiration__figure img { width: 118px; height: 384px; }
+      .inspiration__name { font-size: 40px; }
+      .inspiration__tagline { font-size: 24px; }
+      .inspiration__carousel { column-gap: 6px; padding-inline: 12px; }
+    }
+
+    /* --- Contact Form (Figma 668:1334) — underline inputs --------- */
+    .contact-form { background: #fff; padding-block: 92px 78px; }
+    .contact-form .eyebrow-pill { margin-bottom: 12px; }
+    .contact-form__inner { max-width: 760px; margin-inline: auto; padding-inline: 20px; }
+    .contact-form h2 {
+      font-family: var(--font-head); font-size: 48px; font-weight: 700; color: #231F20;
+      line-height: 1.02; letter-spacing: 0; margin-bottom: 12px;
+    }
+    .contact-form__sub { font-size: 15px; line-height: 24px; color: #000; margin-bottom: 32px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 40px; }
+    .form-field { display: flex; flex-direction: column; }
+    .form-field--full { grid-column: 1 / -1; }
+    .form-field label {
+      font-family: var(--font-body); font-size: 13px; font-weight: 600; color: #231F20;
+      margin-bottom: 6px;
+    }
+    .form-field label .req { color: var(--red); margin-left: 2px; }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      box-sizing: border-box;
+      font-family: var(--font-body); font-size: 15px; color: #231F20;
+      background: transparent; border: none; border-bottom: 1px solid #C7C7CC;
+      border-radius: 0; padding: 8px 2px; width: 100%;
+    }
+    .form-field textarea { min-height: 80px; resize: vertical; }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: #9a9a9a; }
+    .form-field select { color: #9a9a9a; }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { outline: none; border-bottom-color: var(--red); }
+    .form-submit {
+      margin-top: 36px; display: inline-flex; align-items: center; justify-content: center;
+      height: 48px; padding-inline: 40px; background: var(--red); color: #fff;
+      font-family: var(--font-body); font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+      text-transform: uppercase; border: none; cursor: pointer; transition: background 0.2s;
+    }
+    .form-submit:hover { background: var(--red-hover); }
+
+    /* --- Responsive ------------------------------------------------ */
+    @media (max-width: 1100px) {
+      .brand-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .process__inner { padding-inline: 40px; }
+      .process__timeline { flex-direction: column; gap: 32px; min-height: 0; }
+      .process__line, .process__dot { display: none; }
+      .process__col { padding-inline: 0; padding-left: 20px; border-left: 2px solid rgba(197,32,40,0.6); }
+      .process__content { position: static; }
+      .process__col--up .process__content,
+      .process__col--down .process__content { bottom: auto; top: auto; }
+      .process__col::after { display: none; }
+      .process__desc { max-width: none; }
+    }
+    @media (max-width: 768px) {
+      .hw-intro { padding-block: 64px 48px; }
+      .hw-inner, .inspiration__inner { padding-inline: 20px; }
+      .brand-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .hw-intro h2, .inspiration h2, .contact-form h2, .process__heading { font-size: 36px; }
+      .brand-section__title { font-size: 30px; }
+      .process__bg { width: 760px; top: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <header class="nav nav--hero" id="nav" role="banner">
+    <div class="container">
+      <div class="nav__inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav__logo" aria-label="All Door Supply — Home">
+          <img src="images/ADS_Logo_primary.svg" alt="All Door Supply" class="nav__logo-img" />
+        </a>
+
+        <!-- Desktop links -->
+        <nav class="nav__links" aria-label="Main navigation">
+          <a href="services.html">Services</a>
+
+          <div class="nav__item">
+            <a href="who-we-service.html" class="nav__toplink" aria-haspopup="true"><span class="nav__label">Who We Service</span>
+              <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav__dropdown" role="menu">
+              <a href="contractors.html" role="menuitem">Contractors</a>
+              <a href="design-professionals.html" role="menuitem">Design Professionals</a>
+              <a href="residential-homeowners.html" role="menuitem">Residential Homeowners</a>
+            </div>
+          </div>
+
+          <div class="nav__item">
+            <a href="manufacturers.html" class="nav__toplink is-section" aria-haspopup="true"><span class="nav__label">Manufacturers</span>
+              <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav__dropdown" role="menu">
+              <a href="doors.html" role="menuitem">Doors</a>
+              <a href="door-automation.html" role="menuitem">Door Automation</a>
+              <a href="hardware.html" role="menuitem" aria-current="page">Hardware</a>
+              <a href="division-10.html" role="menuitem">Division 10</a>
+            </div>
+          </div>
+
+          <a href="projects.html">Projects</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="contact.html" class="btn-nav" aria-label="Request a quote">Request a Quote</a>
+        </nav>
+
+        <!-- Hamburger -->
+        <button
+          class="nav__hamburger"
+          id="hamburger"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile nav -->
+    <nav class="nav__mobile" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="services.html">Services</a>
+      <a href="who-we-service.html">Who We Service</a>
+      <a href="contractors.html" class="nav__mobile-sub">Contractors</a>
+      <a href="design-professionals.html" class="nav__mobile-sub">Design Professionals</a>
+      <a href="residential-homeowners.html" class="nav__mobile-sub">Residential Homeowners</a>
+      <a href="manufacturers.html">Manufacturers</a>
+      <a href="doors.html" class="nav__mobile-sub">Doors</a>
+      <a href="door-automation.html" class="nav__mobile-sub">Door Automation</a>
+      <a href="hardware.html" class="nav__mobile-sub" aria-current="page">Hardware</a>
+      <a href="division-10.html" class="nav__mobile-sub">Division 10</a>
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="btn-nav">Request a Quote</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero-band hero-band--hardware" aria-label="Hardware">
+      <div class="hero-band__image">
+        <img
+          src="images/Hardware_Colour.jpg"
+          alt="Modern wooden entry door with brushed nickel handleset and deadbolt"
+          loading="eager"
+        />
+      </div>
+      <div class="hero-band__overlay" aria-hidden="true"></div>
+      <div class="hero-band__content">
+        <h1>Hardware for Every Opening.</h1>
+        <p class="hero-band__sub">From commercial locksets and exit devices to decorative residential hardware, All Door Supply carries architectural hardware from the industry's most trusted manufacturers.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         HARDWARE INTRO
+         ============================================================ -->
+    <section class="hw-intro" aria-label="Hardware overview">
+      <div class="hw-inner">
+        <h2>The Right Hardware for Every Opening.</h2>
+        <p>All Door Supply partners with leading hardware manufacturers to deliver locksets, closers, exit devices, hinges, pulls and specialty accessories for commercial, institutional and residential applications. Whether you're specifying Grade 1 hardware for a high-traffic build or selecting decorative finishes for a home renovation, our team helps you find the right product from the right manufacturer, backed by 35 years of industry expertise.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         COMMERCIAL & ARCHITECTURAL HARDWARE
+         ============================================================ -->
+    <section class="brand-section brand-section--commercial" aria-label="Commercial and architectural hardware manufacturers">
+      <div class="hw-inner">
+        <span class="brand-section__eyebrow">Commercial &amp; Architectural</span>
+        <h2 class="brand-section__title">Built for High-Traffic Openings.</h2>
+        <div class="brand-grid">
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-assa-abloy.svg" alt="ASSA ABLOY" /></div>
+            <p class="brand-card__desc">The global leader in access solutions, with products used by billions of people every day. ASSA ABLOY delivers locks, door hardware, access control and entrance systems for commercial, institutional and residential applications worldwide.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore ASSA ABLOY Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-allegion.png" alt="Allegion" /></div>
+            <p class="brand-card__desc">A global leader in commercial security, home to Schlage, Von Duprin, LCN, Falcon and Ives. Allegion delivers mechanical and electronic locks, exit devices, door closers and access control for schools, healthcare and multifamily projects.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Allegion Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-dormakaba.png" alt="Dormakaba" /></div>
+            <p class="brand-card__desc">A global leader in access and security solutions, formed from the merger of DORMA and Kaba. Dormakaba supplies door closers, entrance systems, electronic access control and movable walls for commercial and institutional buildings.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Dormakaba Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-lawrence.svg" alt="Lawrence Hardware" /></div>
+            <p class="brand-card__desc">A Toronto-based manufacturer with roots dating to 1876 and now part of the ASSA ABLOY Group. Lawrence delivers ANSI/BHMA-certified commercial hinges, door closers, exit devices, locksets and electrified hardware for architectural projects.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Lawrence Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-tell.svg" alt="Tell Manufacturing" /></div>
+            <p class="brand-card__desc">A trusted North American manufacturer of commercial-grade door hardware. Tell supplies locksets, exit devices, door closers, hinges and door accessories built for durability and value in high-traffic commercial and institutional settings.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Tell Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-dorex.png" alt="Dorex Hardware" /></div>
+            <p class="brand-card__desc">A Canadian manufacturer of professional residential and commercial door hardware. Dorex offers levers, handlesets, mortise locks, exit devices, door closers, hinges and architectural pulls in a wide range of BHMA-certified finishes.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Dorex Products</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         RESIDENTIAL & DECORATIVE HARDWARE
+         ============================================================ -->
+    <section class="brand-section brand-section--residential" aria-label="Residential and decorative hardware manufacturers">
+      <div class="hw-inner">
+        <span class="brand-section__eyebrow">Residential &amp; Decorative</span>
+        <h2 class="brand-section__title">Where Function Meets Finish.</h2>
+        <div class="brand-grid">
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-taymor.png" alt="Taymor" /></div>
+            <p class="brand-card__desc">Proudly Canadian-owned and operated since 1948, Taymor delivers door and bath hardware known for design, quality and value. Their range spans residential handlesets, levers and deadbolts through to commercial locks, closers and exit devices.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Taymor Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-emtek.png" alt="Emtek" /></div>
+            <p class="brand-card__desc">A premium designer of decorative residential door hardware. Emtek offers highly customizable knobs, levers, handlesets and cabinet hardware — letting homeowners and designers mix grips, rosettes and finishes for a truly bespoke result.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Emtek Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-weiser.png" alt="Weiser" /></div>
+            <p class="brand-card__desc">A trusted name in residential security across Canada for decades. Weiser delivers smart locks, deadbolts, handlesets, levers and keyless entry systems designed for reliability, ease of installation and everyday home security.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Weiser Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-richelieu.png" alt="Richelieu Hardware" /></div>
+            <p class="brand-card__desc">A leading Canadian manufacturer and distributor of decorative and functional hardware. Richelieu supplies an extensive catalogue of door, cabinet and specialty hardware to designers, contractors and manufacturers across North America.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Richelieu Products</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SPECIALTY & ACCESSORIES HARDWARE
+         ============================================================ -->
+    <section class="brand-section brand-section--specialty" aria-label="Specialty and accessory hardware manufacturers">
+      <div class="hw-inner">
+        <span class="brand-section__eyebrow">Specialty &amp; Accessories</span>
+        <h2 class="brand-section__title">The Pieces That Finish the Job.</h2>
+        <div class="brand-grid">
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-standard-metal.png" alt="Standard Metal Hardware" /></div>
+            <p class="brand-card__desc">A Toronto-based manufacturer of commercial and architectural door hardware. Standard Metal specializes in architectural door pulls, protection plates, flush pulls, grab bars and door accessories — including fully custom hardware design.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Standard Metal Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-kn-crowder.png" alt="KN Crowder" /></div>
+            <p class="brand-card__desc">A Burlington, Ontario manufacturer with over 70 years of family-owned experience. KN Crowder leads in architectural sliding door and entranceway hardware, pocket door kits and barn door systems — and is Canada's largest weatherstrip maker.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore KN Crowder Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-morris-lee.png" alt="Morris Lee, Ltd." /></div>
+            <p class="brand-card__desc">An Ontario-based manufacturer's representative serving Canada's non-residential construction industry. Morris Lee supplies specification-oriented commercial plumbing, mechanical and washroom products to architects, engineers and contractors.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore Morris Lee Products</a>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-card__logo"><img src="images/logos/logo-ucan.png" alt="UCAN Fastening Products" /></div>
+            <p class="brand-card__desc">Canada's drilling and anchoring specialist since 1967. UCAN delivers high-performance concrete and masonry fastening solutions — structural anchors, masonry anchoring, direct fastening and adhesive anchoring systems for demanding jobs.</p>
+            <a href="manufacturers.html" class="brand-card__link">Explore UCAN Products</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         HARDWARE INSPIRATION — product showcase
+         ============================================================ -->
+    <section class="inspiration" aria-label="Hardware inspiration">
+      <div class="inspiration__inner">
+        <span class="eyebrow-pill eyebrow-pill--dark">Hardware</span>
+        <h2>Find Your Inspiration.</h2>
+        <p class="inspiration__sub">Browse spec sheets and technical drawings across our hardware range — from commercial locksets and closers to decorative residential finishes.</p>
+      </div>
+
+      <div class="inspiration__carousel">
+        <div class="inspiration__stage">
+          <article class="inspiration__slide">
+            <div class="inspiration__figure"><img src="images/inspiration/daybar-delta-tr.png" width="176" height="573" alt="Daybar Delta TR temperature-rise-rated hollow metal door" loading="lazy" /></div>
+            <div class="inspiration__info">
+              <div class="inspiration__logo"><img src="images/inspiration/logo-daybar.svg" alt="Daybar" /></div>
+              <h3 class="inspiration__name">Delta TR</h3>
+              <p class="inspiration__tagline">Enhanced fire protection for critical life safety requirements</p>
+              <ul class="inspiration__features">
+                <li>Premium fire protection</li>
+                <li>450&deg;F / 250&deg;C temperature rise</li>
+                <li>10-year warranty</li>
+                <li>Full size closer reinforcing</li>
+                <li>Temperature rise rated core</li>
+                <li>Beveled edges</li>
+                <li>7-Gauge hinge reinforcing</li>
+                <li>18-Gauge A60 galvanneal</li>
+                <li>Water-based primer finish</li>
+              </ul>
+              <a class="inspiration__cta" href="manufacturers.html">View Product</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         OUR PROCESS — dark timeline
+         ============================================================ -->
+    <section class="process" aria-label="How we work with you">
+      <img class="process__bg" src="images/process-buildings.svg" alt="" aria-hidden="true" />
+      <div class="process__inner">
+        <span class="eyebrow-pill">Our Process</span>
+        <h2 class="process__heading">How We Work With You.</h2>
+
+        <div class="process__timeline">
+          <div class="process__line" aria-hidden="true"></div>
+
+          <div class="process__col process__col--up">
+            <div class="process__content">
+              <p class="process__num">01</p>
+              <h3 class="process__title">Consultation</h3>
+              <p class="process__desc">We start by understanding your project requirements, specifications, timelines and budget — so we can point you to exactly the right products.</p>
+            </div>
+            <span class="process__dot" aria-hidden="true"></span>
+          </div>
+
+          <div class="process__col process__col--down">
+            <div class="process__content">
+              <p class="process__num">02</p>
+              <h3 class="process__title">Product Selection</h3>
+              <p class="process__desc">Our team identifies the right door products, hardware and manufacturers to match your application, whether residential, commercial or institutional.</p>
+            </div>
+            <span class="process__dot" aria-hidden="true"></span>
+          </div>
+
+          <div class="process__col process__col--up">
+            <div class="process__content">
+              <p class="process__num">03</p>
+              <h3 class="process__title">Quoting</h3>
+              <p class="process__desc">We provide accurate pricing and lead times based on your confirmed specifications — no surprises, no hidden costs.</p>
+            </div>
+            <span class="process__dot" aria-hidden="true"></span>
+          </div>
+
+          <div class="process__col process__col--down">
+            <div class="process__content">
+              <p class="process__num">04</p>
+              <h3 class="process__title">Order &amp; Procurement</h3>
+              <p class="process__desc">Once approved, we place orders directly with our manufacturer network and proactively manage delivery scheduling to keep your project on track.</p>
+            </div>
+            <span class="process__dot" aria-hidden="true"></span>
+          </div>
+
+          <div class="process__col process__col--up">
+            <div class="process__content">
+              <p class="process__num">05</p>
+              <h3 class="process__title">Delivery &amp; Support</h3>
+              <p class="process__desc">We coordinate delivery to site and remain available throughout the project lifecycle for questions, adjustments or additional requirements.</p>
+            </div>
+            <span class="process__dot" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT FORM — Request a Quote
+         ============================================================ -->
+    <section class="contact-form" aria-label="Request a quote">
+      <div class="contact-form__inner">
+        <span class="eyebrow-pill">Get in Touch</span>
+        <h2>Request a Quote.</h2>
+        <p class="contact-form__sub">Fill out the form below and a member of our team will be in touch within one business day.</p>
+
+        <form class="hardware-quote-form" action="#" method="post" novalidate>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="q-name">Full Name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="q-name" name="name" placeholder="John Smith" required />
+            </div>
+            <div class="form-field">
+              <label for="q-company">Company</label>
+              <input type="text" id="q-company" name="company" placeholder="Company Name" />
+            </div>
+            <div class="form-field">
+              <label for="q-email">Email Address <span class="req" aria-hidden="true">*</span></label>
+              <input type="email" id="q-email" name="email" placeholder="john@company.com" required />
+            </div>
+            <div class="form-field">
+              <label for="q-phone">Phone Number <span class="req" aria-hidden="true">*</span></label>
+              <input type="tel" id="q-phone" name="phone" placeholder="(xxx) xxx-xxxx" required />
+            </div>
+            <div class="form-field form-field--full">
+              <label for="q-type">Project Type <span class="req" aria-hidden="true">*</span></label>
+              <select id="q-type" name="project_type" required>
+                <option value="" disabled selected>Select a project type</option>
+                <option value="commercial">Commercial</option>
+                <option value="institutional">Institutional</option>
+                <option value="industrial">Industrial</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-field form-field--full">
+              <label for="q-message">Message <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="q-message" name="message" placeholder="Tell us about your project…" required></textarea>
+            </div>
+          </div>
+          <button type="submit" class="form-submit">Submit</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__logo">
+          <img src="images/ADS_Logo_primary.svg" alt="All Door Supply" class="footer__logo-img" />
+        </div>
+        <div class="footer__col">
+          <h4>Contact Us</h4>
+          <address>
+            <p>Toll Free: 1.866.769.3667</p>
+            <p>Phone: 1-905.335.1638</p>
+            <p>Fax: 1.905.335.6822</p>
+            <p>Email: <a href="mailto:info@alldoorsupply.com">info@alldoorsupply.com</a></p>
+            <p>Location: 559 King Forest Court,<br>Burlington, Ontario L7P 5C1</p>
+          </address>
+        </div>
+        <div class="footer__col">
+          <h4>Navigate</h4>
+          <nav aria-label="Footer navigation">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="who-we-service.html">Who We Service</a>
+            <a href="manufacturers.html">Manufacturers</a>
+            <a href="projects.html">Projects</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="contact.html">Request a Quote</a>
+          </nav>
+        </div>
+        <div class="footer__col">
+          <h4>Hours</h4>
+          <p>Showroom &amp; Warehouse</p>
+          <p>Mon – Fri: 7:30am – 4:30pm</p>
+          <br/>
+          <p class="hours-highlight">24 Hour Service for<br>Established Customers</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>© 2026 All Door Supply. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
