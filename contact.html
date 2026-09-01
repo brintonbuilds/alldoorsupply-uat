@@ -42,10 +42,17 @@
     }
 
     /* --- Hero ---------------------------------------------------- */
+    /* The nav is position:fixed sitewide, so the hero sits underneath it
+       and uses the translucent .nav--hero treatment — same as every
+       other interior hero. `width: 100%` is required: without it the
+       inner is a flex item that shrinks to its content, which kills the
+       max-width/auto-margin centring and drags the copy off the gutter.
+       The 52px top pad matches .hero-band__content so the headline
+       clears the fixed nav. */
     .cnt-hero {
       background: #2E3032; min-height: 400px; display: flex; align-items: center;
     }
-    .cnt-hero__inner { padding-block: 72px; }
+    .cnt-hero__inner { width: 100%; padding-top: 52px; }
     .cnt-hero h1 {
       font-family: var(--font-head); font-size: 78px; font-weight: 700;
       line-height: 86px; letter-spacing: 0; color: #fff; margin: 0 0 16px;
@@ -119,9 +126,14 @@
 
     /* --- Visit Our Showroom -------------------------------------- */
     .cnt-showroom { background: #231F20; }
+    /* The left gutter lives on the layout, not the copy, so its percentage
+       resolves against the full-width band (client width) and lands on the
+       exact same edge as .cnt-inner. Using 100vw here would include the
+       scrollbar and push the copy ~8px right of every other section. */
     .cnt-showroom__layout {
       display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 680px);
       align-items: stretch;
+      padding-left: max(40px, calc((100% - 1200px) / 2));
     }
     /* Figma: copy starts on the 120px content gutter (x=120) while the
        map runs flush to the right frame edge from x=760. The left pad
@@ -129,7 +141,6 @@
        every other section on the site. */
     .cnt-showroom__copy {
       padding-block: 88px;
-      padding-left: max(40px, calc((100vw - 1200px) / 2));
       padding-right: 60px;
       display: flex; flex-direction: column; justify-content: center;
     }
@@ -161,7 +172,7 @@
       .cnt-hero h1 { font-size: 60px; line-height: 1.04; }
       .cnt-layout { grid-template-columns: 1fr; gap: 40px; }
       .cnt-form-section { padding-block: 72px; }
-      .cnt-showroom__layout { grid-template-columns: 1fr; }
+      .cnt-showroom__layout { grid-template-columns: 1fr; padding-left: 0; }
       .cnt-showroom__copy { padding: 64px 40px; }
       .cnt-showroom__copy-inner { max-width: none; }
       .cnt-map { min-height: 380px; }
@@ -169,6 +180,7 @@
     @media (max-width: 768px) {
       .cnt-hero h1 { font-size: 44px; line-height: 1.05; }
       .cnt-inner { padding-inline: 20px; }
+      .cnt-showroom__copy { padding: 56px 20px; }
       .cnt-heading { font-size: 36px; }
       .field-grid { grid-template-columns: 1fr; }
     }
@@ -182,7 +194,7 @@
   <!-- ============================================================
        NAVIGATION
        ============================================================ -->
-  <header class="nav" id="nav" role="banner">
+  <header class="nav nav--hero" id="nav" role="banner">
     <div class="container">
       <div class="nav__inner">
 
