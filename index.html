@@ -47,6 +47,76 @@
     @media (prefers-reduced-motion: reduce){
       html[data-ads-loader="on"] .ads-loader{display:none;animation:none}
     }
+
+    /* ============================================================
+       RECENT PROJECTS — copied from the Experience page component
+       ============================================================ */
+    .prj-inner { max-width: 1280px; margin-inline: auto; padding-inline: 40px; }
+    /* Shared eyebrow — Figma: Inter 11/500, letter-spacing 1.65, #C52028 */
+    .prj-eyebrow {
+      display: block; font-family: var(--font-body); font-size: 11px; font-weight: 500;
+      line-height: 13px; text-transform: uppercase; letter-spacing: 1.65px;
+      color: var(--red);
+    }
+    /* Shared section headline — Figma: Barlow Condensed 700 / 48px */
+    .prj-heading {
+      font-family: var(--font-head); font-size: 48px; font-weight: 700;
+      line-height: normal; letter-spacing: 0; color: #231F20; margin: 0;
+    }
+
+    /* --- 4. Recent Projects --------------------------------------
+       Figma: cards 386x495 with 386x260 image, 21px column gap;
+       header row 224px tall with the button right-aligned. */
+    .prj-recent { background: #fff; padding-block: 96px; }
+    .prj-recent__header {
+      position: relative; display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 24px; margin-bottom: 42px;
+    }
+    .prj-recent__header .prj-eyebrow { margin-bottom: 15px; }
+    .prj-recent__header .btn-outline-red { position: absolute; top: 44px; right: 0; }
+
+    /* Figma "Button Secondary Outline" — 12/24 padding, 1.5px red rule. */
+    .btn-outline-red {
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0; padding: 12px 24px;
+      border: 1.5px solid var(--red); background: transparent; color: #000;
+      font-family: var(--font-body); font-size: 15px; font-weight: 500;
+      line-height: 18px; text-transform: uppercase; letter-spacing: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline-red:hover, .btn-outline-red:focus-visible { background: var(--red); color: #fff; }
+
+    .project-grid {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 21px;
+    }
+    .project-card__image {
+      height: 260px; border-radius: 8px; overflow: hidden;
+      margin-bottom: 22px; background: #D0D2D3;
+    }
+    .project-card__image img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center;
+    }
+    .project-card { min-height: 476px; }
+    .project-card h3 {
+      font-family: var(--font-head); font-size: 24px; font-weight: 700;
+      line-height: normal; letter-spacing: 0; color: #231F20; margin: 0 0 3px;
+    }
+    .project-card__meta { font-size: 13px; line-height: 21px; color: #737578; margin: 0; }
+    .project-card__loc { display: block; line-height: 16px; margin-bottom: 21px; }
+    .project-card__meta strong { font-weight: 500; color: #C52028; }
+
+    @media (max-width: 1024px) {
+      .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .prj-recent { padding-block: 72px; }
+    }
+    @media (max-width: 768px) {
+      .prj-inner { padding-inline: 20px; }
+      .prj-heading { font-size: 36px; }
+      .project-grid { grid-template-columns: 1fr; }
+      .project-card { min-height: 0; }
+      .prj-recent__header { flex-direction: column; align-items: flex-start; }
+      .prj-recent__header .btn-outline-red { position: static; }
+    }
   </style>
   <script>
     /* Decide synchronously (before paint) whether to show the intro:
@@ -565,6 +635,68 @@
       </div>
     </section>
     </div><!-- /.whoweare -->
+
+    <!-- ============================================================
+         RECENT PROJECTS
+         ============================================================ -->
+    <section class="prj-recent" aria-label="Recent projects">
+      <div class="prj-inner">
+        <div class="prj-recent__header">
+          <div>
+            <span class="prj-eyebrow">Recent Projects</span>
+            <h2 class="prj-heading">The Work Behind the Doors.</h2>
+          </div>
+          <a href="projects.html" class="btn-outline-red">View More Projects</a>
+        </div>
+
+        <div class="project-grid">
+
+          <article class="project-card">
+            <div class="project-card__image">
+              <img src="images/projects/elora-mill-condominiums.jpg" alt="Elora Mill Condominiums overlooking the Grand River in Elora, Ontario" loading="lazy" />
+            </div>
+            <h3>Elora Mill Condominiums</h3>
+            <p class="project-card__meta">
+              <span class="project-card__loc">Multi-Residential &middot; Elora, ON</span>
+              <strong>Architect:</strong> Hicks Design Studio<br>
+              <strong>General Contractor:</strong> Pearle Hospitality<br>
+              <strong>Developer:</strong> Pearle Hospitality<br>
+              <strong>Description:</strong> 5 Storey, 106 Unit Condominiums<br>
+              <strong>Status:</strong> Complete
+            </p>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__image">
+              <img src="images/projects/sheddon-ave-condominiums.jpg" alt="Sheddon Ave Condominiums, a brick low-rise condominium development in Oakville, Ontario" loading="lazy" />
+            </div>
+            <h3>Sheddon Ave Condominiums</h3>
+            <p class="project-card__meta">
+              <span class="project-card__loc">Multi-Residential &middot; Oakville, ON</span>
+              <strong>Architect:</strong> Hicks Design Studio<br>
+              <strong>General Contractor:</strong> JRB Group<br>
+              <strong>Description:</strong> 3 Story Multi-Unit Condominiums<br>
+              <strong>Status:</strong> Completed
+            </p>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__image">
+              <img src="images/projects/tru-by-hilton-milton.jpg" alt="Tru by Hilton hotel exterior in Milton, Ontario" loading="lazy" />
+            </div>
+            <h3>Tru By Hilton</h3>
+            <p class="project-card__meta">
+              <span class="project-card__loc">Hotel &middot; Milton, ON</span>
+              <strong>Architect:</strong> Mataj Architects Inc.<br>
+              <strong>General Contractor:</strong> BCM Construction<br>
+              <strong>Description:</strong> 6 Storey, 100 Room Hotel<br>
+              <strong>Status:</strong> Under Construction
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
 
     <!-- ============================================================
          CTA BANNER
