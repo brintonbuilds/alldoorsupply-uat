@@ -134,6 +134,29 @@
     .project-card__loc { display: block; line-height: 16px; margin-bottom: 21px; }
     .project-card__meta strong { font-weight: 500; color: #C52028; }
 
+
+    /* Same hover motion as the Recent Projects panels: slow zoom, soft dark
+       wash, title turns red. (No "View Project" button here — these cards
+       are the destination.) */
+    .project-card__image { position: relative; }
+    .project-card__image img {
+      transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+    .project-card__image::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(180deg, rgba(35, 31, 32, 0) 45%, rgba(35, 31, 32, 0.6) 100%);
+      opacity: 0; transition: opacity 0.5s ease;
+    }
+    .project-card__image:hover img { transform: scale(1.06); }
+    .project-card__image:hover::after { opacity: 1; }
+    .project-card h3 { transition: color 0.25s ease; }
+    .project-card:has(.project-card__image:hover) h3 { color: var(--red); }
+    @media (prefers-reduced-motion: reduce) {
+      .project-card__image img { transition: none; }
+      .project-card__image:hover img { transform: none; }
+    }
+
     .prj-empty {
       display: none; font-size: 15px; line-height: 24px; color: #737578;
       padding-block: 24px;
