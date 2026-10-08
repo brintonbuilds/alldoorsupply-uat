@@ -2640,3 +2640,159 @@ ul { list-style: none; }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================
+   UNIFIED INTERIOR HERO (desktop)
+   Every interior page's 400px hero shares one text position: the
+   headline's top edge is fixed (151px from the top of the band), it sits
+   on the 1200px content column, and the headline / sub copy use the same
+   size, spacing and measure. Previously some heroes were bottom-anchored
+   and others centred, so the text jumped between pages whenever the
+   sub copy ran to a different number of lines.
+   ============================================================ */
+@media (min-width: 1025px) {
+  main > section.hero-band,
+  main > section.svc-hero,
+  main > section.ctr-hero,
+  main > section.dp-hero,
+  main > section.ho-hero,
+  main > section.abt-hero,
+  main > section.cnt-hero {
+    align-items: flex-start;
+  }
+
+  main > section .hero-band__content,
+  main > section .svc-hero__content,
+  main > section .ctr-hero__content,
+  main > section .dp-hero__content,
+  main > section .ho-hero__content,
+  main > section .abt-hero__inner,
+  main > section .cnt-hero__inner {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding: 151px 40px 0;
+    box-sizing: border-box;
+  }
+
+  main > section.hero-band h1,
+  main > section.svc-hero h1,
+  main > section.ctr-hero h1,
+  main > section.dp-hero h1,
+  main > section.ho-hero h1,
+  main > section.abt-hero h1,
+  main > section.cnt-hero h1 {
+    font-size: 78px;
+    line-height: 86px;
+    margin: 0 0 16px;
+  }
+
+  main > section.hero-band .hero-band__sub,
+  main > section.svc-hero .svc-hero__sub,
+  main > section.ctr-hero .ctr-hero__sub,
+  main > section.dp-hero .dp-hero__sub,
+  main > section.ho-hero .ho-hero__sub,
+  main > section.abt-hero .abt-hero__sub,
+  main > section.cnt-hero .cnt-hero__sub {
+    font-size: 18px;
+    line-height: 24px;
+    max-width: 860px;
+    margin: 0;
+  }
+
+  /* About: copy stays on the shared top line; the logo sits to its right. */
+  main > section.abt-hero .abt-hero__inner { align-items: flex-start; }
+  main > section.abt-hero .abt-hero__copy { max-width: 860px; }
+}
+
+/* Unified interior hero — tablet and mobile.
+   Same rule as desktop: one fixed starting line for the headline and one
+   left edge, so the text doesn't move between pages. */
+@media (max-width: 1024px) {
+  main > section.hero-band,
+  main > section.svc-hero,
+  main > section.ctr-hero,
+  main > section.dp-hero,
+  main > section.ho-hero,
+  main > section.abt-hero,
+  main > section.cnt-hero {
+    height: auto;
+    min-height: 400px;
+    padding-top: 0;
+    align-items: flex-start;
+  }
+
+  main > section .hero-band__content,
+  main > section .svc-hero__content,
+  main > section .ctr-hero__content,
+  main > section .dp-hero__content,
+  main > section .ho-hero__content,
+  main > section .abt-hero__inner,
+  main > section .cnt-hero__inner {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding: 128px 32px 56px;
+    box-sizing: border-box;
+  }
+
+  main > section.hero-band h1,
+  main > section.svc-hero h1,
+  main > section.ctr-hero h1,
+  main > section.dp-hero h1,
+  main > section.ho-hero h1,
+  main > section.abt-hero h1,
+  main > section.cnt-hero h1 {
+    font-size: 60px;
+    line-height: 1.04;
+    margin: 0 0 16px;
+  }
+
+  main > section.abt-hero .abt-hero__inner { align-items: flex-start; }
+}
+
+@media (max-width: 768px) {
+  main > section .hero-band__content,
+  main > section .svc-hero__content,
+  main > section .ctr-hero__content,
+  main > section .dp-hero__content,
+  main > section .ho-hero__content,
+  main > section .abt-hero__inner,
+  main > section .cnt-hero__inner {
+    padding-inline: 20px;
+  }
+
+  main > section.hero-band h1,
+  main > section.svc-hero h1,
+  main > section.ctr-hero h1,
+  main > section.dp-hero h1,
+  main > section.ho-hero h1,
+  main > section.abt-hero h1,
+  main > section.cnt-hero h1 {
+    font-size: 44px;
+    line-height: 1.05;
+  }
+
+  main > section .hero-band__sub,
+  main > section .svc-hero__sub,
+  main > section .ctr-hero__sub,
+  main > section .dp-hero__sub,
+  main > section .ho-hero__sub,
+  main > section .abt-hero__sub,
+  main > section .cnt-hero__sub {
+    font-size: 15px;
+    line-height: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  main > section.hero-band h1,
+  main > section.svc-hero h1,
+  main > section.ctr-hero h1,
+  main > section.dp-hero h1,
+  main > section.ho-hero h1,
+  main > section.abt-hero h1,
+  main > section.cnt-hero h1 {
+    font-size: 38px;
+  }
+}
