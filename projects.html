@@ -31,6 +31,15 @@
     .prj-inner { max-width: 1280px; margin-inline: auto; padding-inline: 40px; }
 
     .hero-band--projects h1 { font-size: 78px; line-height: 86px; }
+    /* Figma frames this photo stretched: the full image width across the band,
+       with the visible slice (source y 495-1828) squeezed into 400px. Reproduced
+       in vw so it looks the same at every desktop width. */
+    @media (min-width: 1025px) {
+      .hero-band--projects .hero-band__image img {
+        position: absolute; left: 0; top: -10.28vw;
+        width: 100%; max-width: none; height: 52.8vw; object-fit: fill;
+      }
+    }
 
     /* Shared eyebrow — Figma: Inter 11/500, letter-spacing 1.65, #C52028 */
     .prj-eyebrow {
@@ -210,7 +219,7 @@
           </div>
 
           <div class="nav__item">
-            <a href="experience.html" class="nav__toplink is-section" aria-haspopup="true"><span class="nav__label">Experience</span>
+            <a href="experience.html" class="nav__toplink is-section" aria-haspopup="true"><span class="nav__label">Project Experience</span>
               <svg class="nav__caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
             <div class="nav__dropdown" role="menu">
@@ -250,7 +259,7 @@
       <a href="door-automation.html" class="nav__mobile-sub">Door Automation</a>
       <a href="hardware.html" class="nav__mobile-sub">Hardware</a>
       <a href="division-10.html" class="nav__mobile-sub">Division 10</a>
-      <a href="experience.html">Experience</a>
+      <a href="experience.html">Project Experience</a>
       <a href="projects.html#elora-mill" class="nav__mobile-sub">Elora Mill Condominiums</a>
       <a href="projects.html#sheddon-ave" class="nav__mobile-sub">Sheddon Ave Condominiums</a>
       <a href="projects.html#tru-by-hilton" class="nav__mobile-sub">Tru By Hilton</a>
@@ -268,7 +277,7 @@
          ============================================================ -->
     <section class="hero-band hero-band--projects" aria-label="Our projects">
       <div class="hero-band__image">
-        <img src="images/projects-hero.jpg" alt="" loading="eager" />
+        <img src="images/projects-page-hero.jpg" alt="Glass condominium towers at dusk" loading="eager" />
       </div>
       <div class="hero-band__overlay" aria-hidden="true"></div>
       <div class="hero-band__content">
@@ -513,7 +522,7 @@
             <a href="services.html">Services</a>
             <a href="who-we-service.html">Who We Service</a>
             <a href="manufacturers.html">Manufacturers</a>
-            <a href="experience.html">Experience</a>
+            <a href="experience.html">Project Experience</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
             <a href="contact.html">Request a Quote</a>
