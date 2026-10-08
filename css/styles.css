@@ -564,34 +564,31 @@ ul { list-style: none; }
   transform-origin: center;
 }
 
-/* Marquee viewport — clips the scrolling track */
+/* Marquee viewport — clips the scrolling track to the same width as the
+   "Trusted Manufacturing Partners" label and rule, so logos fade in at the
+   right end of the line and disappear at the start of the text. */
 .hero__brand-logos {
   position: relative;
   display: flex;
   align-items: center;
-  width: 100vw;
-  max-width: 100vw;
+  width: auto;
+  max-width: none;
   min-height: 62px;
-  margin-inline: calc(50% - 50vw);
+  margin-inline: 0;
   padding-block: 5px;
   overflow: hidden;
-  /* Fade edges so logos enter/exit softly rather than hard-cutting */
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0,
-    rgba(0,0,0,0.06) 36px,
-    rgba(0,0,0,1) var(--brand-fade),
-    rgba(0,0,0,1) calc(100% - var(--brand-fade)),
-    rgba(0,0,0,0.06) calc(100% - 36px),
+    rgba(0,0,0,1) 56px,
+    rgba(0,0,0,1) calc(100% - 56px),
     transparent 100%
   );
   mask-image: linear-gradient(
     to right,
     transparent 0,
-    rgba(0,0,0,0.06) 36px,
-    rgba(0,0,0,1) var(--brand-fade),
-    rgba(0,0,0,1) calc(100% - var(--brand-fade)),
-    rgba(0,0,0,0.06) calc(100% - 36px),
+    rgba(0,0,0,1) 56px,
+    rgba(0,0,0,1) calc(100% - 56px),
     transparent 100%
   );
 }
