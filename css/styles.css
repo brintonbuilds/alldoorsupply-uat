@@ -2809,3 +2809,30 @@ ul { list-style: none; }
     font-size: 38px;
   }
 }
+
+/* ============================================================
+   MOBILE / TABLET MENU BAR — spacing
+   - Hamburger bars sit on the same page gutter as the logo (the 44px
+     tap target stays; its empty 10px margin is pulled outside the gutter).
+   - Phone: a 92px bar (84px once scrolled) with a 46px logo (was a 72px logo crammed into the same
+     bar), and the open menu's links line up with the logo's left edge.
+   ============================================================ */
+@media (max-width: 1200px) {
+  .nav__hamburger { margin-right: -10px; }
+}
+
+@media (max-width: 768px) {
+  .nav__inner { height: 92px; }
+  .nav .nav__logo-img { height: 46px; }
+  .nav--compact .nav__inner { height: 84px; }
+  .nav--compact .nav__logo-img { height: 44px; }
+
+  .nav__mobile {
+    padding: 8px 0 20px;
+    max-height: calc(100vh - 92px);
+    overflow-y: auto;
+  }
+  .nav__mobile a { padding-inline: 20px; }
+  .nav__mobile .nav__mobile-sub { padding-left: 36px !important; }
+  .nav__mobile .btn-nav { margin: 16px 20px 0; }
+}
