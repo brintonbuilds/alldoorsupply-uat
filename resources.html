@@ -22,11 +22,13 @@
 
          Hero ............... shared .hero-band, elevation drawing
          Intro .............. "Forms & Shop Drawings."
+         Frame Builder ...... dark feature band, links to /frame-builder/
          Downloads .......... 7 fillable PDF cards
          CTA band ........... shared .cta-banner (help + quote)
 
-       Phase two: the online Frame Builder (frame-builder.html +
-       send-drawing.php) is deliberately left out of this build.
+       The Frame Builder itself lives in /frame-builder/index.html, one
+       self-contained file the client replaces to update it. See
+       frame-builder/README.md.
        ============================================================ */
 
     .res-inner { max-width: 1280px; margin-inline: auto; padding-inline: 40px; }
@@ -50,6 +52,30 @@
       max-width: 679px; margin-bottom: 24px;
     }
     .res-intro p { font-size: 15px; line-height: 24px; color: #000; max-width: 679px; }
+
+    /* --- Frame Builder feature band ------------------------------ */
+    .res-builder { background: #fff; padding-block: 72px 0; }
+    .res-builder__band {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      align-items: center; gap: 56px; background: #231F20; color: #fff;
+      padding: 56px 56px 56px 64px;
+    }
+    .res-builder__band .res-eyebrow { color: #fff; opacity: 0.7; }
+    .res-builder__band h2 {
+      font-family: var(--font-head); font-size: 48px; font-weight: 700;
+      line-height: 1.02; letter-spacing: 0; margin-bottom: 16px;
+    }
+    .res-builder__band p { font-size: 15px; line-height: 24px; color: #D0D2D3; max-width: 520px; margin-bottom: 28px; }
+    .res-builder__btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 44px; padding-inline: 24px; background: var(--red); color: #fff;
+      border: 1.5px solid var(--red);
+      font-family: var(--font-body); font-size: 13px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0; line-height: normal;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .res-builder__btn:hover, .res-builder__btn:focus-visible { background: var(--red-hover); border-color: var(--red-hover); }
+    .res-builder__img { display: block; width: 100%; height: auto; border: 1px solid #4a4647; background: #fff; }
 
     /* --- Downloads ----------------------------------------------- */
     .res-downloads { background: #fff; padding-block: 84px 120px; }
@@ -125,10 +151,16 @@
       .res-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
     @media (max-width: 1024px) {
+      .res-builder__band { gap: 36px; padding: 44px; }
+      .res-builder__band h2 { font-size: 40px; }
       .res-intro { padding-top: 88px; }
       .res-downloads { padding-block: 64px 88px; }
     }
     @media (max-width: 768px) {
+      .res-builder { padding-top: 48px; }
+      .res-builder__band { grid-template-columns: 1fr; gap: 28px; padding: 32px 24px; }
+      .res-builder__band h2 { font-size: 34px; }
+      .res-builder__btn { width: 100%; }
       .res-inner { padding-inline: 20px; }
       .res-intro { padding-top: 56px; }
       .res-intro h2 { font-size: 36px; }
@@ -250,6 +282,23 @@
       <div class="res-inner">
         <h2>Forms &amp; Shop Drawings.</h2>
         <p>Every opening starts with the right information. Use the forms below to spec hollow metal frames and screens, borrowed lites, hollow metal doors, wood doors and wood door machining. Our team checks every sheet before anything goes to fabrication.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FRAME BUILDER — links to the standalone tool in /frame-builder/
+         ============================================================ -->
+    <section class="res-builder" aria-labelledby="fb-title">
+      <div class="res-inner">
+        <div class="res-builder__band">
+          <div>
+            <span class="res-eyebrow">Online Tool</span>
+            <h2 id="fb-title">Build Your Frame Drawing Online.</h2>
+            <p>Draw your hollow metal frame, set the sizes, anchors and glazing, and get a finished shop drawing PDF. Download it, or send it straight to our estimating team for a quote.</p>
+            <a class="res-builder__btn" href="frame-builder/">Launch Frame Builder</a>
+          </div>
+          <img class="res-builder__img" src="images/resources/frame-builder-shop-drawing-preview.jpg" alt="Example shop drawing made with the Frame Builder: a hollow metal frame with a door, a glass sidelite, a metal panel and a title block" width="1500" height="1086" loading="lazy" />
+        </div>
       </div>
     </section>
 
